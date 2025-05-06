@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\TechChallenge.Test"
+    "\\FiapCloudGamesAPI",
+    "\\FiapCloudGamesTest",
+    "\\FiapCloudGamesTest\\Entities",
+    "\\FiapCloudGamesTest\\fixtures"
   ],
+  "SelectedNode": "\\FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
   "PreviewInSolutionExplorer": false
 }

@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +46,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 269,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,7 +58,72 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TestesHelper.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesHelper.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:55:02.825Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TestesUnit\u00E1riosServi\u00E7os.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:55:00.089Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "TestesUnit\u00E1riosRepositorio.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:54:56.659Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "TestesUnit\u00E1riosDominio.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T15:41:24.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Usings.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\Usings.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs",
+              "RelativeToolTip": "TechChallenge.Test\\Usings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T15:34:35.237Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "TechChallenge-03-06.csproj",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge-03-06.csproj",
               "RelativeDocumentMoniker": "TechChallenge-03-06.csproj",
@@ -46,12 +131,11 @@
               "RelativeToolTip": "TechChallenge-03-06.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-02T15:59:47.263Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:59:47.263Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -64,7 +148,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 7,
               "Title": "README.md",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -72,12 +156,11 @@
               "RelativeToolTip": "README.md",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-05-02T15:59:41.813Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:59:41.813Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": ".gitignore",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -85,8 +168,7 @@
               "RelativeToolTip": ".gitignore",
               "ViewState": "AgIAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAF8SURBVDhPjVNLTgJBEG1lwpoFB3GNK9fieA48hD8iwT/ihwgSDAIHgAGXXsEV18CNzL/LquqZdsYM6kteXqcy3fWqpmpNRBgOhyABBEgpAFVKPIMUcYzUyOU\u002BXM/b2qtU3vkSfRjjZTCAMAw1A2LwzdFoBPP5HNqdzuL27n4juibWI\u002BUshBA1DIkhEx9iEorFotgslQqGYbxxAGFEqt1MxmPWJLbLZdZ\u002Bv89q5PMFPiTR6z2zdaxR0fXA0XTBcVywkb4fwHXjRteecIDNQ7UmExVYAdPcxYaqclN46na5WenMKjtlVnTYwcXlVYaDqImW9beD5N/TeGy32QHXm6hZ03ZgiSQHp2fnWQ4oBmJqWSqwAqZpZjt4aLXAD4J0VqyZsmoubfB8H2r1eoaD6NXZ9HcHO\u002BSA3f4AjifXl8rItOETM8ckB9WTWpYD9RdeZ1PWVWAHWXPQaDb59f/w8LiqHeh1pvGkCaP6qB8yXusoxmuNZ7XmII4O9vGuEF86osuDYRkpYQAAAABJRU5ErkJggg==",
-              "WhenOpened": "2025-05-02T15:59:29.547Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:59:29.547Z"
             }
           ]
         }
