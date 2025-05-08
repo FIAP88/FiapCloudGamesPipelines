@@ -1,5 +1,6 @@
 ﻿using FiapCloudGamesAPI.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,20 @@ using System.Threading.Tasks;
 
 namespace FiapCloudGamesTest.Infra
 {
-	internal class HelperTests
-	{
-		#region Context
-		private readonly AppDbContext appDbContext;
-		public HelperTests()
+	public static class HelperTests
+	{		
+		#region Context	
+		public static AppDbContext GetInMemoryContext(string dbName = "Db_TechChallenge")
 		{
-			var builder = new DbContextOptionsBuilder<AppDbContext>();
-			builder.UseInMemoryDatabase(databaseName: "Db_TechChallenge");
-
+			var builder = new DbContextOptionsBuilder<AppDbContext>()
+				.UseInMemoryDatabase(databaseName: dbName);
 			var dbContextOptions = builder.Options;
-			appDbContext = new AppDbContext(dbContextOptions);
+			var appDbContext = new AppDbContext(dbContextOptions);
+
 			appDbContext.Database.EnsureDeleted();
 			appDbContext.Database.EnsureCreated();
+
+			return appDbContext;
 		}
 		#endregion
 
@@ -34,13 +36,12 @@ namespace FiapCloudGamesTest.Infra
 		//{
 		//	return new JogoRepository(appDbContext);
 		//}
-		#region Generico
+		
 		//public BaseRepository<TEntity> GetInMemoryRepository<TEntity>()
 		//	where TEntity : BaseEntity
 		//{
 		//	return new BaseRepository<TEntity>(appDbContext);
 		//}
-		#endregion
 		#endregion
 
 	}

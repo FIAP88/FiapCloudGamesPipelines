@@ -1,5 +1,6 @@
 ﻿using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,8 +11,13 @@ namespace FiapCloudGamesAPI.Controllers
     public class UsuariosController : ControllerBase
     {
         private readonly AppDbContext _context;
+		private readonly IUsuarioService _service;
 
-        public UsuariosController(AppDbContext context) => _context = context;
+		public UsuariosController(AppDbContext context, IUsuarioService service)
+		{
+            _context = context;
+            _service = service;
+		}
 
         // GET: api/Usuarios
         [HttpGet]

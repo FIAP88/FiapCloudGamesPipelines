@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace FiapCloudGamesTest
+namespace FiapCloudGamesTest.Entities
 {
 	public class JogoTest
 	{
 		private JogoTestFixtures _jogoTestFixtures;
+
 		public JogoTest()
 		{
 			_jogoTestFixtures = new JogoTestFixtures();

@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\UsuarioTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Entities\\UsuarioTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\JogoTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Entities\\JogoTest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Infra\\HelperTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Infra\\HelperTests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FiapCloudGamesTest\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesHelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:TechChallenge.Test\\Usings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,7 +70,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 269,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,33 +82,162 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TechChallenge-03-06.csproj",
-              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge-03-06.csproj",
-              "RelativeDocumentMoniker": "TechChallenge-03-06.csproj",
-              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge-03-06.csproj",
-              "RelativeToolTip": "TechChallenge-03-06.csproj",
+              "DocumentIndex": 2,
+              "Title": "UsuarioTest.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-05-02T15:59:47.263Z",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:37:34.356Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "JogoTest.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\JogoTest.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Entities\\JogoTest.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Entities\\JogoTest.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Entities\\JogoTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:37:33.405Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Usings.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Usings.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Usings.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Usings.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Usings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:27:38.775Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "JogoControllerTest.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAEwA0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:23:22.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UsuarioControllerTest.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Controllers\\UsuarioControllerTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T13:23:13.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "HelperTests.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Infra\\HelperTests.cs",
+              "RelativeDocumentMoniker": "FiapCloudGamesTest\\Infra\\HelperTests.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\FiapCloudGamesTest\\Infra\\HelperTests.cs",
+              "RelativeToolTip": "FiapCloudGamesTest\\Infra\\HelperTests.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAABgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T12:54:26.28Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TestesHelper.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesHelper.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesHelper.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesHelper.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:55:02.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "TestesUnit\u00E1riosServi\u00E7os.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosServi\u00E7os.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:55:00.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TestesUnit\u00E1riosRepositorio.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosRepositorio.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T18:54:56.659Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TestesUnit\u00E1riosDominio.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "RelativeToolTip": "TechChallenge.Test\\TestesUnit\u00E1riosDominio.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T15:41:24.113Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Usings.cs",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs",
+              "RelativeDocumentMoniker": "TechChallenge.Test\\Usings.cs",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge.Test\\Usings.cs",
+              "RelativeToolTip": "TechChallenge.Test\\Usings.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-06T15:34:35.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "TechChallenge-03-06.csproj",
+              "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge-03-06.csproj",
+              "RelativeDocumentMoniker": "TechChallenge-03-06.csproj",
+              "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\TechChallenge-03-06.csproj",
+              "RelativeToolTip": "TechChallenge-03-06.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-02T15:59:47.263Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-02T15:59:44.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-02T15:59:44.169Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "README.md",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\README.md",
               "RelativeDocumentMoniker": "README.md",
@@ -77,7 +250,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": ".gitignore",
               "DocumentMoniker": "D:\\Users\\User\\Desktop\\Postech\\TechChallenge-03-06\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",

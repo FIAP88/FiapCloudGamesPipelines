@@ -3,9 +3,10 @@
     "",
     "\\FiapCloudGamesAPI",
     "\\FiapCloudGamesTest",
+    "\\FiapCloudGamesTest\\Controllers",
     "\\FiapCloudGamesTest\\Entities",
-    "\\FiapCloudGamesTest\\fixtures"
+    "\\FiapCloudGamesTest\\Infra"
   ],
-  "SelectedNode": "\\FiapCloudGamesTest\\Entities\\UsuarioTest.cs",
+  "SelectedNode": "\\FiapCloudGamesTest\\Controllers\\JogoControllerTest.cs",
   "PreviewInSolutionExplorer": false
 }
