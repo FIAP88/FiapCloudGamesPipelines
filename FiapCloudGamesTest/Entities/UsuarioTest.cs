@@ -8,7 +8,7 @@ namespace FiapCloudGamesTest.Entities
 
 		private UsuarioTestFixtures _usuarioTestFixtures;
 
-		public UsuarioTestes()
+		public UsuarioTest()
 		{
 			_usuarioTestFixtures = new UsuarioTestFixtures();
 		}

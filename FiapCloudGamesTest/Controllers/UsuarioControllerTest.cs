@@ -13,18 +13,22 @@ namespace FiapCloudGamesTest.Controllers
 {
 	public class UsuarioControllerTest
 	{
+		#region Depedências
 		//private Mock<ILogger<JogoController>> _logger;
-
 		//private UsuariosController _controller;
 		private Mock<IUsuarioService> _serviceMock;
+		#endregion
 
+		#region Construtor
 		public UsuarioControllerTest()
 		{
 			_serviceMock = new Mock<IUsuarioService>();
 			//_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);								
 		}
+		#endregion
 
-		[Fact]
+		[Fact(DisplayName = "GetUsuarios deve retornar todos os usuários")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task Get_Usuarios_RetornarTodosUsuarios()
 		{
 			//Arrange
@@ -35,7 +39,7 @@ namespace FiapCloudGamesTest.Controllers
 			);
 			await context.SaveChangesAsync();
 
-			var controller = new UsuariosController(context, _serviceMock.Object);
+			var controller = new UsuariosController(context, _serviceMock.Object);			
 
 			//Act
 			var result = await controller.GetUsuarios();
@@ -46,7 +50,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(2, users.Count());
 		}
 
-		[Fact]
+		[Fact(DisplayName = "GetUsuario deve retornar um usuário existente")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task GetUsuario_ReturnsUser_WhenFound()
 		{
 			//Arrange
@@ -67,7 +72,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal("Leo", foundUser.Name);
 		}
 
-		[Fact]
+		[Fact(DisplayName = "PostUsuario deve criar um novo usuário")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task PostUsuario_CreatesNewUser()
 		{
 			// Arrange
@@ -84,7 +90,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal("Fernanda", createdUser.Name);
 		}
 
-		[Fact]
+		[Fact(DisplayName = "DeleteUsuario deve remover usuário existente")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task DeleteUsuario_RemovesUser_WhenFound()
 		{
 			//Arrange
@@ -104,7 +111,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.False(context.Usuarios.Any(u => u.UserId == 4));
 		}
 
-		[Fact]
+		[Fact(DisplayName = "PutUsuario deve atualizar usuário quando IDs forem iguais")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task PutUsuario_UpdatesUser_WhenIdsMatch()
 		{
 			//Arrange
@@ -126,7 +134,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal("Ana Atualizada", context.Usuarios.Find(5)?.Name);
 		}
 
-		[Fact]
+		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usuário inexistente")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task GetUsuario_ReturnsNotFound_WhenUserDoesNotExist()
 		{
 			// Arrange
@@ -138,7 +147,8 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.IsType<NotFoundResult>(result.Result);
 		}
 
-		[Fact]
+		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
+		[Trait("Usuarios", "Validando Controller")]
 		public async Task PutUsuario_ReturnsBadRequest_WhenIdMismatch()
 		{
 			// Arrange
@@ -150,5 +160,9 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			Assert.IsType<BadRequestResult>(result);
 		}
+
+		#region ViewsTests
+
+		#endregion
 	}
 }
