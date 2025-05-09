@@ -21,6 +21,8 @@ public class UsuarioTestFixtures
 											memorable: false,
 											regexPattern: "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}$\"")
 											.GetHashCode();
+				//RegexPattern => Entre 8 e 10 caracteres pelo menos um caracter maisculo, um minusculo, one caracter especial
+				//prefix:""
 		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
 		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
 		var criadoPor = _faker.Name.FirstName;
@@ -28,8 +30,7 @@ public class UsuarioTestFixtures
 		var atualizadoPor = _faker.Name.FirstName;
 		var idPerfil = _faker.UniqueIndex;
 
-		//RegexPattern => Entre 8 e 10 caracteres pelo menos um caracter maisculo, um minusculo, one caracter especial
-		//prefix:""
+
 		var usuario = new Usuario(id, nome, sobrenome, apelido, 
 			email, hashSenha, dataNascimento, dataCriacao, 
 			criadoPor, dataAtualizacao, atualizadoPor, idPerfil);

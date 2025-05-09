@@ -5,13 +5,16 @@ namespace FiapCloudGamesTest.Entities
 { 
 	public class UsuarioTest
 	{
-
+		#region Dependências
 		private UsuarioTestFixtures _usuarioTestFixtures;
+		#endregion
 
+		#region Contexto
 		public UsuarioTest()
 		{
 			_usuarioTestFixtures = new UsuarioTestFixtures();
 		}
+		#endregion
 
 		#region Usuário	
 
