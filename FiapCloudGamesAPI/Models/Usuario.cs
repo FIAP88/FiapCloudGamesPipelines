@@ -10,5 +10,8 @@ namespace FiapCloudGamesAPI.Models
 
         [Required(ErrorMessage = "O nome do usuário é obrigatório.")]
         public required string Name { get; set; }
+
+        public int IdPerfil { get; set; }
+        public string Senha { get; set; }
     }
 }

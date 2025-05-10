@@ -1,5 +1,6 @@
 ﻿using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using HotChocolate.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,6 +8,7 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsuariosController : ControllerBase
     {
         private readonly AppDbContext _context;
