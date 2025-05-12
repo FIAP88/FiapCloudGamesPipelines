@@ -1,6 +1,6 @@
 ﻿using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
-using HotChocolate.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +24,7 @@ namespace FiapCloudGamesAPI.Controllers
 
         // GET: api/Usuarios/5
         [HttpGet("{id}")]
+        [Authorize(Roles = "4")]
         public async Task<ActionResult<Usuario>> GetUsuario(long id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);

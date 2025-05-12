@@ -1,14 +1,13 @@
 ﻿using AutenticacaoEAutorizacaoCorreto.Services.IService;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Services.IService;
-using HotChocolate.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class LoginController : ControllerBase
     {
         private readonly ITokenService _tokenService;
