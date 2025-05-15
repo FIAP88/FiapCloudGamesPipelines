@@ -23,10 +23,11 @@ namespace FiapCloudGamesTest.Controllers
 		public UsuarioControllerTest()
 		{
 			_serviceMock = new Mock<IUsuarioService>();
-			//_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);								
+			//_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);
 		}
 		#endregion
 
+		#region Requests
 		[Fact(DisplayName = "GetUsuarios deve retornar todos os usuários")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Get_Usuarios_RetornarTodosUsuarios()
@@ -160,6 +161,7 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			Assert.IsType<BadRequestResult>(result);
 		}
+		#endregion
 
 		#region ViewsTests
 

@@ -27,14 +27,10 @@ namespace FiapCloudGamesTest.Infra
 		#endregion
 
 		#region Repositórios
+
 		//public UsuarioRepository GetInMemoryUsuarioRepository()			
 		//{
 		//	return new UsuarioRepository(appDbContext);
-		//}
-
-		//public JogoRepository GetInMemoryJogoRepository()
-		//{
-		//	return new JogoRepository(appDbContext);
 		//}
 		
 		//public BaseRepository<TEntity> GetInMemoryRepository<TEntity>()
@@ -42,6 +38,7 @@ namespace FiapCloudGamesTest.Infra
 		//{
 		//	return new BaseRepository<TEntity>(appDbContext);
 		//}
+
 		#endregion
 
 	}

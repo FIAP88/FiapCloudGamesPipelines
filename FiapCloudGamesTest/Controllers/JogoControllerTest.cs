@@ -8,8 +8,7 @@ namespace FiapCloudGamesTest.Controllers
 	{
 		//private JogoController _controller;
 		//private Mock<IJogoService> _serviceMock;
-		//private Mock<ILogger<JogoController>> _logger;
-		
+		//private Mock<ILogger<JogoController>> _logger;		
 
 		//public JogoControllerTests()
 		//{
@@ -17,6 +16,5 @@ namespace FiapCloudGamesTest.Controllers
 		//	_serviceMock = new Mock<IJogoService>();
 		//	_logger = new Mock<ILogger<JogoController>>();
 		//}		
-
 	}
 }
