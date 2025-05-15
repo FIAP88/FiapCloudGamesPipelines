@@ -6,5 +6,6 @@
 
         public string Descricao { get; set; }
         public Usuario Usuario { get; set; }
+        public ICollection<PerfilPermissao> PerfilPermissoes { get; set; }
     }
 }

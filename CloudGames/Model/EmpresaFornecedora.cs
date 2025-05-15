@@ -8,6 +8,6 @@ namespace CloudGames.Model
         public string Nome { get; set; }
         public string CNPJ { get; set; }
 
-        public ICollection<Jogo> Jogos { get; set; }
+      public Jogo Jogo { get; set; }
     }
 }

@@ -7,8 +7,10 @@ namespace CloudGames.Model
     {
         
         public int IdUsuario { get; set; }
+        public Usuario usuario { get; set; }
 
         public int IdJogo { get; set; }
+        public Jogo Jogo { get; set; }
 
        
     }

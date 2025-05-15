@@ -38,10 +38,15 @@ namespace CloudGames.Repository
                 e.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)");
                 e.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
                 e.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
+
                 e.Property(p => p.PerfilId).HasColumnType("INT");
+               
+                e.HasOne(p => p.Perfil)
+                .WithOne(p => p.Usuario)
+                .HasForeignKey<Usuario>(p => p.PerfilId);
             });
 
-            modelBuilder.Entity<Perfil>(e => {
+            modelBuilder.Entity<Perfil>(e => {  
                 e.ToTable("Perfil");
                 e.HasKey(p => p.Id);
                 e.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
@@ -62,11 +67,38 @@ namespace CloudGames.Repository
 
             });
 
+            modelBuilder.Entity<PerfilPermissao>(e => {
+                e.ToTable("PerfilPermissao");
+                e.Property(p => p.IdPerfil).HasColumnType("INT").IsRequired();
+                e.Property(p => p.IdPermissao).HasColumnType("INT").IsRequired();
+
+                e.HasOne(p => p.Perfil)
+                .WithMany(p => p.PerfilPermissoes)
+                .HasForeignKey(p => p.IdPerfil);
+
+                e.HasOne(p => p.Permissao)
+                .WithMany(p => p.PerfilPermissoes)
+                .HasForeignKey(p => p.IdPermissao);
+
+
+
+
+
+            });
+
             modelBuilder.Entity<BibliotecaDoJogador>(e => {
                 e.ToTable("BibliotecaDoJogador");
                 e.Property(p => p.IdJogo).HasColumnType("INT").IsRequired();
                 e.Property(p => p.IdUsuario).HasColumnType("INT").IsRequired();
                 e.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
+
+                e.HasOne(p => p.Usuario)
+                .WithMany(p => p.Biblioteca)
+                .HasForeignKey(p => p.IdUsuario);
+
+                e.HasOne(p => p.Jogo)  
+                 .WithMany(p => p.Bibliotecas)  
+                 .HasForeignKey(p => p.IdJogo);  
             });
 
             modelBuilder.Entity<Avaliacao>(e => {
@@ -78,6 +110,14 @@ namespace CloudGames.Repository
                 e.Property(p => p.Nota).HasColumnType("INT");
                 e.Property(p => p.Comentario).HasColumnType("VARCHAR(MAX)");
                 e.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
+
+                e.HasOne(p => p.Usuario)
+                .WithMany(p => p.Avaliacoes)
+                .HasForeignKey(p => p.IdUsuario);
+
+                e.HasOne(p => p.Jogo)
+                .WithMany(p => p.Avaliacoes)
+                .HasForeignKey(p => p.IdJogo);
             });
 
             modelBuilder.Entity<Jogo>(e => {
@@ -96,7 +136,17 @@ namespace CloudGames.Repository
                 e.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)");
                 e.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
                 e.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
-                e.Property(p => p.IdFornecedor).HasColumnType("INT");
+                e.Property(p => p.IdFornecedor).HasColumnType("INT").IsRequired();
+
+                e.HasOne(p => p.Categoria)
+                 .WithOne(p => p.Jogo)
+                 .HasForeignKey<Jogo>(p => p.IdCategoria);
+
+                e.HasOne(p => p.Jogo)
+                 .WithOne(p => p.EmpresaFornecedora)
+                 .HasForeignKey<Jogo>(p => p.IdFornecedor);
+
+
             });
 
             modelBuilder.Entity<Categoria>(e => {

@@ -13,6 +13,7 @@ namespace CloudGames.Model
         public int Preco { get; set; }
     
         public int IdCategoria { get; set; }
+        public Categoria Categoria { get; set; }
 
         public int IdadeMinima { get; set; }
 
@@ -20,6 +21,10 @@ namespace CloudGames.Model
 
         public int IdFornecedor { get; set; }
         public EmpresaFornecedora EmpresaFornecedora { get; set; }
+
+        public ICollection<BibliotecaDoJogador> Bibliotecas { get; set; }
+
+        public ICollection<Avaliacao> Avaliacoes { get; set; }
 
     }
 }

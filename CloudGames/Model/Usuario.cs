@@ -10,5 +10,8 @@
         public string HashSenha { get; set; }
         public int? DataNascimento { get; set; }
         public int PerfilId { get; set; }
+        public Perfil perfil { get; set; }
+        public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
     }
 }
