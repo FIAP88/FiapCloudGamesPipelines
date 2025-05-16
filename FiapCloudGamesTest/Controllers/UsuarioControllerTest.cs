@@ -30,7 +30,7 @@ namespace FiapCloudGamesTest.Controllers
 		#region Requests
 		[Fact(DisplayName = "GetUsuarios deve retornar todos os usuários")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task Get_Usuarios_RetornarTodosUsuarios()
+		public async Task Get_RetornaTodosUsuarios()
 		{
 			//Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -53,7 +53,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "GetUsuario deve retornar um usuário existente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task GetUsuario_ReturnsUser_WhenFound()
+		public async Task Get_RetornaUsuario()
 		{
 			//Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -75,7 +75,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "PostUsuario deve criar um novo usuário")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task PostUsuario_CreatesNewUser()
+		public async Task Post_CriaNovoUsuario()
 		{
 			// Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -93,7 +93,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "DeleteUsuario deve remover usuário existente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task DeleteUsuario_RemovesUser_WhenFound()
+		public async Task Delete_RemoveUsuarioQuandoEncontrado()
 		{
 			//Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -114,7 +114,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "PutUsuario deve atualizar usuário quando IDs forem iguais")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task PutUsuario_UpdatesUser_WhenIdsMatch()
+		public async Task Put_AtualizaUsuarioComMesmoID()
 		{
 			//Arrange
 			var usuario = new Usuario { UserId = 5, Name = "Ana" };
@@ -137,7 +137,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usuário inexistente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task GetUsuario_ReturnsNotFound_WhenUserDoesNotExist()
+		public async Task GetUsuario_RetornaNotFound()
 		{
 			// Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -150,7 +150,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task PutUsuario_ReturnsBadRequest_WhenIdMismatch()
+		public async Task PutUsuario_ReturnaBadRequest()
 		{
 			// Arrange
 			var usuario = new Usuario { UserId = 10, Name = "Carlos" };
