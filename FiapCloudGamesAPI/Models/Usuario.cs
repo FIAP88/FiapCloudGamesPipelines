@@ -13,5 +13,6 @@ namespace FiapCloudGamesAPI.Models
 
         public int IdPerfil { get; set; }
         public string Senha { get; set; }
+
     }
 }
