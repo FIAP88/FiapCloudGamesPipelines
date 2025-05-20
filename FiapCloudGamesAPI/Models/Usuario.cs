@@ -1,17 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FiapCloudGamesAPI.Entidades;
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class Usuario
+    public class Usuario : EntidadeBase
     {
-        [Key]
-        [Required(ErrorMessage = "O ID do usuário é obrigatório.")]
-        public required long UserId { get; set; }
+      
+        public required string Nome { get; set; }
+        public string Sobrenome { get; set; }
+        public string Apelido { get; set; }
+        public string Email { get; set; }
+        public string HashSenha { get; set; }
+        public int? DataNascimento { get; set; }
+        public int PerfilId { get; set; }
+        public Perfil Perfil { get; set; }
+        public ICollection<Avaliacao> Avaliacoes { get; set; }
+        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
 
-        [Required(ErrorMessage = "O nome do usuário é obrigatório.")]
-        public required string Name { get; set; }
-
-        public int IdPerfil { get; set; }
-        public string Senha { get; set; }
     }
 }

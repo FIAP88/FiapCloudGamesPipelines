@@ -1,4 +1,4 @@
-﻿namespace CloudGames.Model
+﻿namespace FiapCloudGamesAPI.Models
 {
     public class Perfil
     {

@@ -42,7 +42,7 @@ namespace FiapCloudGamesAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(long id, Usuario usuario)
         {
-            if (id != usuario.UserId)
+            if (id != usuario.Id)
             {
                 return BadRequest();
             }
@@ -76,7 +76,7 @@ namespace FiapCloudGamesAPI.Controllers
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUsuario", new { id = usuario.UserId }, usuario);
+            return CreatedAtAction("GetUsuario", new { id = usuario.Id }, usuario);
         }
 
         // DELETE: api/Usuarios/5
@@ -97,7 +97,7 @@ namespace FiapCloudGamesAPI.Controllers
 
         private bool UsuarioExists(long id)
         {
-            return _context.Usuarios.Any(e => e.UserId == id);
+            return _context.Usuarios.Any(e => e.Id == id);
         }
     }
 }

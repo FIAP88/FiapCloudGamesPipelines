@@ -1,8 +1,9 @@
-﻿namespace CloudGames.Model
+﻿namespace FiapCloudGamesAPI.Entidades
 {
-    public class EntityBase
+    public class EntidadeBase
     {
         public int Id { get; set; }
+
         public DateTime DataCriacao { get; set; }
 
         public string CriadoPor { get; set; }

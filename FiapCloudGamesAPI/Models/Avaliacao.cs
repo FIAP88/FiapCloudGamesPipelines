@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using FiapCloudGamesAPI.Entidades;
 
-namespace CloudGames.Model
+namespace FiapCloudGamesAPI.Models
 {
-    public class Avaliacao : EntityBase
+    public class Avaliacao : EntidadeBase
     {
         public int IdUsuario { get; set; }
         public Usuario Usuario { get; set; }

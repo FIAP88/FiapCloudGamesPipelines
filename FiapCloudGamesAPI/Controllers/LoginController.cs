@@ -23,13 +23,13 @@ namespace FiapCloudGamesAPI.Controllers
         public async Task<ActionResult> Login(string email, string senha)
         {
             //var usuario = await _usuario.getUsuario(email);
-            var usuario = new Usuario { Name = "Teste", UserId = 1, IdPerfil = 5 };
+            var usuario = new Usuario { Nome = "Teste", Id = 1, PerfilId = 5 };
 
             if (usuario == null) return NotFound(new { message = "Usuario não encontrado" });
 
             //if (usuario.Senha != senha) return Ok("Email ou senha incorreto.");
 
-            usuario.Senha = "";
+            usuario.HashSenha = "";
 
             var key = "token";
 
