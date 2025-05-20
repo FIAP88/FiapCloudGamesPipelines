@@ -2,9 +2,9 @@
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class Categoria : EntidadeBase
+    public class Categoria(string descricao, string criadoPor) : EntidadeBase(criadoPor)
     {
-        public string Descricao { get; set; }
+        public string Descricao { get; set; } = descricao;
 
         public Jogo Jogo { get; set; }
       

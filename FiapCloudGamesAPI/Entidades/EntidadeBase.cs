@@ -2,14 +2,16 @@
 {
     public class EntidadeBase
     {
-        public int Id { get; set; }
+        public EntidadeBase(string criadoPor) => this.CriadoPor = criadoPor;
 
-        public DateTime DataCriacao { get; set; }
+        public int Id { get; set; } = 0;
+
+        public DateTime DataCriacao { get; set; } = DateTime.Now;
 
         public string CriadoPor { get; set; }
 
-        public DateTime DataAtualizacao { get; set; }
+        public DateTime DataAtualizacao { get; set; } = DateTime.Now;
 
-        public string AtualizadoPor { get; set; }
+        public string AtualizadoPor { get; set; } = string.Empty;
     }
 }

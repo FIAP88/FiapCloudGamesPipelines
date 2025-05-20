@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 using AutenticacaoEAutorizacaoCorreto.Services;
 using AutenticacaoEAutorizacaoCorreto.Services.IService;
 using FiapCloudGamesAPI.Context;

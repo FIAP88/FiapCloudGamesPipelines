@@ -4,13 +4,12 @@ using FiapCloudGamesAPI.Entidades;
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class BibliotecaDoJogador : EntidadeBase
+    public class BibliotecaDoJogador(int idUsuario, int idJogo, string criadoPor) : EntidadeBase(criadoPor)
     {
-        
-        public int IdUsuario { get; set; }
+        public int IdUsuario { get; set; } = idUsuario;
         public Usuario Usuario { get; set; }
 
-        public int IdJogo { get; set; }
+        public int IdJogo { get; set; } = idJogo;
         public Jogo Jogo { get; set; }
 
        

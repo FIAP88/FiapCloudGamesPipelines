@@ -4,11 +4,11 @@ using FiapCloudGamesAPI.Entidades;
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class EmpresaFornecedora : EntidadeBase
+    public class EmpresaFornecedora(string nome, string cNPJ, string criadoPor) : EntidadeBase(criadoPor)
     {
-        public string Nome { get; set; }
-        public string CNPJ { get; set; }
+        public string Nome { get; set; } = nome;
+        public string CNPJ { get; set; } = cNPJ;
 
-      public Jogo Jogo { get; set; }
+        public Jogo Jogo { get; set; }
     }
 }

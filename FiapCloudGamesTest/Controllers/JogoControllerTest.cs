@@ -1,6 +1,3 @@
-using FiapCloudGamesAPI.Services;
-using Microsoft.Extensions.Logging;
-using Moq;
 
 namespace FiapCloudGamesTest.Controllers
 {
