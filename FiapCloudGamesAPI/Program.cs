@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using AutenticacaoEAutorizacaoCorreto.Services;
 using AutenticacaoEAutorizacaoCorreto.Services.IService;
 using FiapCloudGamesAPI.Context;
@@ -35,10 +36,8 @@ builder.Services.AddAuthentication(x =>
         ValidateAudience = false
     };
 });
-
-
-
 #endregion
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -96,6 +95,7 @@ app.UseSwagger();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();
