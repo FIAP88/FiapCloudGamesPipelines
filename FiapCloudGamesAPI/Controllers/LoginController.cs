@@ -1,8 +1,10 @@
 ﻿using AutenticacaoEAutorizacaoCorreto.Services.IService;
+using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Services.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FiapCloudGamesAPI.Controllers
 {
@@ -12,18 +14,22 @@ namespace FiapCloudGamesAPI.Controllers
     {
         private readonly ITokenService _tokenService;
         private readonly ICacheService _cacheService;
-        public LoginController(ITokenService tokenService, ICacheService cacheService)
+
+        private readonly AppDbContext _context;
+
+        public LoginController(ITokenService tokenService, ICacheService cacheService, AppDbContext context)
         {
             _tokenService = tokenService;
             _cacheService = cacheService;
+            _context = context;
         }
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login(string email, string senha)
         {
-            //var usuario = await _usuario.getUsuario(email);
-            var usuario = new Usuario { Nome = "Teste", Id = 1, PerfilId = 5 };
+            Usuario usuario = await _context.Usuarios.FirstOrDefaultAsync(user => user.Email == email);
+            //var usuario = new Usuario { Nome = "Teste", Id = 1, PerfilId = 5 };
 
             if (usuario == null) return NotFound(new { message = "Usuario não encontrado" });
 
