@@ -33,7 +33,7 @@ namespace FiapCloudGamesAPI.Context
                 e.Property(p => p.Email).HasColumnType("VARCHAR(150)").IsRequired();
                 e.HasIndex(e => e.Email).IsUnique();
                 e.Property(p => p.HashSenha).HasColumnType("VARCHAR(255)").IsRequired();
-                e.Property(p => p.DataNascimento).HasColumnType("INT");
+                e.Property(p => p.DataNascimento).HasColumnType("DATETIME");
                 e.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)");
                 e.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
                 e.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
@@ -68,6 +68,7 @@ namespace FiapCloudGamesAPI.Context
 
             modelBuilder.Entity<PerfilPermissao>(e => {
                 e.ToTable("PerfilPermissao");
+                e.HasKey(p => new { p.IdPerfil, p.IdPermissao });
                 e.Property(p => p.IdPerfil).HasColumnType("INT").IsRequired();
                 e.Property(p => p.IdPermissao).HasColumnType("INT").IsRequired();
 
