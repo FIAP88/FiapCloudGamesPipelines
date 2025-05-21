@@ -34,7 +34,7 @@ namespace FiapCloudGamesTest.Fixtures
 			return empresaFornecedora;
 		}
 
-		public Faker<EmpresaFornecedora> GerarEmpresaFornecedoraFaker()
+		public static Faker<EmpresaFornecedora> GerarEmpresaFornecedoraFaker()
 		{
 			var empresaFornecedoraFaker = new Faker<EmpresaFornecedora>("pt_BR")
 				.CustomInstantiator(f => new EmpresaFornecedora(
