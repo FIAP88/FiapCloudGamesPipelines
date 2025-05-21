@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using Bogus.Extensions.Brazil;
 using FiapCloudGamesAPI.Models;
 
 namespace FiapCloudGamesTest.Fixtures
@@ -21,11 +22,27 @@ namespace FiapCloudGamesTest.Fixtures
             {
                 Id = _faker.UniqueIndex,
                 DataCriacao = dataCriacao,
-                AtualizadoPor = _faker.Name.FirstName(),
                 DataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now),
+                AtualizadoPor = _faker.Name.FirstName(),
             };
 
             return categoria;
 		}
+
+		public Faker<Categoria> GerarCategoriaFaker()
+		{
+			var categoriaFakerFactory = new Faker<Categoria>("pt_BR")
+				.CustomInstantiator(f => new Categoria(
+					f.Name.JobDescriptor(),
+					f.Name.FirstName()					
+					))
+				.RuleFor(e => e.Id, f => f.UniqueIndex)
+				.RuleFor(e => e.DataCriacao, f => f.Date.Past(yearsToGoBack: 100))
+				.RuleFor(e => e.DataAtualizacao, (f, e) => f.Date.Between(e.DataCriacao, DateTime.Now))
+				.RuleFor(e => e.AtualizadoPor, f => f.Name.FirstName());
+
+			return categoriaFakerFactory;
+		}
+
 	}
 }

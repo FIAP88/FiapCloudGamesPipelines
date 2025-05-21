@@ -17,16 +17,37 @@ namespace FiapCloudGamesTest.Fixtures
 			//Arrange
 			var id = _faker.UniqueIndex;
 			var nome = _faker.Company.CompanyName();
-			var cnpj = _faker.Company.Cnpj;			
+			var cnpj = _faker.Company.Cnpj();			
 			var dataCriacao = _faker.Date.Past(yearsToGoBack: 100);
-			var criadoPor = _faker.Name.FirstName;
+			var criadoPor = _faker.Name.FirstName();
 			var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-			var atualizadoPor = _faker.Name.FirstName;			
+			var atualizadoPor = _faker.Name.FirstName();
 
-			var empresaFornecedora = new EmpresaFornecedora(id, nome, cnpj, dataCriacao,
-				criadoPor, dataAtualizacao, atualizadoPor);
+			var empresaFornecedora = new EmpresaFornecedora(nome, cnpj, criadoPor)
+			{
+				Id = id,
+				DataCriacao = dataCriacao,
+				DataAtualizacao = dataAtualizacao,
+				AtualizadoPor = atualizadoPor,
+			}; 
 
 			return empresaFornecedora;
+		}
+
+		public Faker<EmpresaFornecedora> GerarEmpresaFornecedoraFaker()
+		{
+			var empresaFornecedoraFaker = new Faker<EmpresaFornecedora>("pt_BR")
+				.CustomInstantiator(f => new EmpresaFornecedora(
+					f.Company.CompanyName(),
+					f.Company.Cnpj(),
+					f.Name.FirstName()
+					))
+				.RuleFor(e => e.Id, f => f.UniqueIndex)
+				.RuleFor(e => e.DataCriacao, f => f.Date.Past(yearsToGoBack: 100))
+				.RuleFor(e => e.DataAtualizacao, (f, e) => f.Date.Between(e.DataCriacao, DateTime.Now))
+				.RuleFor(e => e.AtualizadoPor, f => f.Name.FirstName());
+
+			return empresaFornecedoraFaker;
 		}
 	}
 }
