@@ -12,7 +12,7 @@ using Moq;
 
 namespace FiapCloudGamesTest.Controllers
 {
-	public class UsuarioControllerTest
+	public class UsuariosControllerTest
 	{
 		#region Depedências
 		private Mock<ILogger<Usuario>> _loggerMock;
