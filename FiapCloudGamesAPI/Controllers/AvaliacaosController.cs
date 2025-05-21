@@ -13,8 +13,8 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AvaliacaosController(AppDbContext context, BaseLogger<Avaliacao> logger) : 
-        BaseControllerFiapCloudGames<Avaliacao>(context, logger)
+    public class AvaliacaosController(AppDbContext context, BaseLogger<Avaliacao> logger, IHttpContextAccessor httpContext) : 
+        BaseControllerFiapCloudGames<Avaliacao>(context, logger, httpContext)
     {
         // GET: api/Avaliacaos
         [HttpGet]

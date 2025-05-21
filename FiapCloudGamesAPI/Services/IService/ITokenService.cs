@@ -5,5 +5,7 @@ namespace FiapCloudGamesAPI.Services.IService
     public interface ITokenService
     {
         string GerarToken(Usuario usuario);
+
+        int GetUsuarioId(string token);
     }
 }

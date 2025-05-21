@@ -13,8 +13,8 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresasFornecedoraController(AppDbContext context, BaseLogger<EmpresaFornecedora> logger) :
-        BaseControllerFiapCloudGames<EmpresaFornecedora>(context, logger)
+    public class EmpresasFornecedoraController(AppDbContext context, BaseLogger<EmpresaFornecedora> logger, IHttpContextAccessor httpContext) :
+        BaseControllerFiapCloudGames<EmpresaFornecedora>(context, logger, httpContext)
     {
 
         // GET: api/EmpresasFornecedora

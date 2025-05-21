@@ -8,8 +8,8 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriasController(AppDbContext context, BaseLogger<Categoria> logger) :
-        BaseControllerFiapCloudGames<Categoria>(context, logger)
+    public class CategoriasController(AppDbContext context, BaseLogger<Categoria> logger, IHttpContextAccessor httpContext) :
+        BaseControllerFiapCloudGames<Categoria>(context, logger, httpContext)
     {
 
         // GET: api/Categorias
