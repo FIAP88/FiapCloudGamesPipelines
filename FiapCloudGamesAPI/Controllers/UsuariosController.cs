@@ -1,4 +1,5 @@
 ﻿using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,12 +10,9 @@ namespace FiapCloudGamesAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize]
-    public class UsuariosController : ControllerBase
+    public class UsuariosController(AppDbContext context, BaseLogger<Usuario> logger) :
+        BaseControllerFiapCloudGames<Usuario>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public UsuariosController(AppDbContext context) => _context = context;
-
         // GET: api/Usuarios
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()

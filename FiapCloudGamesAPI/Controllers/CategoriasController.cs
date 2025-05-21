@@ -1,25 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FiapCloudGamesAPI.Context;
-using FiapCloudGamesAPI.Models;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriasController : ControllerBase
+    public class CategoriasController(AppDbContext context, BaseLogger<Categoria> logger) :
+        BaseControllerFiapCloudGames<Categoria>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public CategoriasController(AppDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: api/Categorias
         [HttpGet]

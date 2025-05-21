@@ -7,20 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Infra;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AvaliacaosController : ControllerBase
+    public class AvaliacaosController(AppDbContext context, BaseLogger<Avaliacao> logger) : 
+        BaseControllerFiapCloudGames<Avaliacao>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public AvaliacaosController(AppDbContext context)
-        {
-            _context = context;
-        }
-
         // GET: api/Avaliacaos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Avaliacao>>> GetAvaliacoes()

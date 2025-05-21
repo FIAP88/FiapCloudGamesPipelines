@@ -7,19 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Infra;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EmpresasFornecedoraController : ControllerBase
+    public class EmpresasFornecedoraController(AppDbContext context, BaseLogger<EmpresaFornecedora> logger) :
+        BaseControllerFiapCloudGames<EmpresaFornecedora>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public EmpresasFornecedoraController(AppDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: api/EmpresasFornecedora
         [HttpGet]

@@ -1,6 +1,8 @@
 using AutenticacaoEAutorizacaoCorreto.Services;
 using AutenticacaoEAutorizacaoCorreto.Services.IService;
 using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Infra.Middleware;
 using FiapCloudGamesAPI.Models.Configuration;
 using FiapCloudGamesAPI.Services.IService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -79,6 +81,9 @@ builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICacheService, MemCacheService>();
 #endregion
 
+//builder.Services.AddCorrelationIdGenerator();
+builder.Services.AddTransient(typeof(BaseLogger<>));
+
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();
@@ -88,6 +93,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwaggerUI();
 }
+
+#region [Middler]
+app.UseCorrelationMiddleware();
+#endregion
 
 app.UseSwagger();
 

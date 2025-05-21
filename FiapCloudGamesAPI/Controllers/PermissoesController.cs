@@ -7,19 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Infra;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PermissoesController : ControllerBase
+    public class PermissoesController(AppDbContext context, BaseLogger<Permissao> logger) :
+        BaseControllerFiapCloudGames<Permissao>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public PermissoesController(AppDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: api/Permissoes
         [HttpGet]

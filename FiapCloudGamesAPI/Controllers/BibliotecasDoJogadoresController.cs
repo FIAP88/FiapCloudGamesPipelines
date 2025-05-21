@@ -1,4 +1,5 @@
 ﻿using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -7,14 +8,9 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BibliotecasDoJogadoresController : ControllerBase
+    public class BibliotecasDoJogadoresController(AppDbContext context, BaseLogger<BibliotecaDoJogador> logger) :
+        BaseControllerFiapCloudGames<BibliotecaDoJogador>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public BibliotecasDoJogadoresController(AppDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: api/BibliotecasDoJogadores
         [HttpGet]

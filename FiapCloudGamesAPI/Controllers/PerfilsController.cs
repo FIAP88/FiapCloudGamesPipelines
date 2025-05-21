@@ -7,19 +7,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Infra;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PerfilsController : ControllerBase
+    public class PerfilsController(AppDbContext context, BaseLogger<Perfil> logger) :
+        BaseControllerFiapCloudGames<Perfil>(context, logger)
     {
-        private readonly AppDbContext _context;
-
-        public PerfilsController(AppDbContext context)
-        {
-            _context = context;
-        }
 
         // GET: api/Perfils
         [HttpGet]
