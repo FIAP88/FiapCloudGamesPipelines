@@ -5,7 +5,7 @@ namespace FiapCloudGamesAPI.Entidades.Requests
 {
     public class UsuarioRequest
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public required string Nome { get; set; } 
         public required string Sobrenome { get; set; } 
         public required string Apelido { get; set; }
