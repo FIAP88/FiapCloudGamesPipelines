@@ -21,13 +21,11 @@ namespace FiapCloudGamesAPI.Controllers
         public LoginController(
         AppDbContext context,
         BaseLogger<Login> logger,
-        ITokenService tokenService,
-        ICacheService cacheService) : base(context, logger)
-        {
-            _cacheService = cacheService;
-            _tokenService = tokenService;
-        }
-
+        ITokenService tokenService, 
+        ICacheService cacheService) : BaseControllerFiapCloudGames<Login>(context, logger)
+    {
+        private readonly ITokenService _tokenService;
+        private readonly ICacheService _cacheService;
 
         [HttpPost]
         [AllowAnonymous]

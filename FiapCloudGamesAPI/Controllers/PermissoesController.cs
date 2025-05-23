@@ -13,8 +13,8 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PermissoesController(AppDbContext context, BaseLogger<Permissao> logger) :
-        BaseControllerFiapCloudGames<Permissao>(context, logger)
+    public class PermissoesController(AppDbContext context, BaseLogger<Permissao> logger, IHttpContextAccessor httpContext) :
+        BaseControllerFiapCloudGames<Permissao>(context, logger, httpContext)
     {
 
         // GET: api/Permissoes

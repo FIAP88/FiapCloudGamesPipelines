@@ -4,7 +4,7 @@
     {
         public EntidadeBase(string criadoPor) => this.CriadoPor = criadoPor;
 
-        public int Id { get; set; } = 0;
+        public int Id { get; set; }
 
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 

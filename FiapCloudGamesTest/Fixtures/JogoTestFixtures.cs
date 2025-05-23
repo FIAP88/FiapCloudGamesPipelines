@@ -1,6 +1,8 @@
 using Bogus;
+using Bogus.DataSets;
 using Bogus.Extensions;
 using FiapCloudGamesAPI.Models;
+using Newtonsoft.Json;
 
 public class JogoTestFixtures
 {
@@ -16,43 +18,78 @@ public class JogoTestFixtures
 		var nome = _faker.Internet.DomainName();
 		var descricao = _faker.Lorem.Paragraph();
 		var tamanho = _faker.Random.Decimal2(min: 0, max: 1000);
-		var preco = _faker.Random.UInt(min: 0, max: 500);
+		var preco = _faker.Random.Int(min: 0, max: 500);
 		var idCategoria = _faker.UniqueIndex;
-		var idadeMinima = _faker.Random.UInt(min: 0, max: 500);
+		var idadeMinima = _faker.Random.Int(min: 0, max: 500);
 		var ativo = _faker.Random.Bool();
 		var dataCriacao = _faker.Date.Past(yearsToGoBack: 100);
-		var criadoPor = _faker.Name.FirstName;
+		var criadoPor = _faker.Name.FirstName();
 		var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-		var atualizadoPor = _faker.Name.FirstName;
+		var atualizadoPor = _faker.Name.FirstName();
 		var idFornecedor = _faker.UniqueIndex;
 
-		var jogo = new Jogo(id, nome, descricao, tamanho,
-			preco, idCategoria, idadeMinima, ativo, dataCriacao,
-			criadoPor, dataAtualizacao, atualizadoPor, idFornecedor);
+		var jogo = new Jogo( nome, descricao, tamanho,
+			preco, idCategoria, idadeMinima, ativo, idFornecedor, criadoPor)
+		{
+			Nome = nome,
+			Id = id,
+			DataCriacao = dataCriacao,
+			DataAtualizacao = dataAtualizacao,
+			AtualizadoPor = atualizadoPor,
+		};
 
 		return jogo;
+	}
+
+	public static Faker<Jogo> GerarJogoFaker()
+	{
+
+		var jogoFaker = new Faker<Jogo>("pt_BR")
+			.CustomInstantiator(f => new Jogo(
+				nome: f.Internet.DomainName(),
+				descricao: f.Lorem.Paragraph(),
+				tamanho: f.Random.Decimal2(min: 0, max: 1000),
+				preco: f.Random.Int(min: 0, max: 500),
+				idCategoria: f.UniqueIndex,
+				idadeMinima: f.Random.Int(min: 0, max: 500),
+				ativo: f.Random.Bool(),
+				idFornecedor: f.UniqueIndex,
+				CriadoPor: f.Name.FirstName()
+				) { Nome = f.Internet.DomainName() })			
+			.RuleFor(e => e.Id, f => f.UniqueIndex)
+			.RuleFor(e => e.DataCriacao, f => f.Date.Past(yearsToGoBack: 100))
+			.RuleFor(e => e.DataAtualizacao, (f, e) => f.Date.Between(e.DataCriacao, DateTime.Now))
+			.RuleFor(e => e.AtualizadoPor, f => f.Name.FirstName());
+
+		return jogoFaker;
 	}
 
 	public Jogo GerarJogoSemNome()
 	{
 		//Arrange
 		var id = _faker.UniqueIndex;
-		var nome = string.Empty;
+		var nome = _faker.Internet.DomainName();
 		var descricao = _faker.Lorem.Paragraph();
 		var tamanho = _faker.Random.Decimal2(min: 0, max: 1000);
-		var preco = _faker.Random.UInt(min: 0, max: 500);
+		var preco = _faker.Random.Int(min: 0, max: 500);
 		var idCategoria = _faker.UniqueIndex;
-		var idadeMinima = _faker.Random.UInt(min: 0, max: 500);
+		var idadeMinima = _faker.Random.Int(min: 0, max: 500);
 		var ativo = _faker.Random.Bool();
 		var dataCriacao = _faker.Date.Past(yearsToGoBack: 100);
-		var criadoPor = _faker.Name.FirstName;
+		var criadoPor = _faker.Name.FirstName();
 		var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-		var atualizadoPor = _faker.Name.FirstName;
+		var atualizadoPor = _faker.Name.FirstName();
 		var idFornecedor = _faker.UniqueIndex;
 
-		var jogo = new Jogo(id, nome, descricao, tamanho,
-			preco, idCategoria, idadeMinima, ativo, dataCriacao,
-			criadoPor, dataAtualizacao, atualizadoPor, idFornecedor);
+		var jogo = new Jogo(nome, descricao, tamanho,
+			preco, idCategoria, idadeMinima, ativo, idFornecedor, criadoPor)
+		{
+			Nome = nome,
+			Id = id,
+			DataCriacao = dataCriacao,
+			DataAtualizacao = dataAtualizacao,
+			AtualizadoPor = atualizadoPor,
+		};
 
 		return jogo;
 	}

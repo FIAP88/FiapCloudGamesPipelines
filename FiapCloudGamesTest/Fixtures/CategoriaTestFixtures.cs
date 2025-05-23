@@ -29,7 +29,7 @@ namespace FiapCloudGamesTest.Fixtures
             return categoria;
 		}
 
-		public Faker<Categoria> GerarCategoriaFaker()
+		public static Faker<Categoria> GerarCategoriaFaker()
 		{
 			var categoriaFakerFactory = new Faker<Categoria>("pt_BR")
 				.CustomInstantiator(f => new Categoria(

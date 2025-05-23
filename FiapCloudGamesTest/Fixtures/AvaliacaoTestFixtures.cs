@@ -38,7 +38,7 @@ namespace FiapCloudGamesTest.Fixtures
             return avaliacao;
 		}
 
-		public Faker<Avaliacao> GerarAvaliacaoFaker()
+		public static Faker<Avaliacao> GerarAvaliacaoFaker()
 		{
 			var avaliacaoFornecedoraFaker = new Faker<Avaliacao>("pt_BR")
 				.CustomInstantiator(f => new Avaliacao(

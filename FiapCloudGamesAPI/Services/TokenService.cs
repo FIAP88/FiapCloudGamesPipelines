@@ -27,6 +27,7 @@ namespace AutenticacaoEAutorizacaoCorreto.Services
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                     new Claim(ClaimTypes.Name, user.Nome),
                     new Claim(ClaimTypes.Role, user.PerfilId.ToString())
                 }),
@@ -37,5 +38,38 @@ namespace AutenticacaoEAutorizacaoCorreto.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        public int GetUsuarioId(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configSecret.Secret);
+
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero
+            };
+
+            try
+            {
+                var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+                var userIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier);
+
+                if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+                {
+                    return userId;
+                }
+
+                throw new SecurityTokenException("Invalid token: User ID not found.");
+            }
+            catch
+            {
+                throw new SecurityTokenException("Invalid token.");
+            }
+        }
+
     }
 }
