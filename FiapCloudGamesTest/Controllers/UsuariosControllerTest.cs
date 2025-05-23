@@ -103,7 +103,7 @@ namespace FiapCloudGamesTest.Controllers
 			var result = await controller.PostUsuario(usuarioRequest);
 
 			// Assert
-			var createdAt = Assert.IsType<CreatedAtActionResult>(result.Result);
+			var createdAt = Assert.IsType<OkObjectResult>(result.Result);
 			var createdUser = Assert.IsType<Usuario>(createdAt.Value);
 			Assert.Equal(usuario.Nome, createdUser.Nome);
 		}
