@@ -1,10 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FiapCloudGamesTest",
+    "\\FiapCloudGamesAPI",
+    "\\FiapCloudGamesAPI\\Context",
     "\\FiapCloudGamesTest\\Controllers",
+    "\\FiapCloudGamesTest\\Entities",
     "\\FiapCloudGamesTest\\Fixtures"
   ],
-  "SelectedNode": "\\FiapCloudGamesTest\\Fixtures\\AvaliacaoTestFixtures.cs",
+  "SelectedNode": "\\TechChallenge.sln",
   "PreviewInSolutionExplorer": false
 }

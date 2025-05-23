@@ -14,7 +14,7 @@ namespace FiapCloudGamesAPI.Models
         public int PerfilId { get; set; } = perfilId;
         public Perfil Perfil { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; }
-        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
+        public BibliotecaDoJogador Biblioteca { get; set; }
 
     }
 }

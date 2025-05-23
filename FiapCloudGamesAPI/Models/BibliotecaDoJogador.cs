@@ -10,7 +10,7 @@ namespace FiapCloudGamesAPI.Models
         public Usuario Usuario { get; set; }
 
         public int IdJogo { get; set; } = idJogo;
-        public Jogo Jogo { get; set; }
+        public ICollection<Jogo> Jogos { get; set; }
 
        
     }
