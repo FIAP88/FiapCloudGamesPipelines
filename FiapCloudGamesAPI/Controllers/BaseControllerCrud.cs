@@ -128,5 +128,15 @@ namespace FiapCloudGamesAPI.Controllers
         {
             return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj));
         }
+        
+        protected virtual bool EntityExistsByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual bool EntityExistsByApelido(string apelido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

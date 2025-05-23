@@ -28,12 +28,12 @@ namespace FiapCloudGamesAPI.Configurations
                 builder.Property(p => p.IdFornecedor).HasColumnType("BIGINT").IsRequired();
 
                 builder.HasOne(p => p.Categoria)
-                 .WithOne(p => p.Jogo)
-                 .HasForeignKey<Jogo>(p => p.IdCategoria);
+                 .WithMany(p => p.Jogos)
+                 .HasForeignKey(p => p.IdCategoria);
 
                 builder.HasOne(p => p.EmpresaFornecedora)
-                 .WithOne(p => p.Jogo)
-                 .HasForeignKey<Jogo>(p => p.IdFornecedor);
+                 .WithMany(p => p.Jogos)
+                 .HasForeignKey(p => p.IdFornecedor);
            
         }
     }

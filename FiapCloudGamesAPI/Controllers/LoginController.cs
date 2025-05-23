@@ -19,8 +19,9 @@ namespace FiapCloudGamesAPI.Controllers
         IHttpContextAccessor httpContext,
         ICacheService cacheService) : BaseController<Login>(context, logger, httpContext)
     {
-        private readonly ITokenService _tokenService = tokenService;
-        private readonly ICacheService _cacheService = cacheService;
+        private readonly ITokenService _tokenService;
+        private readonly ICacheService _cacheService;
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -35,7 +36,7 @@ namespace FiapCloudGamesAPI.Controllers
 
             usuario.HashSenha = "";
 
-            var key = "token";
+            var key = $"token{email}";
 
             var cachedToken = _cacheService.get(key);
 
@@ -46,5 +47,6 @@ namespace FiapCloudGamesAPI.Controllers
 
             return Ok(token);
         }
+
     }
 }

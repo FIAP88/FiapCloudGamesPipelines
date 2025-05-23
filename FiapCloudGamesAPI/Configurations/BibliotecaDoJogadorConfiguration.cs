@@ -18,12 +18,12 @@ namespace FiapCloudGamesAPI.Configurations
                 builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
 
                 builder.HasOne(p => p.Usuario)
-                .WithMany(p => p.Biblioteca)
-                .HasForeignKey(p => p.IdUsuario);
+                .WithOne(p => p.Biblioteca)
+                .HasForeignKey<BibliotecaDoJogador>(p => p.IdUsuario);
 
-                builder.HasOne(p => p.Jogo)
-                 .WithMany(p => p.Bibliotecas)
-                 .HasForeignKey(p => p.IdJogo);
+            builder.HasMany(p => p.Jogos)
+             .WithMany(p => p.Bibliotecas);
+                 
            
         }
     }

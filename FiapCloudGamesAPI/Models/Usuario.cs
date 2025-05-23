@@ -19,7 +19,7 @@ namespace FiapCloudGamesAPI.Models
         public long PerfilId { get; set; } = perfilId;
         public Perfil Perfil { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; }
-        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
+        public BibliotecaDoJogador Biblioteca { get; set; }
         
         [NotMapped]
         [JsonProperty(nameof(Idade))]
@@ -33,6 +33,7 @@ namespace FiapCloudGamesAPI.Models
                 return idade;
             }
         }
+        
 
     }
 }
