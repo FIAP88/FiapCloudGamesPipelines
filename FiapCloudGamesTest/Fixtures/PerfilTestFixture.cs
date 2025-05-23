@@ -22,8 +22,8 @@ namespace FiapCloudGamesTest.Fixtures
 			//Arrange
 			var id = _faker.UniqueIndex;			
 			var descricao = _faker.Name.JobDescriptor();
-
-			var perfil = new Perfil(id, descricao);
+			var criadoPor = _faker.Name.FirstName();
+			var perfil = new Perfil(criadoPor, descricao);
 
 			return perfil;
 		}
@@ -32,11 +32,10 @@ namespace FiapCloudGamesTest.Fixtures
 		{
 			var perfilFaker = new Faker<Perfil>("pt_BR")
 				.CustomInstantiator(f => new Perfil(
-					f.UniqueIndex,
-					f.Name.JobDescriptor()
+					f.Name.JobDescriptor(),
+					f.Name.FirstName()
 					))
-				.RuleFor(e => e.Id, f => f.UniqueIndex)
-				.RuleFor(e => e.Descricao, f => f.Name.JobDescriptor());
+				.RuleFor(e => e.Id, f => f.UniqueIndex);				
 
 			return perfilFaker;
 		}
