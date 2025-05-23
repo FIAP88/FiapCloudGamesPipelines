@@ -15,6 +15,7 @@ namespace FiapCloudGamesAPI.Controllers
     {
         // GET: api/Usuarios
         [HttpGet]
+        [Authorize(Roles = "2")]
         public async Task<ActionResult<IEnumerable<Usuario>>> GetUsuarios()
         {
             return await _context.Usuarios.ToListAsync();
@@ -22,7 +23,7 @@ namespace FiapCloudGamesAPI.Controllers
 
         // GET: api/Usuarios/5
         [HttpGet("{id}")]
-        [Authorize(Roles = "4")]
+        [Authorize(Roles = "1")]
         public async Task<ActionResult<Usuario>> GetUsuario(long id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);
@@ -38,6 +39,8 @@ namespace FiapCloudGamesAPI.Controllers
         // PUT: api/Usuarios/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "1")]
+
         public async Task<IActionResult> PutUsuario(long id, Usuario usuario)
         {
             if (id != usuario.Id)
@@ -69,6 +72,7 @@ namespace FiapCloudGamesAPI.Controllers
         // POST: api/Usuarios
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "1")]
         public async Task<ActionResult<Usuario>> PostUsuario(Usuario usuario)
         {
             _context.Usuarios.Add(usuario);
@@ -79,6 +83,7 @@ namespace FiapCloudGamesAPI.Controllers
 
         // DELETE: api/Usuarios/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "1")]
         public async Task<IActionResult> DeleteUsuario(long id)
         {
             var usuario = await _context.Usuarios.FindAsync(id);

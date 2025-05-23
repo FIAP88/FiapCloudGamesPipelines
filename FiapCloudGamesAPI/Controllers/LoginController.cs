@@ -12,14 +12,22 @@ namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LoginController(
-        AppDbContext context, 
-        BaseLogger<Login> logger,
-        ITokenService tokenService, 
-        ICacheService cacheService) : BaseControllerFiapCloudGames<Login>(context, logger)
+    public class LoginController : BaseControllerFiapCloudGames<Login>
+     
     {
         private readonly ITokenService _tokenService;
         private readonly ICacheService _cacheService;
+
+        public LoginController(
+        AppDbContext context,
+        BaseLogger<Login> logger,
+        ITokenService tokenService,
+        ICacheService cacheService) : base(context, logger)
+        {
+            _cacheService = cacheService;
+            _tokenService = tokenService;
+        }
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -34,7 +42,7 @@ namespace FiapCloudGamesAPI.Controllers
 
             usuario.HashSenha = "";
 
-            var key = "token";
+            var key = $"token{email}";
 
             var cachedToken = _cacheService.get(key);
 
