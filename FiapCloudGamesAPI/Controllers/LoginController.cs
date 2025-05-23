@@ -19,8 +19,8 @@ namespace FiapCloudGamesAPI.Controllers
         IHttpContextAccessor httpContext,
         ICacheService cacheService) : BaseController<Login>(context, logger, httpContext)
     {
-        private readonly ITokenService _tokenService;
-        private readonly ICacheService _cacheService;
+        private readonly ITokenService _tokenService = tokenService;
+        private readonly ICacheService _cacheService = cacheService;
 
 
         [HttpPost]
