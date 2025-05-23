@@ -3,6 +3,7 @@ using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Entidades;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesAPI.Models.DTOs;
 using FiapCloudGamesAPI.Services.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,19 +14,21 @@ namespace FiapCloudGamesAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class LoginController : BaseControllerFiapCloudGames<Login>
-     
+
     {
         private readonly ITokenService _tokenService;
         private readonly ICacheService _cacheService;
 
-        public LoginController(
-        AppDbContext context,
+        public LoginController(AppDbContext context,
         BaseLogger<Login> logger,
-        ITokenService tokenService, 
-        ICacheService cacheService) : BaseControllerFiapCloudGames<Login>(context, logger)
-    {
-        private readonly ITokenService _tokenService;
-        private readonly ICacheService _cacheService;
+        IHttpContextAccessor httpContextAccessor,
+        ITokenService tokenService,
+        ICacheService cacheService) : base(context, logger, httpContextAccessor)
+        {
+            _tokenService = tokenService;
+            _cacheService = cacheService;
+        }
+
 
         [HttpPost]
         [AllowAnonymous]
@@ -51,5 +54,6 @@ namespace FiapCloudGamesAPI.Controllers
 
             return Ok(token);
         }
+
     }
 }

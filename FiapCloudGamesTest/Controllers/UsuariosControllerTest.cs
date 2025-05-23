@@ -24,13 +24,14 @@ namespace FiapCloudGamesTest.Controllers
 		#endregion
 
 		#region Construtor
-		public UsuarioControllerTest()
+		public UsuariosControllerTest()
 		{
 			_loggerMock = new Mock<ILogger<Usuario>>();
 			_correlationIdMock = new Mock<ICorrelationIdGenerator>();
 			_baseLoggerMock = new Mock<BaseLogger<Usuario>>(_loggerMock.Object, _correlationIdMock.Object);
-			_httpContextMock = new Mock<IHttpContextAccessor>();			
+			_httpContextMock = new Mock<IHttpContextAccessor>();
 			//_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);
+			
 		}
 		#endregion
 

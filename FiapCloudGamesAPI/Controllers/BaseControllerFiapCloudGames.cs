@@ -117,5 +117,15 @@ namespace FiapCloudGamesAPI.Controllers
         {
             throw new NotImplementedException();
         }
+
+        protected virtual bool EntityExistsByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual bool EntityExistsByApelido(string apelido)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
