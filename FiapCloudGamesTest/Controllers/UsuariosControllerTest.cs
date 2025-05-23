@@ -1,4 +1,5 @@
 using FiapCloudGamesAPI.Controllers;
+using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesTest.Infra;
@@ -55,9 +56,10 @@ namespace FiapCloudGamesTest.Controllers
 			var result = await controller.GetUsuarios();
 
 			//Assert
-			var actionResult = Assert.IsType<ActionResult<IEnumerable<Usuario>>>(result);
+			var actionResult = Assert.IsType<ActionResult<IEnumerable<UsuarioDto>>>(result);
+			//UsuarioDto
 			var okResult = Assert.IsType<OkObjectResult>(result.Result);
-			var users = Assert.IsAssignableFrom<IEnumerable<Usuario>>(okResult.Value);
+			var users = Assert.IsAssignableFrom<IEnumerable<UsuarioDto>>(okResult.Value);
 			Assert.Equal(2, users.Count());
 		}
 
@@ -81,10 +83,9 @@ namespace FiapCloudGamesTest.Controllers
 
 			//Assert
 			var actionResult = Assert.IsType<ActionResult<Usuario>>(result);
-			var foundUser = Assert.IsType<Usuario>(actionResult.Value);
-			Assert.Equal(usuario.Nome, foundUser.Nome);
-
-			//Assert.Equal("Leo", foundUser.Nome);
+			var okResult = Assert.IsType<OkObjectResult>(result.Result);
+			var foundUser = Assert.IsAssignableFrom<Usuario>(okResult.Value);
+			Assert.Equal(foundUser, usuario);
 		}
 
 		[Fact(DisplayName = "PostUsuario deve criar um novo usuário")]
@@ -102,7 +103,7 @@ namespace FiapCloudGamesTest.Controllers
 			var result = await controller.PostUsuario(usuarioRequest);
 
 			// Assert
-			var createdAt = Assert.IsType<CreatedAtActionResult>(result.Result);
+			var createdAt = Assert.IsType<OkObjectResult>(result.Result);
 			var createdUser = Assert.IsType<Usuario>(createdAt.Value);
 			Assert.Equal(usuario.Nome, createdUser.Nome);
 		}

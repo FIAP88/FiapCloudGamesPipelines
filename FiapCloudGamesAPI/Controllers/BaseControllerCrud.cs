@@ -96,7 +96,7 @@ namespace FiapCloudGamesAPI.Controllers
             {
                 _logger.LogError($"Error in Create: {ex.Message}");
                 return StatusCode(500, "Erro interno no servidor");
-            }
+            }            
         }
 
         protected async Task<IActionResult> Delete(long id)

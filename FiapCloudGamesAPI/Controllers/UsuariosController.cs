@@ -35,8 +35,9 @@ namespace FiapCloudGamesAPI.Controllers
             usuarioRequest.PerfilId = 2;
 
             var usuario = ConvertTypes(usuarioRequest);
+            usuario.HashSenha = usuarioRequest.Senha;
 
-            return await Create(usuario);
+			return await Create(usuario);
         } 
 
         [HttpDelete("{id}")]
