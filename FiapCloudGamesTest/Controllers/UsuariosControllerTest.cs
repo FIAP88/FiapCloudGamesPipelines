@@ -24,7 +24,7 @@ namespace FiapCloudGamesTest.Controllers
 		#endregion
 
 		#region Construtor
-		public UsuarioControllerTest()
+		public UsuariosControllerTest()
 		{
 			_loggerMock = new Mock<ILogger<Usuario>>();
 			_correlationIdMock = new Mock<ICorrelationIdGenerator>();
@@ -95,7 +95,7 @@ namespace FiapCloudGamesTest.Controllers
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			//var novoUsuario = new Usuario { UserId = 3, Name = "Fernanda" };
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestValido(usuario);
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
 
 			// Act
 			var result = await controller.PostUsuario(usuarioRequest);
@@ -144,7 +144,7 @@ namespace FiapCloudGamesTest.Controllers
 			await context.SaveChangesAsync();
 
 			usuario.Nome = "Nome Atualizado";
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestValido(usuario);
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
 
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 

@@ -1,7 +1,7 @@
 
 namespace FiapCloudGamesTest.Controllers
 {
-	public class JogoControllerTests
+	public class JogosControllerTests
 	{
 		//private JogoController _controller;
 		//private Mock<IJogoService> _serviceMock;
