@@ -11,6 +11,7 @@ namespace FiapCloudGamesAPI.Entidades
 
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string CriadoPor { get; set; }
 
         public DateTime DataAtualizacao { get; set; } = DateTime.Now;

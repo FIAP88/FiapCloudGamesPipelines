@@ -1,5 +1,6 @@
 ﻿using FiapCloudGamesAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Emit;
 
@@ -10,14 +11,15 @@ namespace FiapCloudGamesAPI.Configurations
         public void Configure(EntityTypeBuilder<BibliotecaDoJogador> builder)
         {
           
-                builder.ToTable("BibliotecaDoJogador");
-                builder.HasKey(p => p.Id);
-                builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
-                builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
-                builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
-                builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
+            builder.ToTable("BibliotecaDoJogador");
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
+            builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
+            builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
+            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-                builder.HasOne(p => p.Usuario)
+            builder.HasOne(p => p.Usuario)
                 .WithOne(p => p.Biblioteca)
                 .HasForeignKey<BibliotecaDoJogador>(p => p.IdUsuario);
 

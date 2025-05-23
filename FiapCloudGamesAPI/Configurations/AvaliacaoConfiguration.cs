@@ -1,5 +1,6 @@
 ﻿using FiapCloudGamesAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection.Emit;
 
@@ -10,16 +11,17 @@ namespace FiapCloudGamesAPI.Configurations
         public void Configure(EntityTypeBuilder<Avaliacao> builder)
         {
           
-                builder.ToTable("Avaliacao");
-                builder.HasKey(p => p.Id);
-                builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
-                builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
-                builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
-                builder.Property(p => p.Nota).HasColumnType("INT");
-                builder.Property(p => p.Comentario).HasColumnType("VARCHAR(MAX)");
-                builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
+            builder.ToTable("Avaliacao");
+            builder.HasKey(p => p.Id);
+            builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
+            builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
+            builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
+            builder.Property(p => p.Nota).HasColumnType("INT");
+            builder.Property(p => p.Comentario).HasColumnType("VARCHAR(MAX)");
+            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
 
-                builder.HasOne(p => p.Usuario)
+            builder.HasOne(p => p.Usuario)
                 .WithMany(p => p.Avaliacoes)
                 .HasForeignKey(p => p.IdUsuario);
 

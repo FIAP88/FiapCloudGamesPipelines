@@ -65,7 +65,7 @@ namespace FiapCloudGamesAPI.Controllers
             {
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Entity with ID: {id} updated successfully");
-                return NoContent();
+                return Ok();
             }
             catch (DbUpdateConcurrencyException)
             {
