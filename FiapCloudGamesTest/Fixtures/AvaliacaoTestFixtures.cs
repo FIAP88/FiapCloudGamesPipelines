@@ -11,16 +11,22 @@ namespace FiapCloudGamesTest.Fixtures
 {
 	public class AvaliacaoTestFixtures
 	{
+		#region Dependências
 		private readonly Faker _faker;
+		#endregion
+
+		#region Construtor
 		public AvaliacaoTestFixtures()
 		{
 			_faker = new Faker();
 		}
+		#endregion
+		
+		#region Faker Model
 		public Avaliacao GerarAvaliacao()
-		{
-			//Arrange
-            var dataCriacao = _faker.Date.Past(yearsToGoBack: 100);
-            
+		{			
+            var dataCriacao = _faker.Date.Past(yearsToGoBack: 100);            
+
 			var idUsuario = _faker.UniqueIndex;
 			var idJogo = _faker.UniqueIndex;
 			var nota = _faker.Random.Int(min: 0, max: 5);
@@ -40,7 +46,7 @@ namespace FiapCloudGamesTest.Fixtures
 
 		public static Faker<Avaliacao> GerarAvaliacaoFaker()
 		{
-			var avaliacaoFornecedoraFaker = new Faker<Avaliacao>("pt_BR")
+			var avaliacaoFaker = new Faker<Avaliacao>("pt_BR")
 				.CustomInstantiator(f => new Avaliacao(
 					f.UniqueIndex,
 					f.UniqueIndex,
@@ -53,8 +59,17 @@ namespace FiapCloudGamesTest.Fixtures
 				.RuleFor(e => e.DataAtualizacao, (f, e) => f.Date.Between(e.DataCriacao, DateTime.Now))
 				.RuleFor(e => e.AtualizadoPor, f => f.Name.FirstName());
 
-			return avaliacaoFornecedoraFaker;
+			return avaliacaoFaker;
 		}
+		#endregion
+
+		#region TODO Faker de DTOs
+
+		#endregion
+
+		#region TODO Faker de Requests
+
+		#endregion
 
 	}
 }

@@ -1,17 +1,22 @@
-﻿using Bogus;
-using Bogus.Extensions.Brazil;
+﻿using Bogus.Extensions.Brazil;
 using FiapCloudGamesAPI.Models;
 
 namespace FiapCloudGamesTest.Fixtures
 {
 	public class EmpresaFornecedoraTestFixtures
 	{
+		#region Dependências
 		private readonly Faker _faker;
+		#endregion
+
+		#region Construtor
 		public EmpresaFornecedoraTestFixtures()
 		{
 			_faker = new Faker();
 		}
+		#endregion
 
+		#region Faker Model
 		public EmpresaFornecedora GerarEmpresaFornecedora()
 		{
 			//Arrange
@@ -49,5 +54,12 @@ namespace FiapCloudGamesTest.Fixtures
 
 			return empresaFornecedoraFaker;
 		}
+		#endregion
+
+		#region TODO Faker DTOs
+		#endregion
+
+		#region TODO Faker Requests
+		#endregion
 	}
 }

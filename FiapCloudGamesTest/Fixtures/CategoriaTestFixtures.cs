@@ -5,12 +5,19 @@ using FiapCloudGamesAPI.Models;
 namespace FiapCloudGamesTest.Fixtures
 {
 	public class CategoriaTestFixtures
-	{
+	{	
+		#region Dependências
 		private readonly Faker _faker;
+		#endregion
+
+		#region Construtor
 		public CategoriaTestFixtures()
 		{
 			_faker = new Faker();
 		}
+		#endregion
+
+		#region Faker Model
 		public Categoria GerarCategoria()
 		{
 			//Arrange		
@@ -43,6 +50,13 @@ namespace FiapCloudGamesTest.Fixtures
 
 			return categoriaFakerFactory;
 		}
+		#endregion
+
+		#region TODO Faker DTOs
+		#endregion
+
+		#region TODO Faker Requests
+		#endregion
 
 	}
 }

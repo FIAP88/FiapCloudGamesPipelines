@@ -8,111 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Entidades.Dtos;
+using FiapCloudGamesAPI.Entidades.Requests;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class JogosController(AppDbContext context, BaseLogger<Jogo> logger, IHttpContextAccessor httpContext) :
-        BaseControllerFiapCloudGames<Jogo>(context, logger, httpContext)
+        BaseControllerCrud<Jogo>(context, logger, httpContext)
     {
 
-        // GET: api/Jogos
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Jogo>>> GetJogos()
-        {
-            return await _context.Jogos.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<JogoDto>>> GetPermissoes() => await GetAll<JogoDto>();
 
-        // GET: api/Jogos/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Jogo>> GetJogo(int id)
-        {
-            var jogo = await _context.Jogos.FindAsync(id);
+        public async Task<ActionResult<Jogo>> GetJogo(long id) => await GetById(id);
 
-            if (jogo == null)
-            {
-                return NotFound();
-            }
-
-            return jogo;
-        }
-
-        // PUT: api/Jogos/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutJogo(int id, Jogo jogo)
-        {
-            if (id != jogo.Id)
-            {
-                return BadRequest();
-            }
+        public async Task<IActionResult> PutJogo(long id, JogoRequest jogoRequest) =>
+            await Update(id, ConvertTypes(jogoRequest));
 
-            _context.Entry(jogo).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!JogoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Jogos
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Jogo>> PostJogo(Jogo jogo)
-        {
-            _context.Jogos.Add(jogo);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (JogoExists(jogo.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        public async Task<ActionResult<Jogo>> PostJogo(JogoRequest jogoRequest) =>
+            await Create(ConvertTypes(jogoRequest));
 
-            return CreatedAtAction("GetJogo", new { id = jogo.Id }, jogo);
-        }
-
-        // DELETE: api/Jogos/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteJogo(int id)
-        {
-            var jogo = await _context.Jogos.FindAsync(id);
-            if (jogo == null)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> DeleteJogo(long id) => await Delete(id);
 
-            _context.Jogos.Remove(jogo);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool JogoExists(int id)
-        {
-            return _context.Jogos.Any(e => e.Id == id);
-        }
+        protected override bool EntityExists(long id) => _context.Jogos.Any(e => e.Id == id);
     }
 }

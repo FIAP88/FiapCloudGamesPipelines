@@ -1,20 +1,39 @@
 ﻿using FiapCloudGamesAPI.Entidades;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class Usuario(string nome, string sobrenome, string apelido, string email, string hashSenha, DateTime dataNascimento, int perfilId, string criadoPor) 
+    public class Usuario(string nome, string sobrenome, string apelido, string email, string hashSenha, DateTime dataNascimento, long perfilId, string criadoPor) 
         : EntidadeBase(criadoPor)
     {
         public required string Nome { get; set; } = nome;
         public string Sobrenome { get; set; } = sobrenome;
         public string Apelido { get; set; } = apelido;
         public string Email { get; set; } = email;
+        [JsonIgnore]
         public string HashSenha { get; set; } = hashSenha;
         public DateTime DataNascimento { get; set; } = dataNascimento;
-        public int PerfilId { get; set; } = perfilId;
+        public long PerfilId { get; set; } = perfilId;
         public Perfil Perfil { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; }
-        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
+        public BibliotecaDoJogador Biblioteca { get; set; }
+        
+        [NotMapped]
+        [JsonProperty(nameof(Idade))]
+        public int Idade
+        {
+            get
+            {
+                var hoje = DateTime.Today;
+                var idade = hoje.Year - DataNascimento.Year;
+                if (DataNascimento.Date > hoje.AddYears(-idade)) idade--;
+                return idade;
+            }
+        }
+        
 
     }
 }

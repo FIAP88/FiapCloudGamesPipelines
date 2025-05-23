@@ -1,4 +1,3 @@
-using Bogus;
 using Bogus.DataSets;
 using Bogus.Extensions;
 using FiapCloudGamesAPI.Models;
@@ -6,11 +5,18 @@ using Newtonsoft.Json;
 
 public class JogoTestFixtures
 {
+	#region Dependências
 	private readonly Faker _faker;
+	#endregion
+
+	#region Construtor
 	public JogoTestFixtures()
 	{
 		_faker = new Faker();
 	}
+	#endregion
+
+	#region Faker Model
 	public Jogo GerarJogo()
 	{
 		//Arrange
@@ -93,4 +99,11 @@ public class JogoTestFixtures
 
 		return jogo;
 	}
+	#endregion
+
+	#region TODO Faker DTOs
+	#endregion
+
+	#region TODO Faker Requests
+	#endregion
 }

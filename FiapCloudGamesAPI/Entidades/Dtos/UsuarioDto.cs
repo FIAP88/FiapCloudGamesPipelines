@@ -2,7 +2,7 @@
 
 namespace FiapCloudGamesAPI.Entidades.Dtos
 {
-    public class UsuarioDto
+    public class UsuarioDto : EntidadeBase
     {
         public required string Nome { get; set; }
         public string Sobrenome { get; set; }
@@ -10,8 +10,7 @@ namespace FiapCloudGamesAPI.Entidades.Dtos
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
         public long PerfilId { get; set; }
-        public Perfil Perfil { get; set; }
-        public ICollection<Avaliacao> Avaliacoes { get; set; }
-        public ICollection<BibliotecaDoJogador> Biblioteca { get; set; } // Relacionamento 1:N
+        public int Idade { get; set; }
+
     }
 }

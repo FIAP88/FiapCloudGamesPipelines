@@ -11,12 +11,18 @@ namespace FiapCloudGamesTest.Fixtures
 {
 	public class PermissaoTestFixtures
 	{
+		#region Dependências
 		private readonly Faker _faker;
+		#endregion
+
+		#region Construtor
 		public PermissaoTestFixtures()
 		{
 			_faker = new Faker();
 		}
+		#endregion
 
+		#region Faker Model
 		public Permissao GerarPermissao()
 		{
 			//Arrange
@@ -52,6 +58,12 @@ namespace FiapCloudGamesTest.Fixtures
 
 			return permissaoFaker;
 		}
+		#endregion
 
+		#region TODO Faker DTOs
+		#endregion
+
+		#region TODO Faker Requests
+		#endregion
 	}
 }

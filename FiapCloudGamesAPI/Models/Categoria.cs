@@ -6,7 +6,7 @@ namespace FiapCloudGamesAPI.Models
     {
         public string Descricao { get; set; } = descricao;
 
-        public Jogo Jogo { get; set; }
+        public ICollection<Jogo> Jogos { get; set; }
       
     }
 }

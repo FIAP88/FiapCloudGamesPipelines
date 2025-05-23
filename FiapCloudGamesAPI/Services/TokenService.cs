@@ -39,7 +39,7 @@ namespace AutenticacaoEAutorizacaoCorreto.Services
             return tokenHandler.WriteToken(token);
         }
 
-        public int GetUsuarioId(string token)
+        public long GetUsuarioId(string token)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configSecret.Secret);
@@ -58,7 +58,7 @@ namespace AutenticacaoEAutorizacaoCorreto.Services
                 var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
                 var userIdClaim = principal.FindFirst(ClaimTypes.NameIdentifier);
 
-                if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+                if (userIdClaim != null && long.TryParse(userIdClaim.Value, out long userId))
                 {
                     return userId;
                 }

@@ -1,33 +1,30 @@
 ﻿using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.Entidades;
 using FiapCloudGamesAPI.Infra;
-using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace FiapCloudGamesAPI.Controllers
 {
-    public class BaseControllerFiapCloudGames<T> : ControllerBase where T : class
+    public class BaseControllerCrud<T> : BaseController<T> where T : EntidadeBase
     {
-        protected readonly AppDbContext _context;
-        private readonly BaseLogger<T> _logger;
-        protected Usuario? _usuario;
-        
-        public BaseControllerFiapCloudGames(AppDbContext context, BaseLogger<T> logger, IHttpContextAccessor httpContextAccessor)
+
+        public BaseControllerCrud(AppDbContext context, BaseLogger<T> logger, IHttpContextAccessor httpContextAccessor) : 
+            base(context, logger, httpContextAccessor)
         {
-            _context = context;
-            _logger = logger;
-            _usuario = httpContextAccessor?.HttpContext?.Items["Usuario"] as Usuario;
+
         }
 
-        protected string NomeUsuarioLogado { get => _usuario?.Nome ?? string.Empty; }
+        protected async Task<ActionResult<IEnumerable<T>>> GetAll() => await GetAll<T>();
 
-        protected async Task<ActionResult<IEnumerable<T>>> GetAll()
+        protected async Task<ActionResult<IEnumerable<S>>> GetAll<S>() where S : class
         {
             try
             {
-                //_logger.LogInformation("teste");
                 var result = await _context.Set<T>().AsNoTracking().ToListAsync();
-                return Ok(result);
+                var castedResult = result.Select(ConvertTypes<S>).ToList();
+                return Ok(castedResult);
             }
             catch (Exception ex)
             {
@@ -57,10 +54,12 @@ namespace FiapCloudGamesAPI.Controllers
         protected async Task<IActionResult> Update(long id, T entity)
         {
             _logger.LogInformation($"Updating entity with ID: {id}");
-            if (id != (entity as dynamic).Id)
+            if (id != entity.Id)
             {
                 return BadRequest();
             }
+            entity.AtualizadoPor = NomeUsuarioLogado;
+            entity.DataAtualizacao = DateTime.Now;
             _context.Entry(entity).State = EntityState.Modified;
             try
             {
@@ -76,7 +75,7 @@ namespace FiapCloudGamesAPI.Controllers
                 }
                 else
                 {
-                    throw;
+                    return StatusCode(500, "Erro interno no servidor");
                 }
             }
         }
@@ -86,15 +85,17 @@ namespace FiapCloudGamesAPI.Controllers
             try
             {
                 _logger.LogInformation($"Creating entity: {entity}");
+                entity.CriadoPor = NomeUsuarioLogado;
+                entity.DataCriacao = DateTime.Now;
                 _context.Set<T>().Add(entity);
                 await _context.SaveChangesAsync();
                 _logger.LogInformation($"Entity created successfully: {entity}");
-                return CreatedAtAction("GetById", new { id = (entity as dynamic).Id }, entity);
+                return await GetById(entity.Id);
             }
             catch (Exception ex)
             {
                 _logger.LogError($"Error in Create: {ex.Message}");
-                return StatusCode(500, "Internal server error");
+                return StatusCode(500, "Erro interno no servidor");
             }
         }
 
@@ -114,6 +115,26 @@ namespace FiapCloudGamesAPI.Controllers
         }
 
         protected virtual bool EntityExists(long id)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected static S ConvertTypes<S>(T obj)
+        {
+            return JsonConvert.DeserializeObject<S>(JsonConvert.SerializeObject(obj));
+        }
+
+        protected static T ConvertTypes<S>(S obj)
+        {
+            return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(obj));
+        }
+        
+        protected virtual bool EntityExistsByEmail(string email)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected virtual bool EntityExistsByApelido(string apelido)
         {
             throw new NotImplementedException();
         }

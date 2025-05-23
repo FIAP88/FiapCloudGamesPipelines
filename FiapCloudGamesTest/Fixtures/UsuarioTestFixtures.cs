@@ -8,12 +8,18 @@ using System.Text;
 
 public class UsuarioTestFixtures
 {
+	#region Dependências
 	private readonly Faker _faker;
+	#endregion
+
+	#region Construtor
 	public UsuarioTestFixtures()
 	{
 		_faker = new Faker();
 	}
+	#endregion
 
+	#region Faker Model
 	public static string GerarSenhaSegura(int minLength = 8, int maxLength = 12)
 	{
 		const string letrasMinusculas = "abcdefghijklmnopqrstuvwxyz";
@@ -97,24 +103,6 @@ public class UsuarioTestFixtures
 			});
 
 		return usuarioRequestFaker;
-	}
-
-	public static UsuarioRequest GerarUsuarioRequestValido(Usuario usuario)
-	{
-		var usuarioRequest = new Faker<UsuarioRequest>("pt_BR")
-			.CustomInstantiator(f => new UsuarioRequest()
-			{
-				Id = usuario.Id,
-				Nome = usuario.Nome,
-				Sobrenome = usuario.Sobrenome,
-				Apelido = usuario.Apelido,
-				Email = usuario.Email,
-				Senha = usuario.HashSenha,
-				DataNascimento = usuario.DataNascimento,
-				PerfilId = usuario.PerfilId
-			});
-
-		return usuarioRequest.Generate();
 	}
 
 	public Usuario GerarUsuarioValido()
@@ -220,5 +208,31 @@ public class UsuarioTestFixtures
 
 		return usuario;
 	}
+	#endregion
+
+	#region Faker Requests
+	public static UsuarioRequest GerarUsuarioRequestByUsuario(Usuario usuario)
+	{
+		var usuarioRequest = new Faker<UsuarioRequest>("pt_BR")
+			.CustomInstantiator(f => new UsuarioRequest()
+			{
+				Id = usuario.Id,
+				Nome = usuario.Nome,
+				Sobrenome = usuario.Sobrenome,
+				Apelido = usuario.Apelido,
+				Email = usuario.Email,
+				Senha = usuario.HashSenha,
+				DataNascimento = usuario.DataNascimento,
+				PerfilId = usuario.PerfilId
+			});
+
+		return usuarioRequest.Generate();
+	}	
+	#endregion
+
+	#region TODO Faker DTOs
+	
+	#endregion
+
 
 }

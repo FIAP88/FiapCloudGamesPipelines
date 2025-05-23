@@ -4,7 +4,7 @@ using FiapCloudGamesAPI.Entidades;
 
 namespace FiapCloudGamesAPI.Models
 {
-    public class Jogo(string nome, string descricao, decimal tamanho, int preco, int idCategoria, int idadeMinima, bool ativo, int idFornecedor, string CriadoPor) 
+    public class Jogo(string nome, string descricao, decimal tamanho, int preco, long idCategoria, int idadeMinima, bool ativo, long idFornecedor, string CriadoPor) 
         : EntidadeBase(CriadoPor)
     {
         public required string Nome { get; set; } = nome;
@@ -13,14 +13,14 @@ namespace FiapCloudGamesAPI.Models
         public decimal Tamanho { get; set; } = tamanho;
         public int Preco { get; set; } = preco;
 
-        public int IdCategoria { get; set; } = idCategoria;
+        public long IdCategoria { get; set; } = idCategoria;
         public Categoria Categoria { get; set; }
 
         public int IdadeMinima { get; set; } = idadeMinima;
 
         public bool Ativo { get; set; } = ativo;
 
-        public int IdFornecedor { get; set; } = idFornecedor;
+        public long IdFornecedor { get; set; } = idFornecedor;
         public EmpresaFornecedora EmpresaFornecedora { get; set; }
 
         public ICollection<BibliotecaDoJogador> Bibliotecas { get; set; }
