@@ -12,10 +12,14 @@ namespace FiapCloudGamesAPI.Configurations
            
          builder.ToTable("Perfil");
          builder.HasKey(p => p.Id);
-         builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
+         builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
          builder.Property(p => p.Descricao).HasColumnType("VARCHAR(150)");
+         builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
+         builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)");
+         builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
+         builder.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
 
-          
+
         }
     }
 }

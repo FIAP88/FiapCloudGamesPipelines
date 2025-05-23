@@ -12,9 +12,9 @@ namespace FiapCloudGamesAPI.Configurations
           
                 builder.ToTable("Avaliacao");
                 builder.HasKey(p => p.Id);
-                builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
-                builder.Property(p => p.IdJogo).HasColumnType("INT").IsRequired();
-                builder.Property(p => p.IdUsuario).HasColumnType("INT").IsRequired();
+                builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
+                builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
+                builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
                 builder.Property(p => p.Nota).HasColumnType("INT");
                 builder.Property(p => p.Comentario).HasColumnType("VARCHAR(MAX)");
                 builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();

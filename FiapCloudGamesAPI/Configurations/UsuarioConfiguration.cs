@@ -12,7 +12,7 @@ namespace FiapCloudGamesAPI.Configurations
 
             builder.ToTable("Usuario");
             builder.HasKey(p => p.Id);
-            builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
+            builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
             builder.Property(p => p.Nome).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(p => p.Sobrenome).HasColumnType("VARCHAR(100)");
@@ -25,7 +25,7 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
             builder.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
 
-            builder.Property(p => p.PerfilId).HasColumnType("INT");
+            builder.Property(p => p.PerfilId).HasColumnType("BIGINT");
 
             builder.HasOne(p => p.Perfil)
                 .WithOne(p => p.Usuario)

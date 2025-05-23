@@ -6,6 +6,6 @@ namespace FiapCloudGamesAPI.Services.IService
     {
         string GerarToken(Usuario usuario);
 
-        int GetUsuarioId(string token);
+        long GetUsuarioId(string token);
     }
 }

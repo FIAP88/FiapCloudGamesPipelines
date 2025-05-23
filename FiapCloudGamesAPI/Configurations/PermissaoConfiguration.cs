@@ -12,7 +12,7 @@ namespace FiapCloudGamesAPI.Configurations
             
                 builder.ToTable("Permissao");
                 builder.HasKey(p => p.Id);
-                builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
+                builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
                 builder.Property(p => p.Descricao).HasColumnType("VARCHAR(150)");
                 builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
                 builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)");

@@ -12,8 +12,8 @@ namespace FiapCloudGamesAPI.Configurations
            
                 builder.ToTable("PerfilPermissao");
                 builder.HasKey(p => new { p.IdPerfil, p.IdPermissao });
-                builder.Property(p => p.IdPerfil).HasColumnType("INT").IsRequired();
-                builder.Property(p => p.IdPermissao).HasColumnType("INT").IsRequired();
+                builder.Property(p => p.IdPerfil).HasColumnType("BIGINT").IsRequired();
+                builder.Property(p => p.IdPermissao).HasColumnType("BIGINT").IsRequired();
 
                 builder.HasOne(p => p.Perfil)
                 .WithMany(p => p.PerfilPermissoes)

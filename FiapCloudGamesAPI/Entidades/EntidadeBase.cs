@@ -1,10 +1,13 @@
-﻿namespace FiapCloudGamesAPI.Entidades
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FiapCloudGamesAPI.Entidades
 {
     public class EntidadeBase
     {
-        public EntidadeBase(string criadoPor) => this.CriadoPor = criadoPor;
+        public EntidadeBase(string? criadoPor = null) => CriadoPor = criadoPor ?? "";
 
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public DateTime DataCriacao { get; set; } = DateTime.Now;
 

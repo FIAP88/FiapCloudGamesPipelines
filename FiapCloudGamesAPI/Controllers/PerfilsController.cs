@@ -8,111 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Entidades.Dtos;
+using FiapCloudGamesAPI.Entidades.Requests;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PerfilsController(AppDbContext context, BaseLogger<Perfil> logger, IHttpContextAccessor httpContext) :
-        BaseControllerFiapCloudGames<Perfil>(context, logger, httpContext)
+        BaseControllerCrud<Perfil>(context, logger, httpContext)
     {
 
-        // GET: api/Perfils
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Perfil>>> GetPerfis()
-        {
-            return await _context.Perfis.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<PerfilDto>>> GetPermissoes() => await GetAll<PerfilDto>();
 
-        // GET: api/Perfils/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Perfil>> GetPerfil(int id)
-        {
-            var perfil = await _context.Perfis.FindAsync(id);
+        public async Task<ActionResult<Perfil>> GetPerfil(long id) => await GetById(id);
 
-            if (perfil == null)
-            {
-                return NotFound();
-            }
-
-            return perfil;
-        }
-
-        // PUT: api/Perfils/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPerfil(int id, Perfil perfil)
-        {
-            if (id != perfil.Id)
-            {
-                return BadRequest();
-            }
+        public async Task<IActionResult> PutPerfil(long id, PerfilRequest perfilRequest) =>
+            await Update(id, ConvertTypes(perfilRequest));
 
-            _context.Entry(perfil).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PerfilExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Perfils
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Perfil>> PostPerfil(Perfil perfil)
-        {
-            _context.Perfis.Add(perfil);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (PerfilExists(perfil.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        public async Task<ActionResult<Perfil>> PostPerfil(PerfilRequest perfilRequest) =>
+            await Create(ConvertTypes(perfilRequest));
 
-            return CreatedAtAction("GetPerfil", new { id = perfil.Id }, perfil);
-        }
-
-        // DELETE: api/Perfils/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePerfil(int id)
-        {
-            var perfil = await _context.Perfis.FindAsync(id);
-            if (perfil == null)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> DeletePerfil(long id) => await Delete(id);
 
-            _context.Perfis.Remove(perfil);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PerfilExists(int id)
-        {
-            return _context.Perfis.Any(e => e.Id == id);
-        }
+        protected override bool EntityExists(long id) => _context.Perfis.Any(e => e.Id == id);
     }
 }

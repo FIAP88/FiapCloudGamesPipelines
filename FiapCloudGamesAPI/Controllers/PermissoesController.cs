@@ -8,111 +8,34 @@ using Microsoft.EntityFrameworkCore;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Entidades.Dtos;
+using FiapCloudGamesAPI.Entidades.Requests;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PermissoesController(AppDbContext context, BaseLogger<Permissao> logger, IHttpContextAccessor httpContext) :
-        BaseControllerFiapCloudGames<Permissao>(context, logger, httpContext)
+        BaseControllerCrud<Permissao>(context, logger, httpContext)
     {
 
-        // GET: api/Permissoes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Permissao>>> GetPermissoes()
-        {
-            return await _context.Permissoes.ToListAsync();
-        }
+        public async Task<ActionResult<IEnumerable<PermissaoDto>>> GetPermissoes() => await GetAll<PermissaoDto>();
 
-        // GET: api/Permissoes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Permissao>> GetPermissao(int id)
-        {
-            var permissao = await _context.Permissoes.FindAsync(id);
+        public async Task<ActionResult<Permissao>> GetPermissao(long id) => await GetById(id);
 
-            if (permissao == null)
-            {
-                return NotFound();
-            }
-
-            return permissao;
-        }
-
-        // PUT: api/Permissoes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPermissao(int id, Permissao permissao)
-        {
-            if (id != permissao.Id)
-            {
-                return BadRequest();
-            }
+        public async Task<IActionResult> PutPermissao(long id, PermissaoRequest permissaoRequest) =>
+            await Update(id, ConvertTypes(permissaoRequest));
 
-            _context.Entry(permissao).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PermissaoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Permissoes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Permissao>> PostPermissao(Permissao permissao)
-        {
-            _context.Permissoes.Add(permissao);
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (PermissaoExists(permissao.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        public async Task<ActionResult<Permissao>> PostPermissao(PermissaoRequest permissaoRequest) =>
+            await Create(ConvertTypes(permissaoRequest));
 
-            return CreatedAtAction("GetPermissao", new { id = permissao.Id }, permissao);
-        }
-
-        // DELETE: api/Permissoes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePermissao(int id)
-        {
-            var permissao = await _context.Permissoes.FindAsync(id);
-            if (permissao == null)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> DeletePermissao(long id) => await Delete(id);
 
-            _context.Permissoes.Remove(permissao);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool PermissaoExists(int id)
-        {
-            return _context.Permissoes.Any(e => e.Id == id);
-        }
+        protected override bool EntityExists(long id) => _context.Permissoes.Any(e => e.Id == id);
     }
 }

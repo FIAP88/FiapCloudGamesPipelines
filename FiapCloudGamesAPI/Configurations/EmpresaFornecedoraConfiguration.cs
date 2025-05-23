@@ -12,7 +12,7 @@ namespace FiapCloudGamesAPI.Configurations
          
                 builder.ToTable("EmpresaFornecedora");
                 builder.HasKey(p => p.Id);
-                builder.Property(p => p.Id).HasColumnType("INT").ValueGeneratedNever().UseIdentityColumn();
+                builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
                 builder.Property(p => p.Nome).HasColumnType("VARCHAR(150)").IsRequired();
                 builder.Property(p => p.CNPJ).HasColumnType("CHAR(50)").IsRequired();
                 builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired();
