@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using FiapCloudGamesAPI.Context;
-using FiapCloudGamesAPI.Models;
-using FiapCloudGamesAPI.Infra;
+﻿using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Entidades.Requests;
+using FiapCloudGamesAPI.Infra;
+using FiapCloudGamesAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "GerenciarPerfil")]
     public class PerfilsController(AppDbContext context, BaseLogger<Perfil> logger, IHttpContextAccessor httpContext) :
         BaseControllerCrud<Perfil>(context, logger, httpContext)
     {

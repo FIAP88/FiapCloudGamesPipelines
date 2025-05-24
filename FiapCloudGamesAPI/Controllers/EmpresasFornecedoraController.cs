@@ -10,6 +10,7 @@ using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Entidades.Requests;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FiapCloudGamesAPI.Controllers
 {
@@ -20,20 +21,25 @@ namespace FiapCloudGamesAPI.Controllers
     {
 
         [HttpGet]
+        [Authorize(Policy = "BuscarEmpresasFornecedoras")]
         public async Task<ActionResult<IEnumerable<EmpresaFornecedoraDto>>> GetPermissoes() => await GetAll<EmpresaFornecedoraDto>();
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "BuscarEmpresasFornecedorasPorId")]
         public async Task<ActionResult<EmpresaFornecedora>> GetEmpresaFornecedora(long id) => await GetById(id);
 
         [HttpPut("{id}")]
+        [Authorize(Policy = "AtualizarEmpresasFornecedoras")]
         public async Task<IActionResult> PutEmpresaFornecedora(long id, EmpresaFornecedoraRequest empresaFornecedoraRequest) =>
             await Update(id, ConvertTypes(empresaFornecedoraRequest));
 
         [HttpPost]
+        [Authorize(Policy = "CriarEmpresasFornecedoras")]
         public async Task<ActionResult<EmpresaFornecedora>> PostEmpresaFornecedora(EmpresaFornecedoraRequest empresaFornecedoraRequest) =>
             await Create(ConvertTypes(empresaFornecedoraRequest));
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "DeletarEmpresasFornecedoras")]
         public async Task<IActionResult> DeleteEmpresaFornecedora(long id) => await Delete(id);
 
         protected override bool EntityExists(long id) => _context.EmpresasFornecedoras.Any(e => e.Id == id);

@@ -17,24 +17,35 @@ namespace AutenticacaoEAutorizacaoCorreto.Services
             _configSecret = configSecret.Value;
         }
 
-        public string GerarToken(Usuario user )
+        public string GerarToken(Usuario user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var key = Encoding.ASCII.GetBytes(_configSecret.Secret);
 
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Name, user.Nome),
+                new Claim(ClaimTypes.Role, user.Perfil.Descricao)
+            };
+
+            if (user.Perfil?.PerfilPermissoes != null)
+            {
+                foreach (var permissao in user.Perfil.PerfilPermissoes)
+                {
+                    claims.Add(new Claim("permission", permissao.Permissao.Descricao));
+                }
+            }
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.Nome),
-                    new Claim(ClaimTypes.Role, user.PerfilId.ToString())
-                }),
+                Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
 
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
         }

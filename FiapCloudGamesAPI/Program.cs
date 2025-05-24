@@ -40,6 +40,11 @@ builder.Services.AddAuthentication(x =>
 });
 #endregion
 
+builder.Services.AddAuthorization(options =>
+{
+    options.PoliticasCustomizadas();
+});
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -98,7 +103,7 @@ if (app.Environment.IsDevelopment())
 
 #region [Middler]
 app.UseCorrelationMiddleware();
-app.UsePermissoesMiddleware();
+//app.UsePermissoesMiddleware();
 #endregion
 
 app.UseSwagger();

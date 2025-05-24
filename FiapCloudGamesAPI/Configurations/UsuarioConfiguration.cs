@@ -29,9 +29,9 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.PerfilId).HasColumnType("BIGINT");
 
             builder.HasOne(p => p.Perfil)
-                .WithOne(p => p.Usuario)
-                .HasForeignKey<Usuario>(p => p.PerfilId);
-           
+               .WithMany(p => p.Usuarios)
+               .HasForeignKey(p => p.PerfilId);
+
         }
     }
 }
