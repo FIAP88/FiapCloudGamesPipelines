@@ -8,7 +8,7 @@ using System.Text;
 
 public class UsuarioTestFixtures
 {
-	#region Dependências
+	#region Dependï¿½ncias
 	private readonly Faker _faker;
 	#endregion
 
@@ -29,7 +29,7 @@ public class UsuarioTestFixtures
 
 		var random = new Random();
 
-		// Define o comprimento aleatório
+		// Define o comprimento aleatï¿½rio
 		int comprimento = random.Next(minLength, maxLength + 1);
 
 		// Garante pelo menos um de cada categoria
@@ -39,14 +39,14 @@ public class UsuarioTestFixtures
 		senha.Append(numeros[random.Next(numeros.Length)]);
 		senha.Append(especiais[random.Next(especiais.Length)]);
 
-		// Preenche o restante com caracteres aleatórios permitidos
+		// Preenche o restante com caracteres aleatï¿½rios permitidos
 		string todosCaracteres = letrasMinusculas + letrasMaiusculas + numeros + especiais;
 		for (int i = senha.Length; i < comprimento; i++)
 		{
 			senha.Append(todosCaracteres[random.Next(todosCaracteres.Length)]);
 		}
 
-		// Embaralha os caracteres para não ficarem previsíveis
+		// Embaralha os caracteres para nï¿½o ficarem previsï¿½veis
 		return new string(senha.ToString().OrderBy(c => random.Next()).ToArray());
 	}
 

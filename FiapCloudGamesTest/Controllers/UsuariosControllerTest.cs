@@ -15,7 +15,7 @@ namespace FiapCloudGamesTest.Controllers
 {
 	public class UsuariosControllerTest
 	{
-		#region Depedências
+		#region Depedï¿½ncias
 		private Mock<ILogger<Usuario>> _loggerMock;
 		private Mock<ICorrelationIdGenerator> _correlationIdMock;
 		private Mock<BaseLogger<Usuario>> _baseLoggerMock;
@@ -37,7 +37,7 @@ namespace FiapCloudGamesTest.Controllers
 		#endregion
 
 		#region Requests
-		[Fact(DisplayName = "GetUsuarios deve retornar todos os usuários")]
+		[Fact(DisplayName = "GetUsuarios deve retornar todos os usuï¿½rios")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Get_RetornaTodosUsuarios()
 		{
@@ -57,13 +57,12 @@ namespace FiapCloudGamesTest.Controllers
 
 			//Assert
 			var actionResult = Assert.IsType<ActionResult<IEnumerable<UsuarioDto>>>(result);
-			//UsuarioDto
 			var okResult = Assert.IsType<OkObjectResult>(result.Result);
 			var users = Assert.IsAssignableFrom<IEnumerable<UsuarioDto>>(okResult.Value);
 			Assert.Equal(2, users.Count());
 		}
 
-		[Fact(DisplayName = "GetUsuario deve retornar um usuário existente")]
+		[Fact(DisplayName = "GetUsuario deve retornar um usuï¿½rio existente")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Get_RetornaUsuario()
 		{
@@ -71,8 +70,7 @@ namespace FiapCloudGamesTest.Controllers
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			var context = HelperTests.GetInMemoryContext();
 			context.Add(
-				usuario
-			//new Usuario { UserId = 1, Name = "Leo" }				
+				usuario			
 			);
 			await context.SaveChangesAsync();
 
@@ -88,7 +86,7 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(foundUser, usuario);
 		}
 
-		[Fact(DisplayName = "PostUsuario deve criar um novo usuário")]
+		[Fact(DisplayName = "PostUsuario deve criar um novo usuï¿½rio")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Post_CriaNovoUsuario()
 		{
@@ -96,7 +94,6 @@ namespace FiapCloudGamesTest.Controllers
 			var context = HelperTests.GetInMemoryContext();
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
-			//var novoUsuario = new Usuario { UserId = 3, Name = "Fernanda" };
 			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
 
 			// Act
@@ -108,23 +105,42 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(usuario.Nome, createdUser.Nome);
 		}
 
-		[Fact(DisplayName = "DeleteUsuario deve remover usuário existente")]
+        // TODO
+        // Utilizar do [Theory] e [MemberData] para reutilizar o codigo no teste de validaÃ§Ã£o do Email e Senha invalida
+        //     [Fact(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validaÃ§Ã£o")]
+        //     [Trait("Usuarios", "Validando Controller")]
+        //     public async Task Post_CriaNovoUsuarioRetornaBadRequest_QuandoSenhaInvalida()
+        //     {
+        //         // Arrange
+        //         var context = HelperTests.GetInMemoryContext();
+        //         var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+        //         var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+        //usuario.HashSenha = "123abcde"; // FALTA CARACTER ESPECIAL
+        //         var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+
+        //         // Act
+        //         var result = await controller.PostUsuario(usuarioRequest);
+
+        //         // Assert
+        //         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+        //         Assert.IsType<SerializableError>(badRequestResult.Value);
+        //     }
+
+        [Fact(DisplayName = "DeleteUsuario deve remover usuï¿½rio existente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task Delete_RemoveUsuarioQuandoEncontrado()
+		public async Task Delete_RemoveUsuario_QuandoEncontrado()
 		{
 			//Arrange
 			var context = HelperTests.GetInMemoryContext();
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			context.Add(
 				usuario
-				//new Usuario { UserId = 4, Name = "Pedro" }
 			);
 			await context.SaveChangesAsync();
 
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 
 			//Act
-			//var result = await controller.DeleteUsuario(4);
 			var result = await controller.DeleteUsuario(Convert.ToInt64(usuario.Id));
 
 			//Assert
@@ -132,12 +148,11 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.False(context.Usuarios.Any(u => u.Id == usuario.Id));
 		}
 
-		[Fact(DisplayName = "PutUsuario deve atualizar usuário quando IDs forem iguais")]
+		[Fact(DisplayName = "PutUsuario deve atualizar usuï¿½rio quando IDs forem iguais")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Put_AtualizaUsuarioComMesmoID()
 		{
 			//Arrange
-			//var usuario = new Usuario { UserId = 5, Name = "Ana" };
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			var context = HelperTests.GetInMemoryContext();
 			context.Add(
@@ -146,21 +161,24 @@ namespace FiapCloudGamesTest.Controllers
 			await context.SaveChangesAsync();
 
 			usuario.Nome = "Nome Atualizado";
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+
+            context.Entry(usuario).State = EntityState.Detached;
+
+		    var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
 
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 
-			// Act
-				var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+            // Act
+            var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
 
 			// Assert
-			Assert.IsType<BadRequestResult>(result);
+			Assert.IsType<OkResult>(result);
 			Assert.Equal("Nome Atualizado", context.Usuarios.Find(usuario.Id)?.Nome);
 		}
 
-		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usuário inexistente")]
+		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usuï¿½rio inexistente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task GetUsuario_RetornaNotFound()
+		public async Task GetUsuario_RetornaNotFound_QuandoInexistente()
 		{
 			// Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -173,10 +191,9 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task PutUsuario_ReturnaBadRequest()
+		public async Task PutUsuario_ReturnaBadRequest_QuandoIdDiferente()
 		{
 			// Arrange
-			// var usuario = new Usuario { UserId = 10, Name = "Carlos" };
 			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
 			var context = HelperTests.GetInMemoryContext();
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
