@@ -1,3 +1,4 @@
+using Bogus.DataSets;
 using FiapCloudGamesAPI.Controllers;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Infra;
@@ -37,6 +38,8 @@ namespace FiapCloudGamesTest.Controllers
 		#endregion
 
 		#region Requests
+
+		#region GET
 		[Fact(DisplayName = "GetUsuarios deve retornar todos os usu�rios")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Get_RetornaTodosUsuarios()
@@ -86,6 +89,24 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(foundUser, usuario);
 		}
 
+		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usu�rio inexistente")]
+		[Trait("Usuarios", "Validando Controller")]
+		public async Task GetUsuario_RetornaNotFound_QuandoInexistente()
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+
+			// Act
+			var result = await controller.GetUsuario(999);
+
+			// Assert
+			Assert.IsType<NotFoundResult>(result.Result);
+		}
+		#endregion
+
+		#region POST
+
 		[Fact(DisplayName = "PostUsuario deve criar um novo usu�rio")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Post_CriaNovoUsuario()
@@ -105,28 +126,178 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(usuario.Nome, createdUser.Nome);
 		}
 
-        // TODO
-        // Utilizar do [Theory] e [MemberData] para reutilizar o codigo no teste de validação do Email e Senha invalida
-        //     [Fact(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação")]
-        //     [Trait("Usuarios", "Validando Controller")]
-        //     public async Task Post_CriaNovoUsuarioRetornaBadRequest_QuandoSenhaInvalida()
-        //     {
-        //         // Arrange
-        //         var context = HelperTests.GetInMemoryContext();
-        //         var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
-        //         var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
-        //usuario.HashSenha = "123abcde"; // FALTA CARACTER ESPECIAL
-        //         var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+		// MENSAGENS DE ERRO POSSÍVEIS
+		// Nome deve conter no mínimo 3 caracteres.
+		// Apelido deve conter no mínimo 2 caracteres.
+		// Senha deve ter no mínimo 8 caracteres, com letras, números e um caractere especial.
+		// Email inválido.
+		// Data de nascimento é obrigatória.
+		// "Ja existe um jogador " + usuario.Apelido
 
-        //         // Act
-        //         var result = await controller.PostUsuario(usuarioRequest);
+		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do apelido")]
+		[Trait("Usuarios", "Validando Controller")]
+		[InlineData("W", "Apelido deve conter no mínimo 2 caracteres.")]	// Apelido inválido
+		[InlineData("", "Apelido deve conter no mínimo 2 caracteres.")]		// Apelido vazio
+		[InlineData("Leo", "Ja existe um jogador Leo")]						// Apelido já existente
+		public async Task Post_RetornaBadRequest_QuandoApelidoInvalido(string apelidoInvalido, string mensagemErro)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			usuario.Apelido = "Leo";
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
 
-        //         // Assert
-        //         var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
-        //         Assert.IsType<SerializableError>(badRequestResult.Value);
-        //     }
+			usuario.Apelido = apelidoInvalido;
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
 
-        [Fact(DisplayName = "DeleteUsuario deve remover usu�rio existente")]
+			// Act
+			var result = await controller.PostUsuario(usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+			dynamic value = badRequestResult.Value;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains(mensagemErro, erros);
+		}
+
+		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do nome")]
+		[Trait("Usuarios", "Validando Controller")]
+		[InlineData("Np")]   // Nome inválido
+		[InlineData("")]     // Nome vazio
+		public async Task Post_RetornaBadRequest_QuandoNomeInvalido(string nomeInvalido)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+			usuarioRequest.Nome = nomeInvalido;
+
+			// Act
+			var result = await controller.PostUsuario(usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+			dynamic value = badRequestResult.Value;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Nome deve conter no mínimo 3 caracteres.", erros);
+		}
+
+		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação da senha")]
+		[Trait("Usuarios", "Validando Controller")]
+		[InlineData("123abcde")]      // Senha inválida (sem caractere especial)
+		[InlineData("senha123")]      // Senha inválida (sem maiúscula, sem especial)
+		[InlineData("senhaBCD")]      // Senha inválida (sem numero)
+		[InlineData("")]              // Senha vazia		
+		public async Task Post_RetornaBadRequest_QuandoSenhaInvalida(string senhaInvalida)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);			
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+			usuarioRequest.Senha = senhaInvalida;
+
+			// Act
+			var result = await controller.PostUsuario(usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+			dynamic value = badRequestResult.Value;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Senha deve ter no mínimo 8 caracteres, com letras, números e um caractere especial.", erros);	
+		}
+
+		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do email")]
+		[Trait("Usuarios", "Validando Controller")]
+		[InlineData("emailinvalido")]   // Email inválido
+		[InlineData("")]                // Email vazio
+		public async Task Post_RetornaBadRequest_QuandoEmailInvalido(string emailInvalido)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+			usuarioRequest.Email = emailInvalido;
+
+			// Act
+			var result = await controller.PostUsuario(usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+			dynamic value = badRequestResult.Value;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Email inválido.", erros);
+		}
+
+		#endregion
+
+		#region PUT
+		[Fact(DisplayName = "PutUsuario deve atualizar usu�rio quando IDs forem iguais")]
+		[Trait("Usuarios", "Validando Controller")]
+		public async Task Put_AtualizaUsuarioComMesmoID()
+		{
+			//Arrange
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			var context = HelperTests.GetInMemoryContext();
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+
+			usuario.Nome = "Nome Atualizado";
+
+			context.Entry(usuario).State = EntityState.Detached;
+
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+
+			// Assert
+			Assert.IsType<OkResult>(result);
+			Assert.Equal("Nome Atualizado", context.Usuarios.Find(usuario.Id)?.Nome);
+		}
+
+		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
+		[Trait("Usuarios", "Validando Controller")]
+		public async Task PutUsuario_RetornaBadRequest_QuandoIdDiferente()
+		{
+			// Arrange
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			// Act
+			var result = await controller.PutUsuario(usuarioRequest.Id + 10, usuarioRequest);
+			// Assert
+			Assert.IsType<BadRequestResult>(result);
+		}
+
+		#endregion
+
+		#region DELETE
+		[Fact(DisplayName = "DeleteUsuario deve remover usu�rio existente")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Delete_RemoveUsuario_QuandoEncontrado()
 		{
@@ -147,64 +318,11 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.IsType<NoContentResult>(result);
 			Assert.False(context.Usuarios.Any(u => u.Id == usuario.Id));
 		}
-
-		[Fact(DisplayName = "PutUsuario deve atualizar usu�rio quando IDs forem iguais")]
-		[Trait("Usuarios", "Validando Controller")]
-		public async Task Put_AtualizaUsuarioComMesmoID()
-		{
-			//Arrange
-			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
-			var context = HelperTests.GetInMemoryContext();
-			context.Add(
-				usuario
-			);
-			await context.SaveChangesAsync();
-
-			usuario.Nome = "Nome Atualizado";
-
-            context.Entry(usuario).State = EntityState.Detached;
-
-		    var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
-
-			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
-
-            // Act
-            var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
-
-			// Assert
-			Assert.IsType<OkResult>(result);
-			Assert.Equal("Nome Atualizado", context.Usuarios.Find(usuario.Id)?.Nome);
-		}
-
-		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usu�rio inexistente")]
-		[Trait("Usuarios", "Validando Controller")]
-		public async Task GetUsuario_RetornaNotFound_QuandoInexistente()
-		{
-			// Arrange
-			var context = HelperTests.GetInMemoryContext();
-			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
-			// Act
-			var result = await controller.GetUsuario(999);
-			// Assert
-			Assert.IsType<NotFoundResult>(result.Result);
-		}
-
-		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
-		[Trait("Usuarios", "Validando Controller")]
-		public async Task PutUsuario_ReturnaBadRequest_QuandoIdDiferente()
-		{
-			// Arrange
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
-			var context = HelperTests.GetInMemoryContext();
-			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
-			// Act
-				var result = await controller.PutUsuario(usuarioRequest.Id + 10, usuarioRequest);
-			// Assert
-			Assert.IsType<BadRequestResult>(result);
-		}
 		#endregion
 
-		#region TODO ViewsTests
+		#endregion
+
+		#region TODO: ViewsTests
 
 		#endregion
 	}
