@@ -62,9 +62,6 @@ public class UsuarioTestFixtures
 				apelido: f.Internet.UserName(),
 				email: f.Internet.Email(),
 				hashSenha: GerarSenhaSegura(),
-							//f.Internet.Password(length: 8,
-							//				memorable: false,
-							//				regexPattern: "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}$\""),
 				dataNascimento: f.Date.Past(yearsToGoBack: 100),
 				perfilId: f.UniqueIndex,
 				criadoPor: f.Name.FirstName()
@@ -95,9 +92,6 @@ public class UsuarioTestFixtures
 				Apelido = f.Internet.UserName(),
 				Email = f.Internet.Email(),
 				Senha = GerarSenhaSegura(),
-							//f.Internet.Password(length: 8,
-							//				memorable: false,
-							//				regexPattern: "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}$\""),
 				DataNascimento = f.Date.Past(yearsToGoBack: 100),
 				PerfilId = f.UniqueIndex
 			});
@@ -114,11 +108,6 @@ public class UsuarioTestFixtures
 		var apelido = _faker.Internet.UserName();
 		var email = _faker.Internet.Email();
 		var hashSenha = GerarSenhaSegura(); 
-						//_faker.Internet.Password(length: 8,
-						//					memorable: false,
-						//					regexPattern: "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}$\"");
-				//RegexPattern => Entre 8 e 10 caracteres pelo menos um caracter maisculo, um minusculo, one caracter especial
-				//prefix:""
 		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
 		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
 		var criadoPor = _faker.Name.FirstName();
@@ -149,10 +138,6 @@ public class UsuarioTestFixtures
 		var apelido = _faker.Internet.UserName();
 		var email = _faker.Internet.Email();
 		var hashSenha = GerarSenhaSegura(minLength: 2 ,maxLength: 4);
-			//_faker.Internet.Password(length: 6,
-			//					memorable: false,
-			//					regexPattern: "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{4,6}$");
-			//RegexPattern => Entre 4 e 6 caracteres com pelo menos uma letra e um numero
 		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
 		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
 		var criadoPor = _faker.Name.FirstName();
@@ -183,11 +168,6 @@ public class UsuarioTestFixtures
 		var apelido = _faker.Internet.UserName();
 		var email = _faker.Internet.Url();
 		var hashSenha = GerarSenhaSegura();
-							//_faker.Internet.Password(length: 8,
-							//				memorable: false,
-							//				regexPattern: "\"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,12}$\"");
-		//RegexPattern => Entre 8 e 10 caracteres pelo menos um caracter maisculo, um minusculo, one caracter especial
-		//prefix:""
 		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
 		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
 		var criadoPor = _faker.Name.FirstName();
