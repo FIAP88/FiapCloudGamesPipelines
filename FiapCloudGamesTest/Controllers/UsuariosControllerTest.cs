@@ -3,6 +3,7 @@ using FiapCloudGamesAPI.Controllers;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
+using FiapCloudGamesTest.Data;
 using FiapCloudGamesTest.Infra;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -106,7 +107,6 @@ namespace FiapCloudGamesTest.Controllers
 		#endregion
 
 		#region POST
-
 		[Fact(DisplayName = "PostUsuario deve criar um novo usu�rio")]
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task Post_CriaNovoUsuario()
@@ -126,19 +126,9 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.Equal(usuario.Nome, createdUser.Nome);
 		}
 
-		// MENSAGENS DE ERRO POSSÍVEIS
-		// Nome deve conter no mínimo 3 caracteres.
-		// Apelido deve conter no mínimo 2 caracteres.
-		// Senha deve ter no mínimo 8 caracteres, com letras, números e um caractere especial.
-		// Email inválido.
-		// Data de nascimento é obrigatória.
-		// "Ja existe um jogador " + usuario.Apelido
-
 		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do apelido")]
 		[Trait("Usuarios", "Validando Controller")]
-		[InlineData("W", "Apelido deve conter no mínimo 2 caracteres.")]	// Apelido inválido
-		[InlineData("", "Apelido deve conter no mínimo 2 caracteres.")]		// Apelido vazio
-		[InlineData("Leo", "Ja existe um jogador Leo")]						// Apelido já existente
+		[MemberData(nameof(UsuarioTestData.ApelidoBadRequestData), MemberType = typeof(UsuarioTestData))]
 		public async Task Post_RetornaBadRequest_QuandoApelidoInvalido(string apelidoInvalido, string mensagemErro)
 		{
 			// Arrange
@@ -161,7 +151,7 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
 
-			dynamic value = badRequestResult.Value;
+			dynamic value = badRequestResult.Value!;
 			var errosProp = value.GetType().GetProperty("Erros");
 			var erros = errosProp.GetValue(value) as List<string>;
 
@@ -171,8 +161,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do nome")]
 		[Trait("Usuarios", "Validando Controller")]
-		[InlineData("Np")]   // Nome inválido
-		[InlineData("")]     // Nome vazio
+		[MemberData(nameof(UsuarioTestData.NomeBadRequestData), MemberType = typeof(UsuarioTestData))]
 		public async Task Post_RetornaBadRequest_QuandoNomeInvalido(string nomeInvalido)
 		{
 			// Arrange
@@ -187,7 +176,7 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
 
-			dynamic value = badRequestResult.Value;
+			dynamic value = badRequestResult.Value!;
 			var errosProp = value.GetType().GetProperty("Erros");
 			var erros = errosProp.GetValue(value) as List<string>;
 
@@ -197,10 +186,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação da senha")]
 		[Trait("Usuarios", "Validando Controller")]
-		[InlineData("123abcde")]      // Senha inválida (sem caractere especial)
-		[InlineData("senha123")]      // Senha inválida (sem maiúscula, sem especial)
-		[InlineData("senhaBCD")]      // Senha inválida (sem numero)
-		[InlineData("")]              // Senha vazia		
+		[MemberData(nameof(UsuarioTestData.SenhaBadRequestData), MemberType = typeof(UsuarioTestData))]
 		public async Task Post_RetornaBadRequest_QuandoSenhaInvalida(string senhaInvalida)
 		{
 			// Arrange
@@ -215,7 +201,7 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
 
-			dynamic value = badRequestResult.Value;
+			dynamic value = badRequestResult.Value!;
 			var errosProp = value.GetType().GetProperty("Erros");
 			var erros = errosProp.GetValue(value) as List<string>;
 
@@ -225,8 +211,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Theory(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação do email")]
 		[Trait("Usuarios", "Validando Controller")]
-		[InlineData("emailinvalido")]   // Email inválido
-		[InlineData("")]                // Email vazio
+		[MemberData(nameof(UsuarioTestData.EmailBadRequestData), MemberType = typeof(UsuarioTestData))]
 		public async Task Post_RetornaBadRequest_QuandoEmailInvalido(string emailInvalido)
 		{
 			// Arrange
@@ -241,14 +226,13 @@ namespace FiapCloudGamesTest.Controllers
 			// Assert
 			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
 
-			dynamic value = badRequestResult.Value;
+			dynamic value = badRequestResult.Value!;
 			var errosProp = value.GetType().GetProperty("Erros");
 			var erros = errosProp.GetValue(value) as List<string>;
 
 			Assert.NotNull(erros);
 			Assert.Contains("Email inválido.", erros);
 		}
-
 		#endregion
 
 		#region PUT
@@ -294,6 +278,137 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.IsType<BadRequestResult>(result);
 		}
 
+		#region NEW validation
+
+		[Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do apelido")]
+		[Trait("Usuarios", "Validando Controller")]
+		[MemberData(nameof(UsuarioTestData.ApelidoBadRequestData), MemberType = typeof(UsuarioTestData))]
+		public async Task Put_RetornaBadRequest_QuandoApelidoInvalido(string apelidoInvalido, string mensagemErro)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			usuario.Apelido = "Leo";
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
+
+			usuario.Apelido = apelidoInvalido;
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id,usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains(mensagemErro, erros);
+		}
+
+		[Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do nome")]
+		[Trait("Usuarios", "Validando Controller")]
+		[MemberData(nameof(UsuarioTestData.NomeBadRequestData), MemberType = typeof(UsuarioTestData))]
+		public async Task Put_RetornaBadRequest_QuandoNomeInvalido(string nomeInvalido)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();			
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
+
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+			usuarioRequest.Nome = nomeInvalido;
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Nome deve conter no mínimo 3 caracteres.", erros);
+		}
+
+		[Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação da senha")]
+		[Trait("Usuarios", "Validando Controller")]
+		[MemberData(nameof(UsuarioTestData.SenhaBadRequestData), MemberType = typeof(UsuarioTestData))]
+		public async Task Put_RetornaBadRequest_QuandoSenhaInvalida(string senhaInvalida)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
+
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+			usuarioRequest.Senha = senhaInvalida;
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Senha deve ter no mínimo 8 caracteres, com letras, números e um caractere especial.", erros);
+		}
+
+		[Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do email")]
+		[Trait("Usuarios", "Validando Controller")]
+		[MemberData(nameof(UsuarioTestData.EmailBadRequestData), MemberType = typeof(UsuarioTestData))]
+		public async Task Put_RetornaBadRequest_QuandoEmailInvalido(string emailInvalido)
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
+
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+			usuarioRequest.Email = emailInvalido;
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Email inválido.", erros);
+		}
+		#endregion
 		#endregion
 
 		#region DELETE
