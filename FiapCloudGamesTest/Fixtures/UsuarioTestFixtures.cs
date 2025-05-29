@@ -77,7 +77,9 @@ public class UsuarioTestFixtures
 
 		return usuarioValidoFaker;
 	}
+	#endregion
 
+	#region Faker Requests
 	public static Faker<UsuarioRequest> GerarUsuarioRequestFaker()
 	{
 		var perfilFactory = PerfilTestFixture.GerarPerfilFaker();
@@ -99,98 +101,6 @@ public class UsuarioTestFixtures
 		return usuarioRequestFaker;
 	}
 
-	public Usuario GerarUsuarioValido()
-	{
-		//Arrange
-		var id = _faker.UniqueIndex;
-		var nome = _faker.Name.FirstName();
-		var sobrenome = _faker.Name.LastName();
-		var apelido = _faker.Internet.UserName();
-		var email = _faker.Internet.Email();
-		var hashSenha = GerarSenhaSegura(); 
-		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
-		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
-		var criadoPor = _faker.Name.FirstName();
-		var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-		var atualizadoPor = _faker.Name.FirstName();
-		var idPerfil = _faker.UniqueIndex;
-
-		var usuario = new Usuario( nome, sobrenome, apelido, 
-			email, hashSenha, dataNascimento, 
-			 idPerfil, criadoPor)
-		{
-			Nome = nome,
-			Id = id,
-			DataCriacao = dataCriacao,
-			DataAtualizacao = dataAtualizacao,
-			AtualizadoPor = atualizadoPor,
-		};
-
-		return usuario;
-	}
-
-	public Usuario GerarUsuarioComSenhaInvalida()
-	{
-		//Arrange
-		var id = _faker.UniqueIndex;
-		var nome = _faker.Name.FirstName();
-		var sobrenome = _faker.Name.LastName();
-		var apelido = _faker.Internet.UserName();
-		var email = _faker.Internet.Email();
-		var hashSenha = GerarSenhaSegura(minLength: 2 ,maxLength: 4);
-		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
-		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
-		var criadoPor = _faker.Name.FirstName();
-		var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-		var atualizadoPor = _faker.Name.FirstName();
-		var idPerfil = _faker.UniqueIndex;
-
-		var usuario = new Usuario(nome, sobrenome, apelido,
-			email, hashSenha, dataNascimento,
-			 idPerfil, criadoPor)
-		{
-			Nome = nome,
-			Id = id,
-			DataCriacao = dataCriacao,
-			DataAtualizacao = dataAtualizacao,
-			AtualizadoPor = atualizadoPor,
-		};
-
-		return usuario;
-	}
-
-	public Usuario GerarUsuarioComEmailInvalido()
-	{
-		//Arrange
-		var id = _faker.UniqueIndex;
-		var nome = _faker.Name.FirstName();
-		var sobrenome = _faker.Name.LastName();
-		var apelido = _faker.Internet.UserName();
-		var email = _faker.Internet.Url();
-		var hashSenha = GerarSenhaSegura();
-		var dataNascimento = _faker.Date.Past(yearsToGoBack: 100);
-		var dataCriacao = _faker.Date.Between(dataNascimento, DateTime.Now);
-		var criadoPor = _faker.Name.FirstName();
-		var dataAtualizacao = _faker.Date.Between(dataCriacao, DateTime.Now);
-		var atualizadoPor = _faker.Name.FirstName();
-		var idPerfil = _faker.UniqueIndex;
-
-		var usuario = new Usuario(nome, sobrenome, apelido,
-			email, hashSenha, dataNascimento,
-			 idPerfil, criadoPor)
-		{
-			Nome = nome,
-			Id = id,
-			DataCriacao = dataCriacao,
-			DataAtualizacao = dataAtualizacao,
-			AtualizadoPor = atualizadoPor,
-		};
-
-		return usuario;
-	}
-	#endregion
-
-	#region Faker Requests
 	public static UsuarioRequest GerarUsuarioRequestByUsuario(Usuario usuario)
 	{
 		var usuarioRequest = new Faker<UsuarioRequest>("pt_BR")
@@ -213,6 +123,5 @@ public class UsuarioTestFixtures
 	#region TODO Faker DTOs
 	
 	#endregion
-
 
 }
