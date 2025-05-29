@@ -21,8 +21,19 @@ namespace FiapCloudGamesAPI.Controllers
         public async Task<ActionResult<Usuario>> GetUsuario(long id) => await GetById(id);
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUsuario(long id, UsuarioRequest usuarioRequest) => 
-            await Update(id, ConvertTypes(usuarioRequest));
+        public async Task<IActionResult> PutUsuario(long id, UsuarioRequest usuarioRequest)
+        {
+            var erros = ValidarCadastro(usuarioRequest);
+
+            if (erros.Count > 0) return BadRequest(new { Erros = erros });
+
+            usuarioRequest.Senha = GerarHashSenha(usuarioRequest.Senha);
+
+            var usuarioConverte = ConvertTypes(usuarioRequest);
+            usuarioConverte.HashSenha = usuarioRequest.Senha;
+
+            return await Update(id, usuarioConverte);
+        }
 
         [HttpPost]
         public async Task<ActionResult<Usuario>> PostUsuario(UsuarioRequest usuarioRequest) {
