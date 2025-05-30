@@ -10,20 +10,21 @@ using System.Threading.Tasks;
 namespace FiapCloudGamesTest.Infra
 {
 	public static class HelperTests
-	{		
-		#region Context	
-		public static AppDbContext GetInMemoryContext(string dbName = "Db_TechChallenge")
-		{
-			var builder = new DbContextOptionsBuilder<AppDbContext>()
-				.UseInMemoryDatabase(databaseName: dbName);
-			var dbContextOptions = builder.Options;
-			var appDbContext = new AppDbContext(dbContextOptions);
+	{
+        #region Context	
+        public static AppDbContext GetInMemoryContext()
+        {
+            var uniqueDbName = $"Db_TechChallenge_{Guid.NewGuid()}";
+            var builder = new DbContextOptionsBuilder<AppDbContext>()
+                .UseInMemoryDatabase(databaseName: uniqueDbName);
+            var dbContextOptions = builder.Options;
+            var appDbContext = new AppDbContext(dbContextOptions);
 
-			appDbContext.Database.EnsureDeleted();
-			appDbContext.Database.EnsureCreated();
+            appDbContext.Database.EnsureDeleted();
+            appDbContext.Database.EnsureCreated();
 
-			return appDbContext;
-		}
+            return appDbContext;
+        }		
 		#endregion
 
 		#region Repositórios

@@ -30,12 +30,12 @@ namespace FiapCloudGamesTest.Controllers
 		public UsuariosControllerTest()
 		{
 			_loggerMock = new Mock<ILogger<Usuario>>();
-			_correlationIdMock = new Mock<ICorrelationIdGenerator>();
-			_baseLoggerMock = new Mock<BaseLogger<Usuario>>(_loggerMock.Object, _correlationIdMock.Object);
+			_correlationIdMock = new Mock<ICorrelationIdGenerator>();	
 			_httpContextMock = new Mock<IHttpContextAccessor>();
-			//_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);
-			
-		}
+            _baseLoggerMock = new Mock<BaseLogger<Usuario>>(_loggerMock.Object, _correlationIdMock.Object, HelperTests.GetInMemoryContext(), _httpContextMock.Object);
+            //_controller = new UsuariosController(HelperTests.GetInMemoryContext(), _serviceMock.Object);
+
+        }
 		#endregion
 
 		#region Requests
@@ -48,10 +48,8 @@ namespace FiapCloudGamesTest.Controllers
 			//Arrange
 			var usuarioFactory = UsuarioTestFixtures.GerarUsuarioFaker();
 			var context = HelperTests.GetInMemoryContext();
-			context.AddRange(
-				usuarioFactory.Generate(2).ToList()
-			);
 
+            context.AddRange(usuarioFactory.Generate(2).ToList());
 			await context.SaveChangesAsync();
 
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);		
@@ -268,19 +266,43 @@ namespace FiapCloudGamesTest.Controllers
 		[Trait("Usuarios", "Validando Controller")]
 		public async Task PutUsuario_RetornaBadRequest_QuandoIdDiferente()
 		{
-			// Arrange
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
-			var context = HelperTests.GetInMemoryContext();
-			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+            // Arrange
+            var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+            var context = HelperTests.GetInMemoryContext();
+			
+			context.Add(usuario);
+            await context.SaveChangesAsync();
+            context.Entry(usuario).State = EntityState.Detached;
+            
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+			var IdExistente = usuarioRequest.Id;
+			usuarioRequest.Id = usuarioRequest.Id + 10;
+
+            var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 			// Act
-			var result = await controller.PutUsuario(usuarioRequest.Id + 10, usuarioRequest);
+			var result = await controller.PutUsuario(IdExistente, usuarioRequest);
 			// Assert
 			Assert.IsType<BadRequestResult>(result);
 		}
 
-		#region NEW validation
+        [Fact(DisplayName = "PutUsuario deve retornar BadRequestObject quando o ID informado não existe")]
+        [Trait("Usuarios", "Validando Controller")]
+        public async Task PutUsuario_RetornaBadRequestObject_QuandoIdNaoExiste()
+        {
+            // Arrange
+            var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+            var context = HelperTests.GetInMemoryContext();
+            var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+            // Act
+            var result = await controller.PutUsuario(usuarioRequest.Id, usuarioRequest);
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
 
-		[Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do apelido")]
+
+        #region NEW validation
+
+        [Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do apelido")]
 		[Trait("Usuarios", "Validando Controller")]
 		[MemberData(nameof(UsuarioTestData.ApelidoBadRequestData), MemberType = typeof(UsuarioTestData))]
 		public async Task Put_RetornaBadRequest_QuandoApelidoInvalido(string apelidoInvalido, string mensagemErro)
@@ -289,18 +311,19 @@ namespace FiapCloudGamesTest.Controllers
 			var context = HelperTests.GetInMemoryContext();
 			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
-			usuario.Apelido = "Leo";
-			context.Add(
-				usuario
-			);
+			var usuario2 = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+            usuario.Apelido = "Leo";
+			usuario2.Apelido = "Leo2";
+            context.AddRange(usuario, usuario2);
 			await context.SaveChangesAsync();
-			context.Entry(usuario).State = EntityState.Detached;
+			context.Entry(usuario).State = EntityState.Added;
+            context.Entry(usuario2).State = EntityState.Added;
 
-			usuario.Apelido = apelidoInvalido;
-			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+            usuario2.Apelido = apelidoInvalido;
+			var usuario2Request = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario2);
 
 			// Act
-			var result = await controller.PutUsuario(usuario.Id,usuarioRequest);
+			var result = await controller.PutUsuario(usuario2.Id,usuario2Request);
 
 			// Assert
 			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);

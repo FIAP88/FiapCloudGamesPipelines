@@ -60,7 +60,7 @@ public class JogoTestFixtures
 				idadeMinima: f.Random.Int(min: 0, max: 500),
 				ativo: f.Random.Bool(),
 				idFornecedor: f.UniqueIndex,
-				CriadoPor: f.Name.FirstName()
+				criadoPor: f.Name.FirstName()
 				) { Nome = f.Internet.DomainName() })			
 			.RuleFor(e => e.Id, f => f.UniqueIndex)
 			.RuleFor(e => e.DataCriacao, f => f.Date.Past(yearsToGoBack: 100))

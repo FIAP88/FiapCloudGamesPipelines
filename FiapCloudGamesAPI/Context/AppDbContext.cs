@@ -19,13 +19,11 @@ namespace FiapCloudGamesAPI.Context
         public DbSet<Jogo> Jogos { get; set; } = null!;
         public DbSet<Categoria> Categorias { get; set; } = null!;
         public DbSet<EmpresaFornecedora> EmpresasFornecedoras { get; set; } = null!;
-
+        public DbSet<Log> Logs { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
-
         }
     }
 }

@@ -9,7 +9,7 @@ namespace FiapCloudGamesAPI.Controllers
     {
         protected readonly AppDbContext _context;
         protected readonly BaseLogger<T> _logger;
-        protected Usuario? _usuario;
+        protected readonly Usuario? _usuario;
 
         public BaseController(AppDbContext context, BaseLogger<T> logger, IHttpContextAccessor httpContextAccessor)
         {

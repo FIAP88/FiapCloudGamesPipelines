@@ -5,6 +5,7 @@ using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FiapCloudGamesAPI.Controllers
 {
@@ -23,7 +24,10 @@ namespace FiapCloudGamesAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuario(long id, UsuarioRequest usuarioRequest)
         {
-            var erros = ValidarCadastro(usuarioRequest);
+            var usuario = _context.Usuarios.AsNoTracking().FirstOrDefault(user => user.Id == id);
+            if(usuario == null) return BadRequest(new { Erro = $"Usuario com Id {id}, não encontrado" });
+
+            var erros = ValidarAtualizacao(usuarioRequest, usuario);
 
             if (erros.Count > 0) return BadRequest(new { Erros = erros });
 
@@ -56,27 +60,22 @@ namespace FiapCloudGamesAPI.Controllers
         protected override bool EntityExistsByEmail(string email) => _context.Usuarios.Any(e => e.Email == email);
         protected override bool EntityExistsByApelido(string apelido) => _context.Usuarios.Any(e => e.Apelido == apelido);
 
-        private List<string> ValidarCadastro(UsuarioRequest usuario)
+        private List<string> ValidarFormatoCampos(UsuarioRequest usuario)
         {
             var erros = new List<string>();
-
             if (string.IsNullOrWhiteSpace(usuario.Nome) || usuario.Nome.Length < 3)
             {
                 erros.Add("Nome deve conter no mínimo 3 caracteres.");
             }
-
             if (string.IsNullOrWhiteSpace(usuario.Apelido) || usuario.Apelido.Length < 2)
             {
                 erros.Add("Apelido deve conter no mínimo 2 caracteres.");
             }
-
             if (string.IsNullOrWhiteSpace(usuario.Email) ||
                 !System.Text.RegularExpressions.Regex.IsMatch(usuario.Email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 erros.Add("Email inválido.");
             }
-
-            if (EntityExistsByEmail(usuario.Email)) erros.Add("Email ja cadastrado");
 
             var senha = usuario.Senha ?? "";
             if (senha.Length < 8 ||
@@ -91,8 +90,29 @@ namespace FiapCloudGamesAPI.Controllers
             {
                 erros.Add("Data de nascimento é obrigatória.");
             }
+            return erros;
+        }
+
+        private List<string> ValidarCadastro(UsuarioRequest usuario)
+        {
+            var erros = ValidarFormatoCampos(usuario);
+
+            if (EntityExistsByEmail(usuario.Email)) erros.Add("Email ja cadastrado");
 
             if (EntityExistsByApelido(usuario.Apelido)) erros.Add("Ja existe um jogador " + usuario.Apelido);
+
+            return erros;
+        }
+
+        private List<string> ValidarAtualizacao(UsuarioRequest usuarioAtualizar, Usuario usuarioAntigo)
+        {
+            var erros = ValidarFormatoCampos(usuarioAtualizar);
+            
+            if(usuarioAtualizar.Email != usuarioAntigo.Email)
+                if (EntityExistsByEmail(usuarioAtualizar.Email)) erros.Add("Email ja cadastrado");
+
+            if (usuarioAtualizar.Apelido != usuarioAntigo.Apelido)
+                if (EntityExistsByApelido(usuarioAtualizar.Apelido)) erros.Add("Ja existe um jogador " + usuarioAtualizar.Apelido);
 
             return erros;
         }
