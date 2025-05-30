@@ -90,7 +90,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "GetUsuario deve retornar NotFound para usu�rio inexistente")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task GetUsuario_RetornaNotFound_QuandoInexistente()
+		public async Task Get_RetornaNotFound_QuandoInexistente()
 		{
 			// Arrange
 			var context = HelperTests.GetInMemoryContext();
@@ -231,6 +231,30 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.NotNull(erros);
 			Assert.Contains("Email inválido.", erros);
 		}
+
+		[Fact(DisplayName = "PostUsuario deve retornar BadRequest quando falhar na validação da data")]
+		[Trait("Usuarios", "Validando Controller")]		
+		public async Task Post_RetornaBadRequest_QuandoDataInvalida()
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
+			usuarioRequest.DataNascimento = default;
+
+			// Act
+			var result = await controller.PostUsuario(usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Data de nascimento é obrigatória.", erros);
+		}
 		#endregion
 
 		#region PUT
@@ -264,7 +288,7 @@ namespace FiapCloudGamesTest.Controllers
 
 		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando IDs forem diferentes")]
 		[Trait("Usuarios", "Validando Controller")]
-		public async Task PutUsuario_RetornaBadRequest_QuandoIdDiferente()
+		public async Task Put_RetornaBadRequest_QuandoIdDiferente()
 		{
             // Arrange
             var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
@@ -287,7 +311,7 @@ namespace FiapCloudGamesTest.Controllers
 
         [Fact(DisplayName = "PutUsuario deve retornar BadRequestObject quando o ID informado não existe")]
         [Trait("Usuarios", "Validando Controller")]
-        public async Task PutUsuario_RetornaBadRequestObject_QuandoIdNaoExiste()
+        public async Task Put_RetornaBadRequestObject_QuandoIdNaoExiste()
         {
             // Arrange
             var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestFaker().Generate();
@@ -298,9 +322,6 @@ namespace FiapCloudGamesTest.Controllers
             // Assert
             Assert.IsType<BadRequestObjectResult>(result);
         }
-
-
-        #region NEW validation
 
         [Theory(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação do apelido")]
 		[Trait("Usuarios", "Validando Controller")]
@@ -431,7 +452,37 @@ namespace FiapCloudGamesTest.Controllers
 			Assert.NotNull(erros);
 			Assert.Contains("Email inválido.", erros);
 		}
-		#endregion
+
+		[Fact(DisplayName = "PutUsuario deve retornar BadRequest quando falhar na validação da data")]
+		[Trait("Usuarios", "Validando Controller")]
+		public async Task Put_RetornaBadRequest_QuandoDataInvalida()
+		{
+			// Arrange
+			var context = HelperTests.GetInMemoryContext();
+			var controller = new UsuariosController(context, _baseLoggerMock.Object, _httpContextMock.Object);
+			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
+			context.Add(
+				usuario
+			);
+			await context.SaveChangesAsync();
+			context.Entry(usuario).State = EntityState.Detached;
+
+			var usuarioRequest = UsuarioTestFixtures.GerarUsuarioRequestByUsuario(usuario);
+			usuarioRequest.DataNascimento = default;
+
+			// Act
+			var result = await controller.PutUsuario(usuario.Id, usuarioRequest);
+
+			// Assert
+			var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
+
+			dynamic value = badRequestResult.Value!;
+			var errosProp = value.GetType().GetProperty("Erros");
+			var erros = errosProp.GetValue(value) as List<string>;
+
+			Assert.NotNull(erros);
+			Assert.Contains("Data de nascimento é obrigatória.", erros);
+		}
 		#endregion
 
 		#region DELETE
@@ -440,7 +491,7 @@ namespace FiapCloudGamesTest.Controllers
 		public async Task Delete_RemoveUsuario_QuandoEncontrado()
 		{
 			//Arrange
-			var context = HelperTests.GetInMemoryContext();
+			var context = HelperTests.GetInMemoryContext();			
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			context.Add(
 				usuario
