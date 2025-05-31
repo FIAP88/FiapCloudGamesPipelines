@@ -16,8 +16,10 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
             builder.Property(p => p.IdJogo).HasColumnType("BIGINT").IsRequired();
             builder.Property(p => p.IdUsuario).HasColumnType("BIGINT").IsRequired();
-            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME2").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME2");
+            builder.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
 
             builder.HasOne(p => p.Usuario)
                 .WithOne(p => p.Biblioteca)

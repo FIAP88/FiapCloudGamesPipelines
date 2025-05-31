@@ -20,17 +20,9 @@ namespace FiapCloudGamesAPI.Controllers
 
         protected async Task<ActionResult<IEnumerable<S>>> GetAll<S>() where S : class
         {
-            try
-            {
-                var result = await _context.Set<T>().AsNoTracking().ToListAsync();
-                var castedResult = result.Select(ConvertTypes<S>).ToList();
-                return Ok(castedResult);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error in GetAll: {ex.Message}");
-                return StatusCode(500, "Internal server error");
-            }
+            var result = await _context.Set<T>().AsNoTracking().ToListAsync();
+            var castedResult = result.Select(ConvertTypes<S>).ToList();
+            return Ok(castedResult);
         }
 
         protected async Task<ActionResult<T>> GetById(long id)
@@ -82,21 +74,13 @@ namespace FiapCloudGamesAPI.Controllers
 
         protected async Task<ActionResult<T>> Create(T entity)
         {
-            try
-            {
-                _logger.LogInformation($"Creating entity: {entity}");
-                entity.CriadoPor = NomeUsuarioLogado;
-                entity.DataCriacao = DateTime.Now;
-                _context.Set<T>().Add(entity);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation($"Entity created successfully: {entity}");
-                return await GetById(entity.Id);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error in Create: {ex.Message}");
-                return StatusCode(500, "Erro interno no servidor");
-            }            
+            _logger.LogInformation($"Creating entity: {entity}");
+            entity.CriadoPor = NomeUsuarioLogado;
+            entity.DataCriacao = DateTime.Now;
+            _context.Set<T>().Add(entity);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation($"Entity created successfully: {entity}");
+            return await GetById(entity.Id);
         }
 
         protected async Task<IActionResult> Delete(long id)

@@ -16,7 +16,7 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.Mensagem).HasColumnType("VARCHAR(500)");
             builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-            builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
+            builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME2");
             builder.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
         }
     }

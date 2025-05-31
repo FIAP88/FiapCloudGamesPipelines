@@ -23,7 +23,20 @@ namespace FiapCloudGamesAPI.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            // Removi a o ApplyConfigurationsFromAssembly, pois é necessario garantiar uma seguencia na inserção dos dados das tabelas.
+            //modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfiguration(new PerfilConfiguration());
+            modelBuilder.ApplyConfiguration(new UsuarioConfiguration());
+            modelBuilder.ApplyConfiguration(new PermissaoConfiguration());
+            modelBuilder.ApplyConfiguration(new PerfilPermissaoConfiguration());
+            modelBuilder.ApplyConfiguration(new BibliotecaDoJogadorConfiguration());
+            modelBuilder.ApplyConfiguration(new AvaliacaoConfiguration());
+            modelBuilder.ApplyConfiguration(new JogoConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoriaConfiguration());
+            modelBuilder.ApplyConfiguration(new EmpresaFornecedoraConfiguration());
+            modelBuilder.ApplyConfiguration(new LogConfiguration());
+            base.OnModelCreating(modelBuilder);
+
         }
     }
 }

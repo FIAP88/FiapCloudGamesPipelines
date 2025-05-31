@@ -103,7 +103,8 @@ if (app.Environment.IsDevelopment())
 
 #region [Middler]
 app.UseCorrelationMiddleware();
-//app.UsePermissoesMiddleware();
+app.UseInfoUsuarioMiddleware();
+app.UseTratamentoDeErrosMiddleware();
 #endregion
 
 app.UseSwagger();

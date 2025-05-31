@@ -22,9 +22,9 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.IdCategoria).HasColumnType("BIGINT");
             builder.Property(p => p.IdadeMinima).HasColumnType("INT");
             builder.Property(p => p.Ativo).HasColumnType("BIT").HasDefaultValue(true); ;
-            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
+            builder.Property(p => p.DataCriacao).HasColumnType("DATETIME2").IsRequired().Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
             builder.Property(p => p.CriadoPor).HasColumnType("VARCHAR(100)").Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Ignore);
-            builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME");
+            builder.Property(p => p.DataAtualizacao).HasColumnType("DATETIME2");
             builder.Property(p => p.AtualizadoPor).HasColumnType("VARCHAR(100)");
             builder.Property(p => p.IdFornecedor).HasColumnType("BIGINT").IsRequired();
 
