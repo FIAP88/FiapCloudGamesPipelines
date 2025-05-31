@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<RunSettings>
+  <DataCollectionRunSettings>
+    <DataCollectors>
+      <DataCollector friendlyName="XPlat code coverage">
+        <Configuration>
+          <!-- Formatos de saída: cobertura para integração com FCC -->
+          <Format>cobertura,opencover</Format>
+
+          <!-- Inclui tudo por padrão -->
+          <Include>[*]*</Include>
+
+          <!-- Exclui o framework de teste xUnit -->
+          <Exclude>[xunit.*]*</Exclude>
+
+          <!-- Exclui tipos baseados em atributos -->
+          <ExcludeByAttribute>
+            Obsolete
+            GeneratedCodeAttribute
+            CompilerGeneratedAttribute
+          </ExcludeByAttribute>
+
+          <!-- Exclui arquivos típicos -->
+          <ExcludeByFile>
+            **/Migrations/*
+            **/*.g.cs
+            **/*.designer.cs
+            **/*.AssemblyInfo.cs
+          </ExcludeByFile>
+
+          <!-- (Opcional) Output extra de arquivos de cobertura -->
+          <!-- <Output>coverage</Output> -->
+        </Configuration>
+      </DataCollector>
+    </DataCollectors>
+  </DataCollectionRunSettings>
+
+  <!-- Configurações adicionais de execução de teste -->
+  <RunConfiguration>
+    <!-- Mantém o console mais limpo -->
+    <ResultsDirectory>TestResults</ResultsDirectory>
+    <TargetPlatform>x64</TargetPlatform>
+    <TargetFrameworkVersion>net9.0</TargetFrameworkVersion> <!-- Ajuste conforme seu projeto: net6.0, net7.0... -->
+  </RunConfiguration>
+
+  <!-- Configuração para xUnit -->
+  <TestRunParameters>
+    <Parameter name="environment" value="Test" />
+  </TestRunParameters>
+</RunSettings>

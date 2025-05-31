@@ -8,17 +8,6 @@ using System.Text;
 
 public class UsuarioTestFixtures
 {
-	#region Depend�ncias
-	private readonly Faker _faker;
-	#endregion
-
-	#region Construtor
-	public UsuarioTestFixtures()
-	{
-		_faker = new Faker();
-	}
-	#endregion
-
 	#region Faker Model
 	public static string GerarSenhaSegura(int minLength = 8, int maxLength = 12)
 	{
@@ -119,9 +108,4 @@ public class UsuarioTestFixtures
 		return usuarioRequest.Generate();
 	}	
 	#endregion
-
-	#region TODO Faker DTOs
-	
-	#endregion
-
 }
