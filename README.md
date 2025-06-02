@@ -35,18 +35,18 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
         
     2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
     2.2. Aplique as migrations existentes com o comando:
-       ```bash
+        ```bash
        dotnet ef database update
-       ```
+        ```
    
      > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
 
-3. Execute o projeto com o comando:
+4. Execute o projeto com o comando:
     ```bash
     dotnet run
     ```
 
-4. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
+5. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
 
 ## 🔐 Autenticação
 
