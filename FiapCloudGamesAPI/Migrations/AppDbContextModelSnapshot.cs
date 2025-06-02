@@ -1260,6 +1260,9 @@ namespace FiapCloudGamesAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Apelido")
+                        .IsUnique();
+
                     b.HasIndex("Email")
                         .IsUnique();
 

@@ -18,6 +18,7 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.Nome).HasColumnType("VARCHAR(100)").IsRequired();
             builder.Property(p => p.Sobrenome).HasColumnType("VARCHAR(100)");
             builder.Property(p => p.Apelido).HasColumnType("VARCHAR(50)");
+            builder.HasIndex(p => p.Apelido).IsUnique();
             builder.Property(p => p.Email).HasColumnType("VARCHAR(150)").IsRequired();
             builder.HasIndex(e => e.Email).IsUnique();
             builder.Property(p => p.HashSenha).HasColumnType("VARCHAR(255)").IsRequired();
