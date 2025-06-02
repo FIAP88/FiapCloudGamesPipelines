@@ -14,11 +14,11 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 
 ## 🚀 Tecnologias Utilizadas
 
-- [.NET 8 (LTS)](https://dotnet.microsoft.com/)
+- [.NET 9 (STS)](https://dotnet.microsoft.com/)
 - [Entity Framework Core](https://learn.microsoft.com/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server)
 - Autenticação via JWT (Bearer Token)
-- Testes Unitários e de Integração com xUnit/Moq
+- Testes Unitários e de Integração com xUnit, Moq e Bogus
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
@@ -26,7 +26,7 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
 
-    cd TechChallenge-03-06
+    cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
 
 2. Execute o projeto com o comando:
