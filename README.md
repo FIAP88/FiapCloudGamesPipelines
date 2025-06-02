@@ -38,9 +38,8 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
        ```bash
        dotnet ef database update
        ```
-        
+   
      > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
-## 
 
 3. Execute o projeto com o comando:
     ```bash
