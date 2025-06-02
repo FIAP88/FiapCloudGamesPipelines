@@ -29,24 +29,25 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
 
-2. Execute o projeto com o comando:
+2. Configuração do Banco de Dados
+    
+   A aplicação utiliza SQL Server. Para criar a base de dados:
+        
+    2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
+    2.2. Aplique as migrations existentes com o comando:
+       ```bash
+       dotnet ef database update
+       ```
+        
+     > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
+## 
+
+3. Execute o projeto com o comando:
     ```bash
     dotnet run
     ```
 
-3. A API estará disponível em: `http://localhost:5030` (ou conforme configurado).
-
-## 🛠️ Configuração do Banco de Dados
-
-A aplicação utiliza SQL Server. Para criar a base de dados:
-
-1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
-2. Aplique as migrations existentes com o comando:
-    ```bash
-    dotnet ef database update
-    ```
-
-> Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
+4. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
 
 ## 🔐 Autenticação
 
@@ -59,13 +60,25 @@ Authorization: Bearer {token_aqui}
 
 ```
 
+Para criação do Token é necessário acessar o endpoint `api/login` e inserir os dados do usuário administrador, listado abaixo:
+```
+email: "joao@email.com"
+senha: "Te$te123"
+```
+
 ## 🧪 Rodando os Testes
 
-Execute os testes unitários e de integração com:
-
+Direcione-se ao diretório de testes
+```bash
+cd ..
+cd TechChallenge-03-06/FiapCloudGamesTest
+```
+Execute os testes unitários com:
 ```bash
 dotnet test
 ```
+
+> Certifique-se de que o projeto não esteja rodando antes de executar os testes.
 
 ## 📂 Estrutura do Projeto
 
