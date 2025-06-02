@@ -33,7 +33,7 @@ namespace FiapCloudGamesAPI.Configurations
                .HasForeignKey(p => p.PerfilId);
 
             builder.HasData(
-                new Usuario("João", "Silva", "joaos", "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", DateTime.Parse("2000-01-01 00:00:00"), 1, "system") { Nome = "João", Id = -1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") }
+                new Usuario("João", "Silva", "joaos", "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", DateTime.Parse("2000-01-01 00:00:00"), 1, "system") { Nome = "João", Id = 1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") }
             );
         }
     }

@@ -24,8 +24,8 @@ namespace FiapCloudGamesAPI.Configurations
             
             builder.HasData(
 
-                new EmpresaFornecedora("GameX Studios", "12345678000190", "system") { Id = -1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") },
-                new EmpresaFornecedora("AlphaGames Ltda", "98765432000191", "system") { Id = -2, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") } 
+                new EmpresaFornecedora("GameX Studios", "12345678000190", "system") { Id = 1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") },
+                new EmpresaFornecedora("AlphaGames Ltda", "98765432000191", "system") { Id = 2, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") } 
             );
         }
     }

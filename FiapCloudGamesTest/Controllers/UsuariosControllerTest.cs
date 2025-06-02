@@ -49,6 +49,8 @@ namespace FiapCloudGamesTest.Controllers
 			var usuarioFactory = UsuarioTestFixtures.GerarUsuarioFaker();
 			var context = HelperTests.GetInMemoryContext();
 
+            int numeroAtualDeUsuarios = context.Usuarios.Count();
+
             context.AddRange(usuarioFactory.Generate(2).ToList());
 			await context.SaveChangesAsync();
 
@@ -61,7 +63,7 @@ namespace FiapCloudGamesTest.Controllers
 			var actionResult = Assert.IsType<ActionResult<IEnumerable<UsuarioDto>>>(result);
 			var okResult = Assert.IsType<OkObjectResult>(result.Result);
 			var users = Assert.IsAssignableFrom<IEnumerable<UsuarioDto>>(okResult.Value);
-			Assert.Equal(2, users.Count());
+			Assert.Equal(numeroAtualDeUsuarios + 2, users.Count());
 		}
 
 		[Fact(DisplayName = "GetUsuario deve retornar um usu�rio existente")]
@@ -71,7 +73,9 @@ namespace FiapCloudGamesTest.Controllers
 			//Arrange
 			var usuario = UsuarioTestFixtures.GerarUsuarioFaker().Generate();
 			var context = HelperTests.GetInMemoryContext();
-			context.Add(
+		
+
+            context.Add(
 				usuario			
 			);
 			await context.SaveChangesAsync();

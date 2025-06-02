@@ -178,44 +178,44 @@ namespace FiapCloudGamesAPI.Migrations
                 columns: new[] { "Id", "AtualizadoPor", "CriadoPor", "DataAtualizacao", "DataCriacao", "Descricao" },
                 values: new object[,]
                 {
-                    { -38L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Board Game" },
-                    { -37L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Card" },
-                    { -36L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Trivia" },
-                    { -35L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Party" },
-                    { -34L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Music" },
-                    { -33L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fitness" },
-                    { -32L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Educational" },
-                    { -31L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AR" },
-                    { -30L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "VR" },
-                    { -29L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Co-op" },
-                    { -28L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Narrativa" },
-                    { -27L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Stealth" },
-                    { -26L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hacking" },
-                    { -25L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Open World" },
-                    { -24L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Survival" },
-                    { -23L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Metroidvania" },
-                    { -22L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sandbox" },
-                    { -21L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Novel" },
-                    { -20L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Card Game" },
-                    { -19L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOBA" },
-                    { -18L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Battle Royale" },
-                    { -17L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roguelike" },
-                    { -16L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Aventura Gráfica" },
-                    { -15L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Casual" },
-                    { -14L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Indie" },
-                    { -13L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Multiplayer" },
-                    { -12L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Horror" },
-                    { -11L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plataforma" },
-                    { -10L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luta" },
-                    { -9L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tiro" },
-                    { -8L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Puzzle" },
-                    { -7L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Corrida" },
-                    { -6L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Esporte" },
-                    { -5L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Simulação" },
-                    { -4L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Estratégia" },
-                    { -3L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "RPG" },
-                    { -2L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Aventura" },
-                    { -1L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ação" }
+                    { 1L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ação" },
+                    { 2L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Aventura" },
+                    { 3L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "RPG" },
+                    { 4L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Estratégia" },
+                    { 5L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Simulação" },
+                    { 6L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Esporte" },
+                    { 7L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Corrida" },
+                    { 8L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Puzzle" },
+                    { 9L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tiro" },
+                    { 10L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luta" },
+                    { 11L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Plataforma" },
+                    { 12L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Horror" },
+                    { 13L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Multiplayer" },
+                    { 14L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Indie" },
+                    { 15L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Casual" },
+                    { 16L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Aventura Gráfica" },
+                    { 17L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Roguelike" },
+                    { 18L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Battle Royale" },
+                    { 19L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MOBA" },
+                    { 20L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Card Game" },
+                    { 21L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Visual Novel" },
+                    { 22L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sandbox" },
+                    { 23L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Metroidvania" },
+                    { 24L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Survival" },
+                    { 25L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Open World" },
+                    { 26L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Hacking" },
+                    { 27L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Stealth" },
+                    { 28L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Narrativa" },
+                    { 29L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Co-op" },
+                    { 30L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "VR" },
+                    { 31L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AR" },
+                    { 32L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Educational" },
+                    { 33L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fitness" },
+                    { 34L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Music" },
+                    { 35L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Party" },
+                    { 36L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Trivia" },
+                    { 37L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Card" },
+                    { 38L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Board Game" }
                 });
 
             migrationBuilder.InsertData(
@@ -223,8 +223,8 @@ namespace FiapCloudGamesAPI.Migrations
                 columns: new[] { "Id", "AtualizadoPor", "CNPJ", "CriadoPor", "DataAtualizacao", "DataCriacao", "Nome" },
                 values: new object[,]
                 {
-                    { -2L, "", "98765432000191", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AlphaGames Ltda" },
-                    { -1L, "", "12345678000190", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "GameX Studios" }
+                    { 1L, "", "12345678000190", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "GameX Studios" },
+                    { 2L, "", "98765432000191", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AlphaGames Ltda" }
                 });
 
             migrationBuilder.InsertData(
@@ -332,7 +332,7 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.InsertData(
                 table: "Usuario",
                 columns: new[] { "Id", "Apelido", "AtualizadoPor", "CriadoPor", "DataAtualizacao", "DataCriacao", "DataNascimento", "Email", "HashSenha", "Nome", "PerfilId", "Sobrenome" },
-                values: new object[] { -1L, "joaos", "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", "João", 1L, "Silva" });
+                values: new object[] { 1L, "joaos", "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", "João", 1L, "Silva" });
         }
 
         /// <inheritdoc />
@@ -341,202 +341,202 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -38L);
+                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -37L);
+                keyValue: 2L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -36L);
+                keyValue: 3L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -35L);
+                keyValue: 4L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -34L);
+                keyValue: 5L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -33L);
+                keyValue: 6L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -32L);
+                keyValue: 7L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -31L);
+                keyValue: 8L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -30L);
+                keyValue: 9L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -29L);
+                keyValue: 10L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -28L);
+                keyValue: 11L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -27L);
+                keyValue: 12L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -26L);
+                keyValue: 13L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -25L);
+                keyValue: 14L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -24L);
+                keyValue: 15L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -23L);
+                keyValue: 16L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -22L);
+                keyValue: 17L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -21L);
+                keyValue: 18L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -20L);
+                keyValue: 19L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -19L);
+                keyValue: 20L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -18L);
+                keyValue: 21L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -17L);
+                keyValue: 22L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -16L);
+                keyValue: 23L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -15L);
+                keyValue: 24L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -14L);
+                keyValue: 25L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -13L);
+                keyValue: 26L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -12L);
+                keyValue: 27L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -11L);
+                keyValue: 28L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -10L);
+                keyValue: 29L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -9L);
+                keyValue: 30L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -8L);
+                keyValue: 31L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -7L);
+                keyValue: 32L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -6L);
+                keyValue: 33L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -5L);
+                keyValue: 34L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -4L);
+                keyValue: 35L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -3L);
+                keyValue: 36L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -2L);
+                keyValue: 37L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
                 keyColumn: "Id",
-                keyValue: -1L);
+                keyValue: 38L);
 
             migrationBuilder.DeleteData(
                 table: "EmpresaFornecedora",
                 keyColumn: "Id",
-                keyValue: -2L);
+                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "EmpresaFornecedora",
                 keyColumn: "Id",
-                keyValue: -1L);
+                keyValue: 2L);
 
             migrationBuilder.DeleteData(
                 table: "PerfilPermissao",
@@ -761,7 +761,7 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "Usuario",
                 keyColumn: "Id",
-                keyValue: -1L);
+                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "Perfil",

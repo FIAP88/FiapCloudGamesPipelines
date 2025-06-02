@@ -153,7 +153,7 @@ namespace FiapCloudGamesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -1L,
+                            Id = 1L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -161,7 +161,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -2L,
+                            Id = 2L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -169,7 +169,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -3L,
+                            Id = 3L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -177,7 +177,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -4L,
+                            Id = 4L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -185,7 +185,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -5L,
+                            Id = 5L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -193,7 +193,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -6L,
+                            Id = 6L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -201,7 +201,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -7L,
+                            Id = 7L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -209,7 +209,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -8L,
+                            Id = 8L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -217,7 +217,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -9L,
+                            Id = 9L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -225,7 +225,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -10L,
+                            Id = 10L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -233,7 +233,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -11L,
+                            Id = 11L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -241,7 +241,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -12L,
+                            Id = 12L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -249,7 +249,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -13L,
+                            Id = 13L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -257,7 +257,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -14L,
+                            Id = 14L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -265,7 +265,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -15L,
+                            Id = 15L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -273,7 +273,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -16L,
+                            Id = 16L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -281,7 +281,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -17L,
+                            Id = 17L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -289,7 +289,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -18L,
+                            Id = 18L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -297,7 +297,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -19L,
+                            Id = 19L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -305,7 +305,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -20L,
+                            Id = 20L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -313,7 +313,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -21L,
+                            Id = 21L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -321,7 +321,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -22L,
+                            Id = 22L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -329,7 +329,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -23L,
+                            Id = 23L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -337,7 +337,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -24L,
+                            Id = 24L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -345,7 +345,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -25L,
+                            Id = 25L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -353,7 +353,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -26L,
+                            Id = 26L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -361,7 +361,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -27L,
+                            Id = 27L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -369,7 +369,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -28L,
+                            Id = 28L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -377,7 +377,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -29L,
+                            Id = 29L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -385,7 +385,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -30L,
+                            Id = 30L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -393,7 +393,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -31L,
+                            Id = 31L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -401,7 +401,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -32L,
+                            Id = 32L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -409,7 +409,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -33L,
+                            Id = 33L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -417,7 +417,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -34L,
+                            Id = 34L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -425,7 +425,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -35L,
+                            Id = 35L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -433,7 +433,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -36L,
+                            Id = 36L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -441,7 +441,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -37L,
+                            Id = 37L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -449,7 +449,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -38L,
+                            Id = 38L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -495,7 +495,7 @@ namespace FiapCloudGamesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -1L,
+                            Id = 1L,
                             AtualizadoPor = "",
                             CNPJ = "12345678000190",
                             CriadoPor = "system",
@@ -504,7 +504,7 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            Id = -2L,
+                            Id = 2L,
                             AtualizadoPor = "",
                             CNPJ = "98765432000191",
                             CriadoPor = "system",
@@ -1270,7 +1270,7 @@ namespace FiapCloudGamesAPI.Migrations
                     b.HasData(
                         new
                         {
-                            Id = -1L,
+                            Id = 1L,
                             Apelido = "joaos",
                             AtualizadoPor = "",
                             CriadoPor = "system",
