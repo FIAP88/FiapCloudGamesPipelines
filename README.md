@@ -35,10 +35,14 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
         
     2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
     2.2. Aplique as migrations existentes com o comando:
-        ```bash
+
+       ```bash
        dotnet ef database update
         ```
-   
+     > Certifique-se o pacote dotnet-ef está instalado globalmente. Para instalar utilize:
+       ```bash
+       dotnet tool install --global dotnet-ef
+        ```
      > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
 
 4. Execute o projeto com o comando:
