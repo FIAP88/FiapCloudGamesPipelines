@@ -37,11 +37,11 @@ A aplicação utiliza SQL Server. Para criar a base de dados:
 2.2. Aplique as migrations existentes com o comando:
    ```bash
    dotnet ef database update
-    ```
+   ```
  > Certifique-se o pacote dotnet-ef está instalado globalmente. Para instalar utilize:
    ```bash
    dotnet tool install --global dotnet-ef
-    ```
+   ```
  > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
 
 4. Execute o projeto com o comando:
