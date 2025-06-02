@@ -26,7 +26,7 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
 
-    cd TechChallenge-03-06
+    cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
 
 2. Execute o projeto com o comando:
