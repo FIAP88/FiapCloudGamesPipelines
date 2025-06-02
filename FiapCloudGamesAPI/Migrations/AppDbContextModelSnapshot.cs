@@ -471,7 +471,7 @@ namespace FiapCloudGamesAPI.Migrations
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasColumnType("CHAR(50)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("CriadoPor")
                         .IsRequired()

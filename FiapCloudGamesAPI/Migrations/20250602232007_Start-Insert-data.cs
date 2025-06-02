@@ -109,6 +109,14 @@ namespace FiapCloudGamesAPI.Migrations
                 oldClrType: typeof(DateTime),
                 oldType: "DATETIME");
 
+            migrationBuilder.AlterColumn<string>(
+                name: "CNPJ",
+                table: "EmpresaFornecedora",
+                type: "VARCHAR(50)",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "CHAR(50)");
+
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataCriacao",
                 table: "Categoria",
@@ -1055,6 +1063,14 @@ namespace FiapCloudGamesAPI.Migrations
                 oldClrType: typeof(DateTime),
                 oldType: "DATETIME2",
                 oldNullable: true);
+
+            migrationBuilder.AlterColumn<string>(
+                name: "CNPJ",
+                table: "EmpresaFornecedora",
+                type: "CHAR(50)",
+                nullable: false,
+                oldClrType: typeof(string),
+                oldType: "VARCHAR(50)");
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataCriacao",

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiapCloudGamesAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250602230936_Start-Insert-data")]
+    [Migration("20250602232007_Start-Insert-data")]
     partial class StartInsertdata
     {
         /// <inheritdoc />
@@ -474,7 +474,7 @@ namespace FiapCloudGamesAPI.Migrations
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasColumnType("CHAR(50)");
+                        .HasColumnType("VARCHAR(50)");
 
                     b.Property<string>("CriadoPor")
                         .IsRequired()
