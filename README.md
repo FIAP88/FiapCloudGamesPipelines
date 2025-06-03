@@ -15,12 +15,16 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 ## 🚀 Tecnologias Utilizadas
 
 - [.NET 9 (STS)](https://dotnet.microsoft.com/)
-  > Download: https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 - [Entity Framework Core](https://learn.microsoft.com/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server)
-  > Download: 
 - Autenticação via JWT (Bearer Token)
 - Testes Unitários e de Integração com xUnit, Moq e Bogus
+
+## 🚀 Tecnologias Necessárias Instalação
+
+- SDK dotnet 9: https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
+- Sql Server Express: https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
+- Pacote dotnet-ef: dotnet tool install --global dotnet-ef
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
@@ -35,26 +39,13 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     A aplicação utiliza SQL Server. Para criar a base de dados:
     ```
     
-2.1. Certifique-se que possui o .net 9 SDK instalado corretamente.
-
-> https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
-
-2.2. Aplique as migrations existentes com o comando:
-
-> Certifique-se o pacote dotnet-ef está instalado globalmente. Para instalar utilize:
-   ```bash
-   dotnet tool install --global dotnet-ef
-   ```
-> Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
-
-   ```bash
-   [dotnet tool install --global dotnet-ef](https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br)
-   ```
-     
+3. Aplique as migrations existentes com o comando:
+    
 > Execute update do EF
    ```bash
    dotnet ef database update
    ```
+
 4. Execute o projeto com o comando:
     ```bash
     dotnet run
