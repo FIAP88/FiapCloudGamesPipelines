@@ -25,29 +25,37 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 1. Clone este repositório:
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
-
     cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
 
 2. Configuração do Banco de Dados
+    ```
+    A aplicação utiliza SQL Server. Para criar a base de dados:
+    ```
     
-   A aplicação utiliza SQL Server. Para criar a base de dados:
-        
-    2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
-    2.2. Aplique as migrations existentes com o comando:
-       ```bash
-       dotnet ef database update
-       ```
-        
-     > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
-## 
+2.1. Certifique-se que possui o .net 9 SDK instalado corretamente.
+> https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 
-3. Execute o projeto com o comando:
+2.2. Aplique as migrations existentes com o comando:
+
+> Certifique-se o pacote dotnet-ef está instalado globalmente. Para instalar utilize:
+   ```bash
+   dotnet tool install --global dotnet-ef
+   ```
+> Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
+    ```bash
+    https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
+     ```
+> Execute update do EF
+   ```bash
+   dotnet ef database update
+   ```
+4. Execute o projeto com o comando:
     ```bash
     dotnet run
     ```
 
-4. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
+5. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
 
 ## 🔐 Autenticação
 
