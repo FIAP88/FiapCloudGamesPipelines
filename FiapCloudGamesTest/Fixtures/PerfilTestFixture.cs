@@ -1,5 +1,4 @@
-﻿using Bogus;
-using FiapCloudGamesAPI.Models;
+﻿using FiapCloudGamesAPI.Models;
 
 namespace FiapCloudGamesTest.Fixtures
 {

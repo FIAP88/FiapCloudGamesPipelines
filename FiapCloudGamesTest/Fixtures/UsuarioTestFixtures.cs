@@ -1,6 +1,3 @@
-using Bogus;
-using Bogus.DataSets;
-using Bogus.Extensions;
 using FiapCloudGamesAPI.Entidades.Requests;
 using FiapCloudGamesAPI.Models;
 using FiapCloudGamesTest.Fixtures;

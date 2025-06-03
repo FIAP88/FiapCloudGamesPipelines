@@ -1,4 +1,3 @@
-
 namespace FiapCloudGamesTest.Controllers
 {
 	public class JogosControllerTests

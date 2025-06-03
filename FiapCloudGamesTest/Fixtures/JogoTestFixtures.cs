@@ -1,7 +1,5 @@
-using Bogus.DataSets;
 using Bogus.Extensions;
 using FiapCloudGamesAPI.Models;
-using Newtonsoft.Json;
 
 public class JogoTestFixtures
 {
