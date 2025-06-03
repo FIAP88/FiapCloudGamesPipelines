@@ -43,7 +43,9 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
    dotnet tool install --global dotnet-ef
    ```
 > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
-> https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
+    ```bash
+    https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
+     ```
 > Execute update do EF
    ```bash
    dotnet ef database update
