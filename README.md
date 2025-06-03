@@ -28,30 +28,30 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 
 ## ⚙️ Como Rodar o Projeto Localmente
 
-1. Clone este repositório:
+1. Abra o prompt de comando: (Win + R) Digite "CMD" e pressione "Enter".
+2. Clone este repositório:
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
     cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
-
-2. Configuração do Banco de Dados
+3. Configuração do Banco de Dados
     ```
     A aplicação utiliza SQL Server. Para criar a base de dados:
     ```
     
-3. Aplique as migrations existentes com o comando:
+4. Aplique as migrations existentes com o comando:
     
 > Execute update do EF
    ```bash
    dotnet ef database update
    ```
 
-4. Execute o projeto com o comando:
+5. Execute o projeto com o comando:
     ```bash
     dotnet run
     ```
 
-5. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
+6. A API estará disponível em: `http://localhost:5030/swagger/index.html` (ou conforme configurado).
 
 ## 🔐 Autenticação
 
