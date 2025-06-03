@@ -15,6 +15,7 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 ## 🚀 Tecnologias Utilizadas
 
 - [.NET 9 (STS)](https://dotnet.microsoft.com/)
+  > https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 - [Entity Framework Core](https://learn.microsoft.com/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server)
 - Autenticação via JWT (Bearer Token)
@@ -34,6 +35,7 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     ```
     
 2.1. Certifique-se que possui o .net 9 SDK instalado corretamente.
+
 > https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 
 2.2. Aplique as migrations existentes com o comando:
@@ -43,9 +45,11 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
    dotnet tool install --global dotnet-ef
    ```
 > Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
-    ```bash
-    https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
-     ```
+
+   ```bash
+   [dotnet tool install --global dotnet-ef](https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br)
+   ```
+     
 > Execute update do EF
    ```bash
    dotnet ef database update
@@ -76,6 +80,8 @@ senha: "Te$te123"
 
 ## 🧪 Rodando os Testes
 
+> Certifique-se de que o projeto não esteja rodando antes de executar os testes.
+
 Direcione-se ao diretório de testes
 ```bash
 cd ..
@@ -85,8 +91,6 @@ Execute os testes unitários com:
 ```bash
 dotnet test
 ```
-
-> Certifique-se de que o projeto não esteja rodando antes de executar os testes.
 
 ## 📂 Estrutura do Projeto
 
