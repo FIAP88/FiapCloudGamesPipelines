@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using FiapCloudGamesAPI.Entidades;
+using FiapCloudGamesAPI.Enums;
 
 namespace FiapCloudGamesAPI.Models
 {
