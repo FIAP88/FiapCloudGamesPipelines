@@ -20,36 +20,28 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 - Autenticação via JWT (Bearer Token)
 - Testes Unitários e de Integração com xUnit, Moq e Bogus
 
+## 🚀 Tecnologias Necessárias Instalação
+
+- SDK dotnet 9: https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
+- Sql Server Express: https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
+- Pacote dotnet-ef: dotnet tool install --global dotnet-ef
+
 ## ⚙️ Como Rodar o Projeto Localmente
 
-1. Clone este repositório:
+1. Abra o prompt de comando: (Win + R) Digite "CMD" e pressione "Enter".
+   
+2. Clone este repositório:
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
     cd TechChallenge-03-06/FiapCloudGamesAPI
-    ```
-
-2. Configuração do Banco de Dados
-    ```
-    A aplicação utiliza SQL Server. Para criar a base de dados:
-    ```
+    ```    
+3. Aplique as migrations existentes com o comando:
     
-2.1. Certifique-se que possui o .net 9 SDK instalado corretamente.
-> https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
-
-2.2. Aplique as migrations existentes com o comando:
-
-> Certifique-se o pacote dotnet-ef está instalado globalmente. Para instalar utilize:
-   ```bash
-   dotnet tool install --global dotnet-ef
-   ```
-> Certifique-se de que o SQL Server esteja ativo e acessível localmente ou via rede.
+    - Execute update do EF
     ```bash
-    https://go.microsoft.com/fwlink/p/?linkid=2216019&clcid=0x416&culture=pt-br&country=br
-     ```
-> Execute update do EF
-   ```bash
    dotnet ef database update
-   ```
+    ```
+
 4. Execute o projeto com o comando:
     ```bash
     dotnet run
@@ -76,17 +68,18 @@ senha: "Te$te123"
 
 ## 🧪 Rodando os Testes
 
+> Certifique-se de que o projeto não esteja rodando antes de executar os testes.
+> Utilize o comando "Ctrl + C" para interromper o projeto.
+
 Direcione-se ao diretório de testes
 ```bash
 cd ..
-cd TechChallenge-03-06/FiapCloudGamesTest
+cd FiapCloudGamesTest
 ```
 Execute os testes unitários com:
 ```bash
 dotnet test
 ```
-
-> Certifique-se de que o projeto não esteja rodando antes de executar os testes.
 
 ## 📂 Estrutura do Projeto
 

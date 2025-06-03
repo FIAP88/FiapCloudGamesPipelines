@@ -1,11 +1,4 @@
-﻿using Bogus;
-using Bogus.Extensions.Brazil;
-using FiapCloudGamesAPI.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FiapCloudGamesAPI.Models;
 
 namespace FiapCloudGamesTest.Fixtures
 {

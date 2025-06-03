@@ -1,4 +1,3 @@
-using Bogus.DataSets;
 using FiapCloudGamesAPI.Controllers;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Infra;
@@ -9,9 +8,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Moq;
-//https://learn.microsoft.com/pt-br/aspnet/core/mvc/controllers/testing?view=aspnetcore-9.0
-//https://www.macoratti.net/15/09/mvc_mdlst1.htm
 
 namespace FiapCloudGamesTest.Controllers
 {
