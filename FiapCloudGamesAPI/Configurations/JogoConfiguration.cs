@@ -35,7 +35,10 @@ namespace FiapCloudGamesAPI.Configurations
             builder.HasOne(p => p.EmpresaFornecedora)
                 .WithMany(p => p.Jogos)
                 .HasForeignKey(p => p.IdFornecedor);
-           
+
+            builder.HasData(
+                new Jogo("Game1", "Game 1 Description", 10m, 100, 1, 10, true, 1, "system"){Nome = "Game1", Id = 1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00")}
+            );
         }
     }
 }

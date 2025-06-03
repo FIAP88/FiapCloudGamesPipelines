@@ -31,14 +31,14 @@ namespace FiapCloudGamesAPI.Configurations
             var perfilJogadorPermissoes = new List<PerfilPermissao>
             {
                 new PerfilPermissao(2, (long)PermissoesEnum.AvaliarJogos),
-                new PerfilPermissao(2, (long)PermissoesEnum.BuscarBibliotecaDoJogadorPorId),
-                new PerfilPermissao(2, (long)PermissoesEnum.CriarBibliotecaDoJogador),
-                new PerfilPermissao(2, (long)PermissoesEnum.BuscarBibliotecaDoJogador),
-                new PerfilPermissao(2, (long)PermissoesEnum.AtualizarBibliotecaDoJogador),
                 new PerfilPermissao(2, (long)PermissoesEnum.DeletarAvaliacao),
                 new PerfilPermissao(2, (long)PermissoesEnum.BuscarAvaliacoes),
                 new PerfilPermissao(2, (long)PermissoesEnum.CriarAvaliacao),
                 new PerfilPermissao(2, (long)PermissoesEnum.AtualizarAvaliacao),
+                new PerfilPermissao(2, (long)PermissoesEnum.BuscarJogos),
+                new PerfilPermissao(2, (long)PermissoesEnum.BuscarJogoPorId),
+                new PerfilPermissao(2, (long)PermissoesEnum.MeusJogos),
+                new PerfilPermissao(2, (long)PermissoesEnum.AdicionarJogo)
             };
 
             builder.HasData(perfilAdminPermissoes);

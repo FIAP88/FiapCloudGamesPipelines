@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using FiapCloudGamesAPI.Entidades;
+using System.Text.Json.Serialization;
 
 namespace FiapCloudGamesAPI.Models
 {
@@ -23,7 +24,8 @@ namespace FiapCloudGamesAPI.Models
         public long IdFornecedor { get; set; } = idFornecedor;
         public EmpresaFornecedora EmpresaFornecedora { get; set; }
 
-        public ICollection<BibliotecaDoJogador> Bibliotecas { get; set; }
+        [JsonIgnore]
+        public ICollection<JogoUsuario> UsuariosDoJogo { get; set; }
 
         public ICollection<Avaliacao> Avaliacoes { get; set; }
 

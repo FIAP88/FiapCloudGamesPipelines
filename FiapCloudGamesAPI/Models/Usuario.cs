@@ -2,7 +2,8 @@
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using JsonIgnoreAttribute = Newtonsoft.Json.JsonIgnoreAttribute;
+using JsonIgnoreAttribute = System.Text.Json.Serialization.JsonIgnoreAttribute;
+
 
 namespace FiapCloudGamesAPI.Models
 {
@@ -19,8 +20,9 @@ namespace FiapCloudGamesAPI.Models
         public long PerfilId { get; set; } = perfilId;
         public Perfil Perfil { get; set; }
         public ICollection<Avaliacao> Avaliacoes { get; set; }
-        public BibliotecaDoJogador Biblioteca { get; set; }
-        
+        [JsonIgnore]
+        public ICollection<JogoUsuario> JogosDoUsuario { get; set; }
+
         [NotMapped]
         [JsonProperty(nameof(Idade))]
         public int Idade

@@ -79,6 +79,8 @@ builder.Services.AddSwaggerGen(c =>
             new String[]{}
         }
     });
+
+    c.EnableAnnotations();
 });
 
 #region Service Injection

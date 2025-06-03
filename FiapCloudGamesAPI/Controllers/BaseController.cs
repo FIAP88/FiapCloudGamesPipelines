@@ -19,5 +19,7 @@ namespace FiapCloudGamesAPI.Controllers
         }
 
         protected string NomeUsuarioLogado { get => _usuario?.Nome ?? string.Empty; }
+
+        protected long IdUsuarioLogado => _usuario?.Id ?? 0;
     }
 }

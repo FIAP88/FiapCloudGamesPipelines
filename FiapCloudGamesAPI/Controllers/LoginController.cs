@@ -7,11 +7,13 @@ using FiapCloudGamesAPI.Services.IService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [SwaggerTag("Autenticação")]
     public class LoginController(
         AppDbContext context, 
         BaseLogger<Login> logger,
@@ -25,6 +27,7 @@ namespace FiapCloudGamesAPI.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [SwaggerOperation("Realizar login de usuário")]
         public async Task<ActionResult> Login(string email, string senha)
         {
             Usuario usuario = await _context.Usuarios.Include(u => u.Perfil)

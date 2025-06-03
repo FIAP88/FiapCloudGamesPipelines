@@ -13,7 +13,6 @@ namespace FiapCloudGamesAPI.Models.Configuration
             CriarPoliticaJogos(options);
             CriarPoliticaEmpresasFornecedoras(options);
             CriarPoliticaCategoria(options);
-            CriarPoliticaBibliotecaDoJogador(options);
             CriarPoliticaAvaliacao(options);
         }
 
@@ -61,6 +60,12 @@ namespace FiapCloudGamesAPI.Models.Configuration
 
             options.AddPolicy("BuscarJogoPorId", policy =>
                 policy.RequireClaim("permission", "BuscarJogoPorId"));
+
+            options.AddPolicy("MeusJogos", policy =>
+                policy.RequireClaim("permission", "MeusJogos"));
+
+            options.AddPolicy("AdicionarJogo", policy =>
+                policy.RequireClaim("permission", "AdicionarJogo"));
         }
         #endregion
 
@@ -101,26 +106,6 @@ namespace FiapCloudGamesAPI.Models.Configuration
 
             options.AddPolicy("DeletarCategoria", policy =>
                 policy.RequireClaim("permission", "DeletarCategoria"));
-        }
-        #endregion
-
-        #region CriarPoliticaBibliotecaDoJogador
-        private static void CriarPoliticaBibliotecaDoJogador(AuthorizationOptions options)
-        {
-            options.AddPolicy("BuscarBibliotecasDoJogador", policy =>
-                policy.RequireClaim("permission", "BuscarBibliotecasDoJogador"));
-
-            options.AddPolicy("BuscarBibliotecaDoJogadorPorId", policy =>
-                policy.RequireClaim("permission", "BuscarBibliotecaDoJogadorPorId"));
-
-            options.AddPolicy("CriarBibliotecaDoJogador", policy =>
-                policy.RequireClaim("permission", "CriarBibliotecaDoJogador"));
-
-            options.AddPolicy("AtualizarBibliotecaDoJogador", policy =>
-                policy.RequireClaim("permission", "AtualizarBibliotecaDoJogador"));
-
-            options.AddPolicy("DeletarBibliotecaDoJogador", policy =>
-                policy.RequireClaim("permission", "DeletarBibliotecaDoJogador"));
         }
         #endregion
 

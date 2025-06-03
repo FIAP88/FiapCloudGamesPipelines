@@ -26,16 +26,12 @@
         CriarCategoria = 22,
         BuscarCategoriaPorId = 23,
         AtualizarCategoria = 24,
-        DeletarBibliotecaDoJogador = 25,
-        BuscarBibliotecasDoJogador = 26,
-        BuscarBibliotecaDoJogadorPorId = 27,
-        CriarBibliotecaDoJogador = 28,
-        BuscarBibliotecaDoJogador = 29,
-        AtualizarBibliotecaDoJogador = 30,
-        DeletarAvaliacao = 31,
-        BuscarAvaliacoes = 32,
-        BuscarAvaliacaoPorId = 33,
-        CriarAvaliacao = 34,
-        AtualizarAvaliacao = 35
+        DeletarAvaliacao = 25,
+        BuscarAvaliacoes = 26,
+        BuscarAvaliacaoPorId = 27,
+        CriarAvaliacao = 28,
+        AtualizarAvaliacao = 29,
+        MeusJogos = 30,
+        AdicionarJogo = 31,
     }
 }

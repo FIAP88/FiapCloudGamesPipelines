@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiapCloudGamesAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250603002620_Start-Insert-data")]
+    [Migration("20250603170440_Start-Insert-data")]
     partial class StartInsertdata
     {
         /// <inheritdoc />
@@ -24,21 +24,6 @@ namespace FiapCloudGamesAPI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("BibliotecaDoJogadorJogo", b =>
-                {
-                    b.Property<long>("BibliotecasId")
-                        .HasColumnType("BIGINT");
-
-                    b.Property<long>("JogosId")
-                        .HasColumnType("BIGINT");
-
-                    b.HasKey("BibliotecasId", "JogosId");
-
-                    b.HasIndex("JogosId");
-
-                    b.ToTable("BibliotecaDoJogadorJogo");
-                });
 
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Avaliacao", b =>
                 {
@@ -83,43 +68,6 @@ namespace FiapCloudGamesAPI.Migrations
                     b.HasIndex("IdUsuario");
 
                     b.ToTable("Avaliacao", (string)null);
-                });
-
-            modelBuilder.Entity("FiapCloudGamesAPI.Models.BibliotecaDoJogador", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("BIGINT");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<string>("AtualizadoPor")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<string>("CriadoPor")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("VARCHAR(100)");
-
-                    b.Property<DateTime?>("DataAtualizacao")
-                        .HasColumnType("DATETIME2");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("DATETIME2");
-
-                    b.Property<long>("IdJogo")
-                        .HasColumnType("BIGINT");
-
-                    b.Property<long>("IdUsuario")
-                        .HasColumnType("BIGINT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("IdUsuario")
-                        .IsUnique();
-
-                    b.ToTable("BibliotecaDoJogador", (string)null);
                 });
 
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Categoria", b =>
@@ -574,6 +522,38 @@ namespace FiapCloudGamesAPI.Migrations
                     b.HasIndex("IdFornecedor");
 
                     b.ToTable("Jogo", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            Ativo = true,
+                            AtualizadoPor = "",
+                            CriadoPor = "system",
+                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Descricao = "Game 1 Description",
+                            IdCategoria = 1L,
+                            IdFornecedor = 1L,
+                            IdadeMinima = 10,
+                            Nome = "Game1",
+                            Preco = 100,
+                            Tamanho = 10m
+                        });
+                });
+
+            modelBuilder.Entity("FiapCloudGamesAPI.Models.JogoUsuario", b =>
+                {
+                    b.Property<long>("UsuarioId")
+                        .HasColumnType("BIGINT");
+
+                    b.Property<long>("JogoId")
+                        .HasColumnType("BIGINT");
+
+                    b.HasKey("UsuarioId", "JogoId");
+
+                    b.HasIndex("JogoId");
+
+                    b.ToTable("JogoUsuario", (string)null);
                 });
 
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Log", b =>
@@ -833,43 +813,18 @@ namespace FiapCloudGamesAPI.Migrations
                         },
                         new
                         {
-                            IdPerfil = 1L,
-                            IdPermissao = 32L
-                        },
-                        new
-                        {
-                            IdPerfil = 1L,
-                            IdPermissao = 33L
-                        },
-                        new
-                        {
-                            IdPerfil = 1L,
-                            IdPermissao = 34L
-                        },
-                        new
-                        {
-                            IdPerfil = 1L,
-                            IdPermissao = 35L
-                        },
-                        new
-                        {
-                            IdPerfil = 1L,
-                            IdPermissao = 36L
-                        },
-                        new
-                        {
-                            IdPerfil = 1L,
-                            IdPermissao = 37L
-                        },
-                        new
-                        {
                             IdPerfil = 2L,
                             IdPermissao = 2L
                         },
                         new
                         {
                             IdPerfil = 2L,
-                            IdPermissao = 27L
+                            IdPermissao = 25L
+                        },
+                        new
+                        {
+                            IdPerfil = 2L,
+                            IdPermissao = 26L
                         },
                         new
                         {
@@ -884,31 +839,6 @@ namespace FiapCloudGamesAPI.Migrations
                         new
                         {
                             IdPerfil = 2L,
-                            IdPermissao = 30L
-                        },
-                        new
-                        {
-                            IdPerfil = 2L,
-                            IdPermissao = 31L
-                        },
-                        new
-                        {
-                            IdPerfil = 2L,
-                            IdPermissao = 32L
-                        },
-                        new
-                        {
-                            IdPerfil = 2L,
-                            IdPermissao = 34L
-                        },
-                        new
-                        {
-                            IdPerfil = 2L,
-                            IdPermissao = 35L
-                        },
-                        new
-                        {
-                            IdPerfil = 2L,
                             IdPermissao = 13L
                         },
                         new
@@ -919,12 +849,12 @@ namespace FiapCloudGamesAPI.Migrations
                         new
                         {
                             IdPerfil = 2L,
-                            IdPermissao = 36L
+                            IdPermissao = 30L
                         },
                         new
                         {
                             IdPerfil = 2L,
-                            IdPermissao = 37L
+                            IdPermissao = 31L
                         });
                 });
 
@@ -1158,7 +1088,7 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "DeletarBibliotecaDoJogador"
+                            Descricao = "DeletarAvaliacao"
                         },
                         new
                         {
@@ -1166,7 +1096,7 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarBibliotecasDoJogador"
+                            Descricao = "BuscarAvaliacoes"
                         },
                         new
                         {
@@ -1174,7 +1104,7 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarBibliotecaDoJogadorPorId"
+                            Descricao = "BuscarAvaliacaoPorId"
                         },
                         new
                         {
@@ -1182,7 +1112,7 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "CriarBibliotecaDoJogador"
+                            Descricao = "CriarAvaliacao"
                         },
                         new
                         {
@@ -1190,7 +1120,7 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarBibliotecaDoJogador"
+                            Descricao = "AtualizarAvaliacao"
                         },
                         new
                         {
@@ -1198,59 +1128,11 @@ namespace FiapCloudGamesAPI.Migrations
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "AtualizarBibliotecaDoJogador"
+                            Descricao = "MeusJogos"
                         },
                         new
                         {
                             Id = 31L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "DeletarAvaliacao"
-                        },
-                        new
-                        {
-                            Id = 32L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarAvaliacoes"
-                        },
-                        new
-                        {
-                            Id = 33L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarAvaliacaoPorId"
-                        },
-                        new
-                        {
-                            Id = 34L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "CriarAvaliacao"
-                        },
-                        new
-                        {
-                            Id = 35L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "AtualizarAvaliacao"
-                        },
-                        new
-                        {
-                            Id = 36L,
-                            AtualizadoPor = "",
-                            CriadoPor = "system",
-                            DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Descricao = "BuscarMinhaBiblioteca"
-                        },
-                        new
-                        {
-                            Id = 37L,
                             AtualizadoPor = "",
                             CriadoPor = "system",
                             DataCriacao = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
@@ -1350,21 +1232,6 @@ namespace FiapCloudGamesAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BibliotecaDoJogadorJogo", b =>
-                {
-                    b.HasOne("FiapCloudGamesAPI.Models.BibliotecaDoJogador", null)
-                        .WithMany()
-                        .HasForeignKey("BibliotecasId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("FiapCloudGamesAPI.Models.Jogo", null)
-                        .WithMany()
-                        .HasForeignKey("JogosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Avaliacao", b =>
                 {
                     b.HasOne("FiapCloudGamesAPI.Models.Jogo", "Jogo")
@@ -1380,17 +1247,6 @@ namespace FiapCloudGamesAPI.Migrations
                         .IsRequired();
 
                     b.Navigation("Jogo");
-
-                    b.Navigation("Usuario");
-                });
-
-            modelBuilder.Entity("FiapCloudGamesAPI.Models.BibliotecaDoJogador", b =>
-                {
-                    b.HasOne("FiapCloudGamesAPI.Models.Usuario", "Usuario")
-                        .WithOne("Biblioteca")
-                        .HasForeignKey("FiapCloudGamesAPI.Models.BibliotecaDoJogador", "IdUsuario")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
 
                     b.Navigation("Usuario");
                 });
@@ -1412,6 +1268,25 @@ namespace FiapCloudGamesAPI.Migrations
                     b.Navigation("Categoria");
 
                     b.Navigation("EmpresaFornecedora");
+                });
+
+            modelBuilder.Entity("FiapCloudGamesAPI.Models.JogoUsuario", b =>
+                {
+                    b.HasOne("FiapCloudGamesAPI.Models.Jogo", "Jogo")
+                        .WithMany("UsuariosDoJogo")
+                        .HasForeignKey("JogoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FiapCloudGamesAPI.Models.Usuario", "Usuario")
+                        .WithMany("JogosDoUsuario")
+                        .HasForeignKey("UsuarioId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Jogo");
+
+                    b.Navigation("Usuario");
                 });
 
             modelBuilder.Entity("FiapCloudGamesAPI.Models.PerfilPermissao", b =>
@@ -1457,6 +1332,8 @@ namespace FiapCloudGamesAPI.Migrations
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Jogo", b =>
                 {
                     b.Navigation("Avaliacoes");
+
+                    b.Navigation("UsuariosDoJogo");
                 });
 
             modelBuilder.Entity("FiapCloudGamesAPI.Models.Perfil", b =>
@@ -1475,8 +1352,7 @@ namespace FiapCloudGamesAPI.Migrations
                 {
                     b.Navigation("Avaliacoes");
 
-                    b.Navigation("Biblioteca")
-                        .IsRequired();
+                    b.Navigation("JogosDoUsuario");
                 });
 #pragma warning restore 612, 618
         }

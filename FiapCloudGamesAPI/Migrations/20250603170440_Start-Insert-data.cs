@@ -13,6 +13,12 @@ namespace FiapCloudGamesAPI.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "BibliotecaDoJogadorJogo");
+
+            migrationBuilder.DropTable(
+                name: "BibliotecaDoJogador");
+
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataNascimento",
                 table: "Usuario",
@@ -135,30 +141,6 @@ namespace FiapCloudGamesAPI.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataCriacao",
-                table: "BibliotecaDoJogador",
-                type: "DATETIME2",
-                nullable: false,
-                oldClrType: typeof(DateTime),
-                oldType: "DATETIME");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "DataAtualizacao",
-                table: "BibliotecaDoJogador",
-                type: "DATETIME2",
-                nullable: true,
-                oldClrType: typeof(DateTime),
-                oldType: "datetime2");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "AtualizadoPor",
-                table: "BibliotecaDoJogador",
-                type: "VARCHAR(100)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "DataCriacao",
                 table: "Avaliacao",
                 type: "DATETIME2",
                 nullable: false,
@@ -180,6 +162,30 @@ namespace FiapCloudGamesAPI.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "nvarchar(max)");
+
+            migrationBuilder.CreateTable(
+                name: "JogoUsuario",
+                columns: table => new
+                {
+                    UsuarioId = table.Column<long>(type: "BIGINT", nullable: false),
+                    JogoId = table.Column<long>(type: "BIGINT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JogoUsuario", x => new { x.UsuarioId, x.JogoId });
+                    table.ForeignKey(
+                        name: "FK_JogoUsuario_Jogo_JogoId",
+                        column: x => x.JogoId,
+                        principalTable: "Jogo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_JogoUsuario_Usuario_UsuarioId",
+                        column: x => x.UsuarioId,
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.InsertData(
                 table: "Categoria",
@@ -273,20 +279,19 @@ namespace FiapCloudGamesAPI.Migrations
                     { 22L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CriarCategoria" },
                     { 23L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarCategoriaPorId" },
                     { 24L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AtualizarCategoria" },
-                    { 25L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "DeletarBibliotecaDoJogador" },
-                    { 26L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarBibliotecasDoJogador" },
-                    { 27L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarBibliotecaDoJogadorPorId" },
-                    { 28L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CriarBibliotecaDoJogador" },
-                    { 29L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarBibliotecaDoJogador" },
-                    { 30L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AtualizarBibliotecaDoJogador" },
-                    { 31L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "DeletarAvaliacao" },
-                    { 32L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarAvaliacoes" },
-                    { 33L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarAvaliacaoPorId" },
-                    { 34L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CriarAvaliacao" },
-                    { 35L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AtualizarAvaliacao" },
-                    { 36L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarMinhaBiblioteca" },
-                    { 37L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AdicionarJogo" }
+                    { 25L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "DeletarAvaliacao" },
+                    { 26L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarAvaliacoes" },
+                    { 27L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "BuscarAvaliacaoPorId" },
+                    { 28L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "CriarAvaliacao" },
+                    { 29L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AtualizarAvaliacao" },
+                    { 30L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "MeusJogos" },
+                    { 31L, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "AdicionarJogo" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "Jogo",
+                columns: new[] { "Id", "Ativo", "AtualizadoPor", "CriadoPor", "DataAtualizacao", "DataCriacao", "Descricao", "IdCategoria", "IdFornecedor", "IdadeMinima", "Nome", "Preco", "Tamanho" },
+                values: new object[] { 1L, true, "", "system", null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Game 1 Description", 1L, 1L, 10, "Game1", 100, 10m });
 
             migrationBuilder.InsertData(
                 table: "PerfilPermissao",
@@ -324,25 +329,15 @@ namespace FiapCloudGamesAPI.Migrations
                     { 1L, 29L },
                     { 1L, 30L },
                     { 1L, 31L },
-                    { 1L, 32L },
-                    { 1L, 33L },
-                    { 1L, 34L },
-                    { 1L, 35L },
-                    { 1L, 36L },
-                    { 1L, 37L },
                     { 2L, 2L },
                     { 2L, 13L },
                     { 2L, 14L },
-                    { 2L, 27L },
+                    { 2L, 25L },
+                    { 2L, 26L },
                     { 2L, 28L },
                     { 2L, 29L },
                     { 2L, 30L },
-                    { 2L, 31L },
-                    { 2L, 32L },
-                    { 2L, 34L },
-                    { 2L, 35L },
-                    { 2L, 36L },
-                    { 2L, 37L }
+                    { 2L, 31L }
                 });
 
             migrationBuilder.InsertData(
@@ -359,19 +354,22 @@ namespace FiapCloudGamesAPI.Migrations
                 table: "Usuario",
                 column: "Apelido",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_JogoUsuario_JogoId",
+                table: "JogoUsuario",
+                column: "JogoId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "JogoUsuario");
+
             migrationBuilder.DropIndex(
                 name: "IX_Usuario_Apelido",
                 table: "Usuario");
-
-            migrationBuilder.DeleteData(
-                table: "Categoria",
-                keyColumn: "Id",
-                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "Categoria",
@@ -561,12 +559,12 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "EmpresaFornecedora",
                 keyColumn: "Id",
-                keyValue: 1L);
+                keyValue: 2L);
 
             migrationBuilder.DeleteData(
-                table: "EmpresaFornecedora",
+                table: "Jogo",
                 keyColumn: "Id",
-                keyValue: 2L);
+                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "PerfilPermissao",
@@ -726,36 +724,6 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "PerfilPermissao",
                 keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 32L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 33L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 34L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 35L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 36L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 1L, 37L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
                 keyValues: new object[] { 2L, 2L });
 
             migrationBuilder.DeleteData(
@@ -771,7 +739,12 @@ namespace FiapCloudGamesAPI.Migrations
             migrationBuilder.DeleteData(
                 table: "PerfilPermissao",
                 keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 27L });
+                keyValues: new object[] { 2L, 25L });
+
+            migrationBuilder.DeleteData(
+                table: "PerfilPermissao",
+                keyColumns: new[] { "IdPerfil", "IdPermissao" },
+                keyValues: new object[] { 2L, 26L });
 
             migrationBuilder.DeleteData(
                 table: "PerfilPermissao",
@@ -794,31 +767,6 @@ namespace FiapCloudGamesAPI.Migrations
                 keyValues: new object[] { 2L, 31L });
 
             migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 32L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 34L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 35L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 36L });
-
-            migrationBuilder.DeleteData(
-                table: "PerfilPermissao",
-                keyColumns: new[] { "IdPerfil", "IdPermissao" },
-                keyValues: new object[] { 2L, 37L });
-
-            migrationBuilder.DeleteData(
                 table: "Usuario",
                 keyColumn: "Id",
                 keyValue: 1L);
@@ -827,6 +775,16 @@ namespace FiapCloudGamesAPI.Migrations
                 table: "Usuario",
                 keyColumn: "Id",
                 keyValue: 2L);
+
+            migrationBuilder.DeleteData(
+                table: "Categoria",
+                keyColumn: "Id",
+                keyValue: 1L);
+
+            migrationBuilder.DeleteData(
+                table: "EmpresaFornecedora",
+                keyColumn: "Id",
+                keyValue: 1L);
 
             migrationBuilder.DeleteData(
                 table: "Perfil",
@@ -993,36 +951,6 @@ namespace FiapCloudGamesAPI.Migrations
                 keyColumn: "Id",
                 keyValue: 31L);
 
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 32L);
-
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 33L);
-
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 34L);
-
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 35L);
-
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 36L);
-
-            migrationBuilder.DeleteData(
-                table: "Permissao",
-                keyColumn: "Id",
-                keyValue: 37L);
-
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataNascimento",
                 table: "Usuario",
@@ -1159,32 +1087,6 @@ namespace FiapCloudGamesAPI.Migrations
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "DataCriacao",
-                table: "BibliotecaDoJogador",
-                type: "DATETIME",
-                nullable: false,
-                oldClrType: typeof(DateTime),
-                oldType: "DATETIME2");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "DataAtualizacao",
-                table: "BibliotecaDoJogador",
-                type: "datetime2",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                oldClrType: typeof(DateTime),
-                oldType: "DATETIME2",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "AtualizadoPor",
-                table: "BibliotecaDoJogador",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "VARCHAR(100)");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "DataCriacao",
                 table: "Avaliacao",
                 type: "DATETIME",
                 nullable: false,
@@ -1208,6 +1110,65 @@ namespace FiapCloudGamesAPI.Migrations
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "VARCHAR(100)");
+
+            migrationBuilder.CreateTable(
+                name: "BibliotecaDoJogador",
+                columns: table => new
+                {
+                    Id = table.Column<long>(type: "BIGINT", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdUsuario = table.Column<long>(type: "BIGINT", nullable: false),
+                    AtualizadoPor = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CriadoPor = table.Column<string>(type: "VARCHAR(100)", nullable: false),
+                    DataAtualizacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataCriacao = table.Column<DateTime>(type: "DATETIME", nullable: false),
+                    IdJogo = table.Column<long>(type: "BIGINT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BibliotecaDoJogador", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BibliotecaDoJogador_Usuario_IdUsuario",
+                        column: x => x.IdUsuario,
+                        principalTable: "Usuario",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BibliotecaDoJogadorJogo",
+                columns: table => new
+                {
+                    BibliotecasId = table.Column<long>(type: "BIGINT", nullable: false),
+                    JogosId = table.Column<long>(type: "BIGINT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BibliotecaDoJogadorJogo", x => new { x.BibliotecasId, x.JogosId });
+                    table.ForeignKey(
+                        name: "FK_BibliotecaDoJogadorJogo_BibliotecaDoJogador_BibliotecasId",
+                        column: x => x.BibliotecasId,
+                        principalTable: "BibliotecaDoJogador",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BibliotecaDoJogadorJogo_Jogo_JogosId",
+                        column: x => x.JogosId,
+                        principalTable: "Jogo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BibliotecaDoJogador_IdUsuario",
+                table: "BibliotecaDoJogador",
+                column: "IdUsuario",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BibliotecaDoJogadorJogo_JogosId",
+                table: "BibliotecaDoJogadorJogo",
+                column: "JogosId");
         }
     }
 }

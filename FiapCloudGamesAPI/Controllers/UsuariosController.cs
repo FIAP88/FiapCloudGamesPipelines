@@ -6,22 +6,27 @@ using FiapCloudGamesAPI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace FiapCloudGamesAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Policy = "GerenciarUsuarios")]
+    [SwaggerTag("Gerenciamento de Usuários")]
     public class UsuariosController(AppDbContext context, BaseLogger<Usuario> logger, IHttpContextAccessor httpContext) :
         BaseControllerCrud<Usuario>(context, logger, httpContext)
     {
         [HttpGet]
+        [SwaggerOperation("Buscar todos os usuários")]
         public async Task<ActionResult<IEnumerable<UsuarioDto>>> GetUsuarios() => await GetAll<UsuarioDto>();
         
         [HttpGet("{id}")]
+        [SwaggerOperation("Buscar usuário por ID")]
         public async Task<ActionResult<Usuario>> GetUsuario(long id) => await GetById(id);
 
         [HttpPut("{id}")]
+        [SwaggerOperation("Atualizar usuário por ID")]
         public async Task<IActionResult> PutUsuario(long id, UsuarioRequest usuarioRequest)
         {
             var usuario = _context.Usuarios.AsNoTracking().FirstOrDefault(user => user.Id == id);
@@ -40,6 +45,7 @@ namespace FiapCloudGamesAPI.Controllers
         }
 
         [HttpPost]
+        [SwaggerOperation("Criar novo usuário")]
         public async Task<ActionResult<Usuario>> PostUsuario(UsuarioRequest usuarioRequest) {
             var erros = ValidarCadastro(usuarioRequest);
 
@@ -54,6 +60,7 @@ namespace FiapCloudGamesAPI.Controllers
         } 
 
         [HttpDelete("{id}")]
+        [SwaggerOperation("Deletar usuário por ID")]
         public async Task<IActionResult> DeleteUsuario(long id) => await Delete(id);
 
         protected override bool EntityExists(long id) => _context.Usuarios.Any(e => e.Id == id);

@@ -10,7 +10,6 @@ namespace FiapCloudGamesAPI.Configurations
     {
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
-
             builder.ToTable("Usuario");
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).HasColumnType("BIGINT").ValueGeneratedOnAdd().UseIdentityColumn();
@@ -30,11 +29,17 @@ namespace FiapCloudGamesAPI.Configurations
             builder.Property(p => p.PerfilId).HasColumnType("BIGINT");
 
             builder.HasOne(p => p.Perfil)
-               .WithMany(p => p.Usuarios)
-               .HasForeignKey(p => p.PerfilId);
+                .WithMany(p => p.Usuarios)
+                .HasForeignKey(p => p.PerfilId);
 
+            builder.HasMany(p => p.Avaliacoes)
+                .WithOne(p => p.Usuario)
+                .HasForeignKey(p => p.IdUsuario);
+
+            
             builder.HasData(
-                new Usuario("João", "Silva", "joaos", "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", DateTime.Parse("2000-01-01 00:00:00"), 1, "system") { Nome = "João", Id = 1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") }
+                new Usuario("João", "Silva", "joaos", "joao@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", DateTime.Parse("2000-01-01 00:00:00"), 1, "system") { Nome = "João", Id = 1, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") },
+                new Usuario("Gabriel", "Silva", "gabriel", "gabriel@email.com", "7+D7gmaWMXRYtMBOLDAtRSgnqJoQ5H62L1setgRLRCx68knp71V1pdUZV6KfWoiT", DateTime.Parse("2000-01-01 00:00:00"), 2, "system") { Nome = "Gabriel", Id = 2, DataCriacao = DateTime.Parse("2025-01-01 00:00:00") }
             );
         }
     }
