@@ -33,7 +33,8 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     A aplicação utiliza SQL Server. Para criar a base de dados:
     ```
     
-2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
+2.1. Certifique-se que possui o .net 9 SDK instalado corretamente.
+> https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 
 2.2. Aplique as migrations existentes com o comando:
 
