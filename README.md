@@ -37,7 +37,7 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
     ```    
 3. Aplique as migrations existentes com o comando:
     
-- Execute update do EF
+    - Execute update do EF
     ```bash
    dotnet ef database update
     ```
@@ -73,7 +73,7 @@ senha: "Te$te123"
 Direcione-se ao diretório de testes
 ```bash
 cd ..
-cd TechChallenge-03-06/FiapCloudGamesTest
+cd FiapCloudGamesTest
 ```
 Execute os testes unitários com:
 ```bash
