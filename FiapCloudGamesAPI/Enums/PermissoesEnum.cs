@@ -1,0 +1,37 @@
+﻿namespace FiapCloudGamesAPI.Enums
+{
+    public enum PermissoesEnum
+    {
+        GerenciarJogos = 1,
+        AvaliarJogos = 2,
+        CriarJogos = 3,
+        ListarUsuarios = 4,
+        CriarUsuarios = 5,
+        AtualizarUsuarios = 6,
+        DeletarUsuarios = 7,
+        GerenciarUsuarios = 8,
+        GerenciarPermissoes = 9,
+        GerenciarPerfil = 10,
+        DeletarJogo = 11,
+        AtualizarJogo = 12,
+        BuscarJogos = 13,
+        BuscarJogoPorId = 14,
+        BuscarEmpresasFornecedoras = 15,
+        CriarEmpresasFornecedoras = 16,
+        BuscarEmpresasFornecedorasPorId = 17,
+        AtualizarEmpresasFornecedoras = 18,
+        DeletarEmpresasFornecedoras = 19,
+        DeletarCategoria = 20,
+        BuscarCategorias = 21,
+        CriarCategoria = 22,
+        BuscarCategoriaPorId = 23,
+        AtualizarCategoria = 24,
+        DeletarAvaliacao = 25,
+        BuscarAvaliacoes = 26,
+        BuscarAvaliacaoPorId = 27,
+        CriarAvaliacao = 28,
+        AtualizarAvaliacao = 29,
+        MeusJogos = 30,
+        AdicionarJogo = 31,
+    }
+}
