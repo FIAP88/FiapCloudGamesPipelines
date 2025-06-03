@@ -69,6 +69,7 @@ senha: "Te$te123"
 ## 🧪 Rodando os Testes
 
 > Certifique-se de que o projeto não esteja rodando antes de executar os testes.
+> Utilize o comando "Ctrl + C" para interromper o projeto.
 
 Direcione-se ao diretório de testes
 ```bash
