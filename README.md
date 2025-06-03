@@ -25,15 +25,16 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 1. Clone este repositório:
     ```bash
     git clone https://github.com/RyanBrayan/TechChallenge-03-06.git
-
     cd TechChallenge-03-06/FiapCloudGamesAPI
     ```
 
 2. Configuração do Banco de Dados
-    
-A aplicação utiliza SQL Server. Para criar a base de dados:
+    ```
+    A aplicação utiliza SQL Server. Para criar a base de dados:
+    ```
     
 2.1. Altere a `ConnectionString` no arquivo `appsettings.json` com os dados corretos do seu SQL Server.
+
 2.2. Aplique as migrations existentes com o comando:
    ```bash
    dotnet ef database update
