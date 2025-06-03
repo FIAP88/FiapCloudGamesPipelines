@@ -15,9 +15,10 @@ FiapCloudGamesAPI é uma plataforma de venda de jogos digitais com funcionalidad
 ## 🚀 Tecnologias Utilizadas
 
 - [.NET 9 (STS)](https://dotnet.microsoft.com/)
-  > https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
+  > Download: https://dotnet.microsoft.com/pt-br/download/dotnet/9.0
 - [Entity Framework Core](https://learn.microsoft.com/ef/core/)
 - [SQL Server](https://www.microsoft.com/sql-server)
+  > Download: 
 - Autenticação via JWT (Bearer Token)
 - Testes Unitários e de Integração com xUnit, Moq e Bogus
 
