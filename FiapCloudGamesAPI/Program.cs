@@ -14,7 +14,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.WebHost.ConfigureKestrel(options => options.ListenAnyIP(80));
 
 #region JWT
 builder.Services.AddCors();
