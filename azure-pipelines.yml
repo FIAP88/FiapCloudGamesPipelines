@@ -1,24 +1,32 @@
-# azure-pipelines-ci.yml
+name: CI-FiapCloudGamesAPI
 
-trigger: none  # Não roda em push
+trigger:
+  branches:
+    include:
+      - main
 
 pr:
   branches:
     include:
-      - develop  # Só roda para PRs destinados ao branch develop
+      - develop
 
 pool:
   name: LocalPoll
 
 variables:
   buildConfiguration: 'Release'
+  imageName: fiapcloudgamesapi
+  dockerHubUser: $(DOCKER_HUB_USER)
+  dockerHubPass: $(DOCKER_HUB_PASS)
+  tag: $(Build.BuildId)
 
 steps:
 - task: UseDotNet@2
   inputs:
-    packageType: 'sdk'
-    version: '9.0.x'
-    installationPath: $(Agent.ToolsDirectory)/dotnet
+    packageType: sdk
+    version: 9.0.x
+
+- checkout: self
 
 - task: DotNetCoreCLI@2
   displayName: 'Restore packages'
@@ -40,15 +48,18 @@ steps:
     projects: '**/*Tests.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Publish'
-  inputs:
-    command: 'publish'
-    publishWebProjects: true
-    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: true
+# Só builda e publica a imagem se estiver na branch main
+- ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
+  - script: |
+      docker build -t $(dockerHubUser)/$(imageName):$(tag) .
+    displayName: 'Docker Build'
 
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathToPublish: '$(Build.ArtifactStagingDirectory)'
-    artifactName: 'drop'
+  - script: |
+      echo "$(dockerHubPass)" | docker login -u "$(dockerHubUser)" --password-stdin
+    displayName: 'Docker Login'
+
+  - script: |
+      docker push $(dockerHubUser)/$(imageName):$(tag)
+      docker tag $(dockerHubUser)/$(imageName):$(tag) $(dockerHubUser)/$(imageName):latest
+      docker push $(dockerHubUser)/$(imageName):latest
+    displayName: 'Docker Push'
