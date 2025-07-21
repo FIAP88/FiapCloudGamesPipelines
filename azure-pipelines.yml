@@ -8,7 +8,7 @@ pr:
       - develop  # Só roda para PRs destinados ao branch develop
 
 pool:
-  vmImage: 'windows-latest'
+  name: LocalPoll
 
 variables:
   buildConfiguration: 'Release'
