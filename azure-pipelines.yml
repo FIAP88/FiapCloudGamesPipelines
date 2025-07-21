@@ -17,7 +17,7 @@ variables:
   buildConfiguration: 'Release'
   imageName: fiapcloudgamesapi
   dockerHubUser: 'gabrielpaulino'
-  dockerHubPass: 'dckr_pat_1OODfldzJYNFXe1YORLks65Ljfo'
+  dockerHubPass: 'dckr_pat_-6bTm5yhDd2L0fV0mUpBEeoBOJI'
   tag: $(Build.BuildId)
 
 steps:
@@ -55,7 +55,7 @@ steps:
     displayName: 'Docker Build'
 
   - script: |
-      echo "$(dockerHubPass)" | docker login -u "$(dockerHubUser)" --password-stdin
+      echo $(dockerHubPass) | docker login -u "$(dockerHubUser)" --password-stdin
     displayName: 'Docker Login'
 
   - script: |
