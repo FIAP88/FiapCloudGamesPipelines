@@ -17,7 +17,7 @@ variables:
   buildConfiguration: 'Release'
   imageName: fiapcloudgamesapi
   dockerHubUser: 'gabrielpaulino'
-  dockerHubPass: '@Kvg2hwq3'
+  dockerHubPass: 'dckr_pat_1OODfldzJYNFXe1YORLks65Ljfo'
   tag: $(Build.BuildId)
 
 steps:
