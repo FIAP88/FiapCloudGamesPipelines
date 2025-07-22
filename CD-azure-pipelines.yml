@@ -26,10 +26,16 @@ stages:
             inputs:
               packageType: sdk
               version: '9.0.x'
+            
+            # Etapa 2 - Instala a ferramenta EF Core CLI
+          - script: dotnet new tool-manifest
+            displayName: 'Criar manifest de ferramentas (opcional, para uso local)'
 
-          # Etapa 2 - Instala a ferramenta EF Core CLI
-          - script: dotnet tool install --global dotnet-ef --add-source https://api.nuget.org/v3/index.json
-            displayName: 'Instalar dotnet-ef via NuGet oficial'
+          - script: dotnet restore --configfile nuget.config
+            displayName: 'Restore com NuGet oficial (sem feed privado)'
+
+          - script: dotnet tool install --global dotnet-ef --configfile nuget.config
+            displayName: 'Instalar dotnet-ef com nuget.config limpo'
 
           # Etapa 3 - Adiciona path do dotnet-ef no ambiente
           - script: echo "##vso[task.setvariable variable=PATH]$PATH:$HOME/.dotnet/tools"
