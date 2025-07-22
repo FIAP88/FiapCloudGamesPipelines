@@ -31,7 +31,7 @@ stages:
           - script: dotnet new tool-manifest
             displayName: 'Criar manifest de ferramentas (opcional, para uso local)'
 
-          - script: dotnet restore --configfile nuget.config
+          - script: dotnet restore FiapCloudGamesAPI/FiapCloudGamesAPI.csproj --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
 
           - script: dotnet tool install --global dotnet-ef --configfile nuget.config
