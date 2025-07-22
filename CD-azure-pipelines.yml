@@ -26,10 +26,6 @@ stages:
             inputs:
               packageType: sdk
               version: '9.0.x'
-            
-            # Etapa 2 - Instala a ferramenta EF Core CLI
-          - script: dotnet new tool-manifest
-            displayName: 'Criar manifest de ferramentas (opcional, para uso local)'
 
           - script: dotnet restore FiapCloudGamesAPI/FiapCloudGamesAPI.csproj --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
@@ -37,11 +33,11 @@ stages:
           - script: dotnet tool install --global dotnet-ef --configfile nuget.config
             displayName: 'Instalar dotnet-ef com nuget.config limpo'
 
-          # Etapa 3 - Adiciona path do dotnet-ef no ambiente
+          # Etapa 2 - Adiciona path do dotnet-ef no ambiente
           - script: echo "##vso[task.setvariable variable=PATH]$PATH:$HOME/.dotnet/tools"
             displayName: 'Atualizar PATH para usar dotnet-ef'
 
-          # Etapa 4 - Rodar as migrations no banco do Azure
+          # Etapa 3 - Rodar as migrations no banco do Azure
           - script: |
               echo "Rodando as migrations no banco Azure..."
               dotnet ef database update --project FiapCloudGamesAPI/FiapCloudGamesAPI.csproj
@@ -49,7 +45,7 @@ stages:
             env:
               ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=FiapCloudGames;User Id=fiap-cloudgames-server-admin;Password=DY$lKVfRsCVRue6Y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
 
-          # Etapa 5 - Deploy no Azure App Service com imagem Docker
+          # Etapa 4 - Deploy no Azure App Service com imagem Docker
           - task: AzureWebAppContainer@1
             displayName: 'Deploy Docker Image'
             inputs:
