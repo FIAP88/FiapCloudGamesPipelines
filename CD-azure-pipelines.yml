@@ -19,6 +19,31 @@ stages:
       runOnce:
         deploy:
           steps:
+          
+          # Etapa 1 - Instala SDK do .NET 9 (caso o agente não tenha)
+          - task: UseDotNet@2
+            displayName: 'Instalar .NET 9 SDK'
+            inputs:
+              packageType: sdk
+              version: '9.0.x'
+
+          # Etapa 2 - Instala a ferramenta EF Core CLI
+          - script: dotnet tool install --global dotnet-ef
+            displayName: 'Instalar dotnet-ef'
+
+          # Etapa 3 - Adiciona path do dotnet-ef no ambiente
+          - script: echo "##vso[task.setvariable variable=PATH]$PATH:$HOME/.dotnet/tools"
+            displayName: 'Atualizar PATH para usar dotnet-ef'
+
+          # Etapa 4 - Rodar as migrations no banco do Azure
+          - script: |
+              echo "Rodando as migrations no banco Azure..."
+              dotnet ef database update --project FiapCloudGamesAPI/FiapCloudGamesAPI.csproj
+            displayName: 'Aplicar Migrations'
+            env:
+              ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=FiapCloudGames;User Id=fiap-cloudgames-server-admin;Password=DY$lKVfRsCVRue6Y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+
+          # Etapa 5 - Deploy no Azure App Service com imagem Docker
           - task: AzureWebAppContainer@1
             displayName: 'Deploy Docker Image'
             inputs:
