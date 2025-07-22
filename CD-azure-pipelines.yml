@@ -30,7 +30,7 @@ stages:
               dotnet ef database update --project FiapCloudGamesAPI/FiapCloudGamesAPI.csproj
             displayName: 'Aplicar Migrations'
             env:
-              ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=FiapCloudGames;User Id=fiap-cloudgames-server-admin;Password=DY$lKVfRsCVRue6Y;TrustServerCertificate=True;Connection Timeout=30;'
+              ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=fiap-cloudgames-database;User Id=fiap-cloudgames-server-admin;Password=DY\$lKVfRsCVRue6Y;TrustServerCertificate=True;Connection Timeout=30;'
 
           - task: AzureWebAppContainer@1
             displayName: 'Deploy Docker Image'
