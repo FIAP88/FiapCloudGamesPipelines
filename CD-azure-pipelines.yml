@@ -26,6 +26,9 @@ stages:
             inputs:
               packageType: sdk
               version: '9.0.x'
+              
+          - script: dir /s /b *.csproj
+            displayName: '🔍 Mostrar onde está o .csproj'
 
           - script: dotnet restore "$(Build.SourcesDirectory)\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
