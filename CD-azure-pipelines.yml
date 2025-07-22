@@ -27,10 +27,10 @@ stages:
               packageType: sdk
               version: '9.0.x'
 
-          - script: dotnet restore .\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj --configfile nuget.config
+          - script: dotnet restore "$(Build.SourcesDirectory)\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
 
-          - script: dotnet tool install --global dotnet-ef --configfile nuget.config
+          - script: dotnet tool install --global dotnet-ef --configfile "$(Build.SourcesDirectory)\nuget.config"
             displayName: 'Instalar dotnet-ef com nuget.config limpo'
 
           # Etapa 2 - Adiciona path do dotnet-ef no ambiente
