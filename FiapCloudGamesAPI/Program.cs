@@ -99,11 +99,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => Results.Text("Bem-vindo à FiapCloudGamesAPI!", "text/plain"));
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwaggerUI();
-}
+app.UseSwaggerUI();
 
 #region [Middler]
 app.UseCorrelationMiddleware();
