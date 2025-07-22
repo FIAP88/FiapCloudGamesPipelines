@@ -16,7 +16,7 @@ stages:
               packageType: sdk
               version: '9.0.x'
 
-          - script: dotnet restore "$(Build.SourcesDirectory)\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" --configfile nuget.config
+          - script: dotnet restore "$BUILD_SOURCESDIRECTORY/FiapCloudGamesAPI/FiapCloudGamesAPI.csproj" --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
 
           - script: dotnet tool install --global dotnet-ef --configfile nuget.config
@@ -30,7 +30,7 @@ stages:
               dotnet ef database update --project FiapCloudGamesAPI/FiapCloudGamesAPI.csproj
             displayName: 'Aplicar Migrations'
             env:
-              ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=FiapCloudGames;User Id=fiap-cloudgames-server-admin;Password=DY$lKVfRsCVRue6Y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
+              ConnectionStrings__Default: 'Server=fiap-cloudgames-server.database.windows.net;Database=FiapCloudGames;User Id=fiap-cloudgames-server-admin;Password=DY\$lKVfRsCVRue6Y;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;'
 
           - task: AzureWebAppContainer@1
             displayName: 'Deploy Docker Image'
