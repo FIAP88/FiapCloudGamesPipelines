@@ -99,15 +99,22 @@ var app = builder.Build();
 
 app.MapGet("/", () => Results.Text("Bem-vindo à FiapCloudGamesAPI!", "text/plain"));
 
-app.UseSwaggerUI();
+// Exibe Swagger em todos os ambientes
+if (app.Environment.IsDevelopment() || app.Environment.IsStaging() || app.Environment.IsProduction())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "FiapCloudGamesAPI v1");
+    });
+}
+;
 
 #region [Middler]
 app.UseCorrelationMiddleware();
 app.UseInfoUsuarioMiddleware();
 app.UseTratamentoDeErrosMiddleware();
 #endregion
-
-app.UseSwagger();
 
 app.UseHttpsRedirection();
 
