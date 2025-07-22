@@ -19,7 +19,7 @@ stages:
           - script: dotnet restore "$(Build.SourcesDirectory)\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" --configfile nuget.config
             displayName: 'Restore com NuGet oficial (sem feed privado)'
 
-          - script: dotnet tool install --global dotnet-ef --configfile "$(Build.SourcesDirectory)\nuget.config"
+          - script: dotnet tool install --global dotnet-ef --configfile nuget.config
             displayName: 'Instalar dotnet-ef com nuget.config limpo'
 
           - script: echo "##vso[task.setvariable variable=PATH]$PATH:$HOME/.dotnet/tools"

@@ -12,6 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Itens de Solução", "Itens
 		CD-azure-pipelines.yml = CD-azure-pipelines.yml
 		CI-azure-pipelines.yml = CI-azure-pipelines.yml
 		Dockerfile = Dockerfile
+		nuget.config = nuget.config
 	EndProjectSection
 EndProject
 Global
