@@ -20,7 +20,7 @@ stages:
         deploy:
           steps:
           
-          # Etapa 1 - Instala SDK do .NET 9 (caso o agente n„o tenha)
+          # Etapa 1 - Instala SDK do .NET 9 (caso o agente n√£o tenha)
           - task: UseDotNet@2
             displayName: 'Instalar .NET 9 SDK'
             inputs:
@@ -28,8 +28,8 @@ stages:
               version: '9.0.x'
 
           # Etapa 2 - Instala a ferramenta EF Core CLI
-          - script: dotnet tool install --global dotnet-ef
-            displayName: 'Instalar dotnet-ef'
+          - script: dotnet tool install --global dotnet-ef --add-source https://api.nuget.org/v3/index.json
+            displayName: 'Instalar dotnet-ef via NuGet oficial'
 
           # Etapa 3 - Adiciona path do dotnet-ef no ambiente
           - script: echo "##vso[task.setvariable variable=PATH]$PATH:$HOME/.dotnet/tools"
