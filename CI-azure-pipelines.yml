@@ -11,13 +11,11 @@ pr:
       - develop
 
 pool:
-  name: LocalPoll
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildConfiguration: 'Release'
-  imageName: fiapcloudgamesapi
-  dockerHubUser: 'gabrielpaulino'
-  
+  imageName: fiapcloudgamesapi  
   tag: $(Build.BuildId)
 
 steps:
