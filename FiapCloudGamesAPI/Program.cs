@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using Prometheus;
 
 #region Configuration
 var builder = WebApplication.CreateBuilder(args);
@@ -119,6 +120,8 @@ app.UseAuthorization();
 #endregion
 
 #region Endpoint Mapping & Execution
+app.UseHttpMetrics();
+app.MapMetrics();
 app.MapControllers();
 app.Run();
 #endregion
