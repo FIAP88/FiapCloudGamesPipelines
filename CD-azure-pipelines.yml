@@ -33,15 +33,15 @@ stages:
               version: '8.0.x'
 
           # Restore com caminho absoluto e nuget.config limpo
-          - script: dotnet restore "$(Build.SourcesDirectory)\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" --configfile "$(Build.SourcesDirectory)\nuget.config"
+          - script: dotnet restore "$(Build.SourcesDirectory)/FiapCloudGamesAPI/FiapCloudGamesAPI.csproj" --configfile "$(Build.SourcesDirectory)/nuget.config"
             displayName: 'Restore com NuGet oficial (sem feed privado)'
 
           # Instala dotnet-ef em um diretório local (.tools)
-          - script: dotnet tool install dotnet-ef --tool-path .tools --configfile "$(Build.SourcesDirectory)\nuget.config"
+          - script: dotnet tool install dotnet-ef --tool-path .tools --configfile "$(Build.SourcesDirectory)/nuget.config"
             displayName: 'Instalar dotnet-ef local'
 
           # Aplica migrations usando o dotnet-ef local
-          - script: .\.tools\dotnet-ef database update --project FiapCloudGamesAPI\FiapCloudGamesAPI.csproj
+          - script: ./.tools/dotnet-ef database update --project FiapCloudGamesAPI/FiapCloudGamesAPI.csproj
             displayName: 'Aplicar Migrations'
             env:
               ConnectionStrings__Default: $(sql_string_connection)
