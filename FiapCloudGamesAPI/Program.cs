@@ -95,7 +95,7 @@ builder.Services.AddMemoryCache();
 
 #region Application Pipeline
 var app = builder.Build();
-app.MapGet("/", () => Results.Text("Bem-vindo à FiapCloudGamesAPI!", "text/plain"));
+app.MapGet("/", () => Results.Text("Bem-vindo a FiapCloudGames!!!", "text/plain"));
 #endregion
 
 #region Middleware
