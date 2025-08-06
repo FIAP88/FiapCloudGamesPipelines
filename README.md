@@ -105,10 +105,10 @@ docker build -t fiapcloudgamesapi .
 3. Em seguida, execute o container:
 
 ```bash
-docker run -d -p 5030:80 --name fiapcloudgamesapi-container fiapcloudgamesapi
+docker run -d -p 80:80 --name fiapcloudgamesapi-container fiapcloudgamesapi
 ```
 
-4. A aplicação estará disponível em: [http://localhost:5030/swagger/index.html](http://localhost:5030/swagger/index.html)
+4. A aplicação estará disponível em: [http://localhost:80/swagger/index.html](http://localhost:80/swagger/index.html)
 
 5. Docker do projeto: [https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi](https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi)
 
