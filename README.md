@@ -109,7 +109,8 @@ docker run -d -p 5030:80 --name fiapcloudgamesapi-container fiapcloudgamesapi
 ```
 
 4. A aplicação estará disponível em: [http://localhost:5030/swagger/index.html](http://localhost:5030/swagger/index.html)
-5. Docker: [https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi](https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi)
+
+5. Docker do projeto: [https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi](https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi)
 
 ### 📁 Exemplo de Dockerfile
 
@@ -119,9 +120,6 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
- 
-# NENHUMA CONFIGURAÇÃO DO DATADOG AQUI.
-# O Azure irá injetar o tracer automaticamente.
  
 # Etapa de build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
@@ -152,7 +150,9 @@ A aplicação está preparada para exposição de métricas compatíveis com Pro
 
 ### 🔧 Configuração do Prometheus
 
-1. Adicione o `prometheus.yml` com o seguinte conteúdo:
+1. Executar via terminal: dotnet add package prometheus-net.AspNetCore
+
+2. Adicione o `prometheus.yml` com o seguinte conteúdo:
 
 ```yaml
 global:
@@ -167,7 +167,7 @@ scrape_configs:
 
 ```
 
-2. Execute o Prometheus com:
+3. Execute o Prometheus com:
 
 ```bash
 docker run -d -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
@@ -192,7 +192,13 @@ docker run -d -p 3000:3000 grafana/grafana
 
 ## Azure DevOps
 
+1. O projeto é privado e não temos acesso para alterá-lo devido restrições em nossa conta estudantil.
+
 [https://dev.azure.com/FIAPCloudGamesPaulino/FIAPCloudGames](https://dev.azure.com/FIAPCloudGamesPaulino/FIAPCloudGames)
+
+## Aplicação
+
+[https://fiap-cloudgames-api-fugyafhxcre6cxfq.canadacentral-01.azurewebsites.net/](https://fiap-cloudgames-api-fugyafhxcre6cxfq.canadacentral-01.azurewebsites.net/)
 
 ## ✒️ Autores
 
