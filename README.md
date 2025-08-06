@@ -109,6 +109,7 @@ docker run -d -p 5030:80 --name fiapcloudgamesapi-container fiapcloudgamesapi
 ```
 
 4. A aplicação estará disponível em: [http://localhost:5030/swagger/index.html](http://localhost:5030/swagger/index.html)
+5. Docker: [https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi](https://hub.docker.com/r/gabrielpaulino/fiapcloudgamesapi)
 
 ### 📁 Exemplo de Dockerfile
 
@@ -189,6 +190,9 @@ docker run -d -p 3000:3000 grafana/grafana
 
 4. Importe dashboards prontos ou crie visualizações personalizadas.
 
+## Azure DevOps
+
+[https://dev.azure.com/FIAPCloudGamesPaulino/FIAPCloudGames](https://dev.azure.com/FIAPCloudGamesPaulino/FIAPCloudGames)
 
 ## ✒️ Autores
 
