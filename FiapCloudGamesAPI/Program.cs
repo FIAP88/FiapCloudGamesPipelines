@@ -1,16 +1,20 @@
 using AutenticacaoEAutorizacaoCorreto.Services;
 using AutenticacaoEAutorizacaoCorreto.Services.IService;
+using FCG_API_Jogos.Services;
 using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Infra.Middleware;
+using FiapCloudGamesAPI.Models;
 using FiapCloudGamesAPI.Models.Configuration;
 using FiapCloudGamesAPI.Services.IService;
+using Humanizer.Localisation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Text;
+using Nest;
 using Prometheus;
+using System.Text;
 
 #region Configuration
 var builder = WebApplication.CreateBuilder(args);
@@ -83,8 +87,17 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.Configure<ConfigSecret>(builder.Configuration.GetSection("ConfigSecret"));
 
+builder.Services.AddSingleton<IElasticClient>(sp =>
+{
+    var config = builder.Configuration.GetSection("ElasticSearch");
+    var settings = new ConnectionSettings(new Uri(config["Uri"]))
+        .DefaultIndex(config["DefaultIndex"]);
+    return new ElasticClient(settings);
+});
+
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICacheService, MemCacheService>();
+builder.Services.AddScoped<IJogoElasticService, JogoElasticService>();
 builder.Services.AddCorrelationIdGenerator();
 builder.Services.AddTransient(typeof(BaseLogger<>));
 builder.Services.AddHttpContextAccessor();
@@ -96,6 +109,31 @@ builder.Services.AddMemoryCache();
 #region Application Pipeline
 var app = builder.Build();
 app.MapGet("/", () => Results.Text("Bem-vindo a FiapCloudGames!!!", "text/plain"));
+
+using (var scope = app.Services.CreateScope())
+{
+    var client = scope.ServiceProvider.GetRequiredService<IElasticClient>();
+
+    if (!client.Indices.Exists("games").Exists)
+    {
+        client.Indices.Create("games", c => c
+            .Map<Jogo>(m => m
+                .AutoMap()
+                .Properties(p => p
+                    .Text(t => t.Name(n => n.Nome).Analyzer("standard"))
+                    .Text(t => t.Name(n => n.Descricao).Analyzer("standard"))
+                    .Object<Categoria>(o => o
+                        .Name(n => n.Categoria)
+                        .Properties(pp => pp
+                            .Text(t => t.Name(nn => nn.Descricao).Analyzer("standard"))
+                        )
+                    )
+                )
+            )
+        );
+    }
+}
+
 #endregion
 
 #region Middleware
