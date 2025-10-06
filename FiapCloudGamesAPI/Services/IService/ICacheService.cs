@@ -4,6 +4,5 @@
     {
         object get(string key);
         void set(string key, object content);
-        
     }
 }

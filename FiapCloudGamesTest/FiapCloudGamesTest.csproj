@@ -25,7 +25,7 @@
 
 	  <ItemGroup>
 		<!-- Referência ao projeto principal, que agora também é .NET 8 -->
-		    <ProjectReference Include="..\FiapCloudGamesAPI\FiapCloudGamesAPI.csproj" />
+		    <ProjectReference Include="..\FiapCloudGamesAPI\FCG_API_Jogos.csproj" />
 		 
 	</ItemGroup>
 

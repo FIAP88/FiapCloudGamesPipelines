@@ -10,6 +10,8 @@
 	<ItemGroup>
 		<!-- O pacote Datadog.Trace foi REMOVIDO. Não é necessário para a instrumentação automática. -->
 
+		<PackageReference Include="Elasticsearch.Net" Version="7.17.4" />
+
 		<PackageReference Include="HotChocolate.AspNetCore" Version="13.9.0" />
 		<!-- Versão 13.x é compatível com .NET 8 -->
 
@@ -23,6 +25,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.3" />
+		<PackageReference Include="NEST" Version="7.17.4" />
 		<PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
 
 		<!-- Pacotes do Swashbuckle são compatíveis -->

@@ -1,4 +1,5 @@
-﻿using FiapCloudGamesAPI.Context;
+﻿using FCG_API_Jogos.Services;
+using FiapCloudGamesAPI.Context;
 using FiapCloudGamesAPI.Entidades.Dtos;
 using FiapCloudGamesAPI.Entidades.Requests;
 using FiapCloudGamesAPI.Infra;
@@ -13,14 +14,27 @@ namespace FiapCloudGamesAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [SwaggerTag("Gerenciamento de Jogos")]
-    public class JogosController(AppDbContext context, BaseLogger<Jogo> logger, IHttpContextAccessor httpContext) :
+    public class JogosController(
+        AppDbContext context, 
+        BaseLogger<Jogo> logger, 
+        IHttpContextAccessor httpContext,
+        IJogoElasticService elasticService) :
         BaseControllerCrud<Jogo>(context, logger, httpContext)
     {
+
+        private readonly IJogoElasticService _elasticService = elasticService;
 
         [HttpGet]
         [Authorize(Policy = "BuscarJogos")]
         [SwaggerOperation("Buscar todos os jogos")]
         public async Task<ActionResult<IEnumerable<JogoDto>>> GetPermissoes() => await GetAll<JogoDto>();
+
+        [HttpGet("Buscar")]
+        public async Task<IActionResult> Buscar([FromQuery] string termo)
+        {
+            var resultados = await _elasticService.BuscarAsync(termo);
+            return Ok(resultados);
+        }
 
         [HttpGet("{id}")]
         [Authorize(Policy = "BuscarJogoPorId")]
@@ -30,19 +44,34 @@ namespace FiapCloudGamesAPI.Controllers
         [HttpPut("{id}")]
         [Authorize(Policy = "AtualizarJogo")]
         [SwaggerOperation("Atualizar jogo por ID")]
-        public async Task<IActionResult> PutJogo(long id, JogoRequest jogoRequest) =>
-            await Update(id, ConvertTypes(jogoRequest));
+        public async Task<IActionResult> PutJogo(long id, JogoRequest jogoRequest)
+        {
+            Jogo atualizaJogo = ConvertTypes(jogoRequest);
+            var result = await Update(id, atualizaJogo);
+            await _elasticService.AtualizarAsync(atualizaJogo);
+            return Ok(result);
+        }
 
         [HttpPost]
         [Authorize(Policy = "CriarJogos")]
         [SwaggerOperation("Criar novo jogo")]
-        public async Task<ActionResult<Jogo>> PostJogo(JogoRequest jogoRequest) =>
-            await Create(ConvertTypes(jogoRequest));
+        public async Task<ActionResult<Jogo>> PostJogo(JogoRequest jogoRequest)
+        {
+            Jogo novoJogo = ConvertTypes(jogoRequest);
+            var result = await Create(novoJogo);
+            await _elasticService.IndexarAsync(novoJogo);
+            return Ok(result);
+        }
 
         [HttpDelete("{id}")]
         [Authorize(Policy = "DeletarJogo")]
         [SwaggerOperation("Deletar jogo por ID")]
-        public async Task<IActionResult> DeleteJogo(long id) => await Delete(id);
+        public async Task<IActionResult> DeleteJogo(long id)
+        {
+            var result = await Delete(id);
+            await _elasticService.RemoverAsync(id.ToString());
+            return Ok(result);
+        }
 
         [HttpGet("MeusJogos")]
         [Authorize(Policy = "MeusJogos")]
@@ -70,6 +99,20 @@ namespace FiapCloudGamesAPI.Controllers
             await _context.SaveChangesAsync();
             _logger.LogInformation($"Jogo com ID: {idJogo} adicionado à lista de jogos do usuário com ID: {IdUsuarioLogado}.");
             return Ok();
+        }
+
+        [HttpPost("Sugerir")]
+        public async Task<IActionResult> Sugerir([FromBody] IEnumerable<string> historicoTags)
+        {
+            var sugestoes = await _elasticService.SugerirBaseadoNoHistoricoAsync(historicoTags);
+            return Ok(sugestoes);
+        }
+
+        [HttpGet("Populares")]
+        public async Task<IActionResult> MaisPopulares([FromQuery] int top = 5)
+        {
+            var metricas = await _elasticService.ObterJogosMaisPopularesAsync(top);
+            return Ok(metricas);
         }
 
 
