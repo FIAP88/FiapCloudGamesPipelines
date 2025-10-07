@@ -1,6 +1,9 @@
 using AutenticacaoEAutorizacaoCorreto.Services;
 using AutenticacaoEAutorizacaoCorreto.Services.IService;
 using FiapCloudGamesAPI.Context;
+using FiapCloudGamesAPI.EventStore.Infra;
+using FiapCloudGamesAPI.EventStore.Infraestructure;
+using FiapCloudGamesAPI.EventStore.Projection.Projector;
 using FiapCloudGamesAPI.Infra;
 using FiapCloudGamesAPI.Infra.Middleware;
 using FiapCloudGamesAPI.Models.Configuration;
@@ -49,6 +52,12 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// EventStoreContext
+builder.Services.AddDbContext<EventStoreDbContext>(options =>
+	options.UseSqlServer(builder.Configuration.GetConnectionString("EventStoreConnection")));
+//ReadModelContext
+builder.Services.AddDbContext<ReadModelDbContext>(options =>
+options.UseSqlServer(builder.Configuration.GetConnectionString("ReadModelConnection")));
 
 builder.Services.Configure<ConfigSecret>(builder.Configuration.GetSection("ConfigSecret"));
 
@@ -60,7 +69,7 @@ builder.Services.AddSwaggerGen(c =>
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Description = "Por favor, insira 'Bearer' [espaço] e o token JWT",
+        Description = "Por favor, insira 'Bearer' [espaï¿½o] e o token JWT",
         Name = "Authorization",
         Type = SecuritySchemeType.ApiKey
     });
@@ -85,6 +94,9 @@ builder.Services.AddSwaggerGen(c =>
 
 #region Service Injection
 // Add services to the container.
+builder.Services.AddScoped<UsuarioAggregateReadModelProjector>();
+builder.Services.AddScoped<IEventStore, SqlEventStore>();
+builder.Services.AddScoped<IUsuarioAggregateRepository, UsuarioAggregateRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
 builder.Services.AddScoped<ICacheService, MemCacheService>();
 builder.Services.AddCorrelationIdGenerator();

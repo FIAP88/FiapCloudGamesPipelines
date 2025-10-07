@@ -4,8 +4,19 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="EventStore\API\Handlers\**" />
+    <Compile Remove="EventStore\API\Read\**" />
+    <Content Remove="EventStore\API\Handlers\**" />
+    <Content Remove="EventStore\API\Read\**" />
+    <EmbeddedResource Remove="EventStore\API\Handlers\**" />
+    <EmbeddedResource Remove="EventStore\API\Read\**" />
+    <None Remove="EventStore\API\Handlers\**" />
+    <None Remove="EventStore\API\Read\**" />
+  </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="15.1.10" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
@@ -22,9 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EventSourcing\EventStore\" />
-    <Folder Include="EventSourcing\SnapShots\" />
-    <Folder Include="EventSourcing\Projeções\" />
+    <Folder Include="Migrations\ReadModel\" />
   </ItemGroup>
 
 </Project>
