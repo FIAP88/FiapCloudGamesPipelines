@@ -1,0 +1,6 @@
+﻿
+Possíveis eventos para implementação futura
+
+// AvaliacaoCriada, AvaliacaoAtualizada, AvaliacaoRemovida.
+// JogoAtribuidoAoUsuario, JogoRemovidoDoUsuario, JogoAtualizadoDoUsuario
+// UsuarioLogado, UsuarioLogout, UsuarioFalhaLogin, UsuarioBloqueado, UsuarioDesbloqueado
