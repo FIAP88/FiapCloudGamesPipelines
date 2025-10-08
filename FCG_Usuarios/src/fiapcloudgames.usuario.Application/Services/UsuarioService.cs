@@ -2,62 +2,64 @@
 using fiapcloudgames.usuario.Application.Mappers;
 using fiapcloudgames.usuario.Application.Services.Interfaces;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.CreateUsuario;
-using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuario;
+using fiapcloudgames.usuario.Domain.Aggregates;
 using fiapcloudgames.usuario.Domain.Interfaces;
+
+//using fiapcloudgames.usuario.Infrastructure.Projections.Projector
+//using fiapcloudgames.usuario.Infrastructure.Infraestructure
 
 namespace fiapcloudgames.usuario.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
-        private readonly IUsuarioRepository _usuarioRepository;
-
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        private readonly IUsuarioAggregateRepository _repository;
+		private readonly UsuarioAggregateReadModelProjector _projector;
+		public UsuarioService(IUsuarioAggregateRepository repository, UsuarioAggregateReadModelProjector projector)
         {
-            _usuarioRepository = usuarioRepository;
+			_repository = repository;
+			_projector = projector;
         }
 
-        public IEnumerable<UsuarioDto> ObterTodos()
-        {
-            var entidade = _usuarioRepository.ObterTodos();
+		public async Task CriarUsuarioAsync(CreateUsuarioCommand command)
+		{
+			// Cria o aggregate
+			var aggregateId = new Guid().ToString();
+			var usuario = new UsuarioAggregate(
+				aggregateId, 
+				command.Nome, 
+				command.Sobrenome, 
+				command.Apelido, 
+				command.Email, 
+				command.Telefone, 
+				command.HashSenha,
+				command.DataNascimento, 
+				command.PerfilId);
 
-            return entidade.Select(UsuarioMapper.ToDto);
-        }
+			// Eventos nao comitados
+			var eventos = usuario.GetUncommittedEvents().ToList();
 
-        public UsuarioDto? ObterPorId(Guid id)
-        {
-            var entidade = _usuarioRepository.ObterPorId(id);
-            if (entidade == null)
-                return null;
+			await _repository.SaveAsync(usuario);
 
-            return UsuarioMapper.ToDto(entidade);
-        }
+			// Atualiza a Projeção
+			foreach (var evt in eventos)
+			{
+				await _projector.Handle(evt);
+			}
+			// 
 
-        public UsuarioDto Cadastrar(CreateUsuarioCommand dto)
-        {
-            var entidade = UsuarioMapper.ToEntity(dto);
+		}
 
-            _usuarioRepository.Cadastrar(entidade);
+		public async Task AlterarEmailAsync(string usuarioId, string novaSenha)
+		{
+			// Recupera o aggregate do Event Store
+			var usuario = await _repository.GetByIdAsync(usuarioId);
 
-            return UsuarioMapper.ToDto(entidade);
-        }
+			// Executa a operação no aggregate (gera evento)
+			usuario.AlterarSenha(novaSenha);
 
-        public UsuarioDto? Alterar(UpdateUsuarioCommand dto, string atualizadoPor)
-        {
-            var entidade = _usuarioRepository.ObterPorId(dto.UsuarioId);
-            if (entidade == null)
-                return null;
+			// Persiste novamente
+			await _repository.SaveAsync(usuario);
+		}
 
-            return UsuarioMapper.ToDto(_usuarioRepository.Alterar(UsuarioMapper.ToEntity(dto, entidade, atualizadoPor)));
-        }
-
-        public bool Deletar(Guid id)
-        {
-            var entidade = _usuarioRepository.ObterPorId(id);
-            if (entidade == null)
-                return false;
-
-            _usuarioRepository.Deletar(id);
-            return true;
-        }
-    }
+	}
 }
