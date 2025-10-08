@@ -1,9 +1,9 @@
-﻿using FiapCloudGamesAPI.Models;
+﻿using fiapcloudgames.usuario.Infrastructure.EventStore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 // SqlServerDbContext //
-namespace FiapCloudGamesAPI.Configurations
+namespace fiapcloudgames.usuario.Infrastructure.Persistence.Configurations
 {
 	public class StoredEventConfiguration : IEntityTypeConfiguration<StoredEvent>
 	{
