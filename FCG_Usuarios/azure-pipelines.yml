@@ -1,0 +1,101 @@
+trigger:
+- master
+
+variables:
+  azureSubscription: 'AzureSubscriptionConnection'
+  imageRepository: 'usuario-api'
+  containerRegistryName: 'ContainerTechChallenge' 
+  resourceGroup: 'rg-functions'
+  dockerfilePath: '$(Build.SourcesDirectory)/src/fiapcloudgames.usuario.API/Dockerfile'
+  tag: '$(Build.BuildId)'
+  vmImageName: 'ubuntu-latest'
+
+  # Variavel para o App Service de Deploy
+  webAppName: 'fcg-usuario-api'
+
+stages:
+- stage: Build
+  displayName: Build and Push Stage
+  jobs:
+  - job: Build
+    displayName: 'Build and Push Job'
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+
+    # Passo 1: Login e AGORA TAMBÉM PEGA A URL CORRETA
+    - task: AzureCLI@2
+      name: AcrLogin # Damos um nome à tarefa para usar sua saída depois
+      displayName: 'Azure CLI: Login to ACR and Get URL'
+      inputs:
+        azureSubscription: $(azureSubscription)
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        addSpnToEnvironment: true
+        inlineScript: |
+          echo "Logging in to ACR..."
+          az acr login --name $(containerRegistryName)
+          
+          echo "Getting ACR Login Server URL..."
+          # Pegamos a URL programaticamente e salvamos como uma variável de saída
+          loginServer=$(az acr show --name $(containerRegistryName) --query loginServer --output tsv)
+          echo "ACR Login Server is: $loginServer"
+          echo "##vso[task.setvariable variable=acrUrl;isOutput=true]$loginServer"
+
+    # Passo 2: Diagnóstico de Rede e Ação
+    - task: Bash@3
+      displayName: 'Network Diagnostics and Docker Build/Push'
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Usamos a variável de saída da tarefa anterior
+          ACR_URL="$(AcrLogin.acrUrl)"
+          
+          echo "================ DIAGNOSTICS ================"
+          echo "Pinging ACR URL: $ACR_URL"
+          ping -c 3 $ACR_URL
+          
+          echo "---"
+          echo "Looking up DNS for ACR URL: $ACR_URL"
+          nslookup $ACR_URL
+          echo "=============================================="
+          
+          echo "Building and pushing image..."
+          docker build -t $ACR_URL/$(imageRepository):$(tag) -f $(dockerfilePath) .
+          docker push $ACR_URL/$(imageRepository):$(tag)
+
+# =======================================================================
+# ESTÁGIO 2: DEPLOY (CD) - Com a tarefa CORRIGIDA
+# =======================================================================
+- stage: Deploy
+  displayName: 'Deploy to App Service Stage'
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - job: DeployJob
+    displayName: 'Deploy to App Service'
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    # Esta nova tarefa APENAS atualiza as configurações do App Service
+    - task: AzureAppServiceSettings@1
+      displayName: 'Update App Service Settings with new Image Tag'
+      inputs:
+        azureSubscription: $(azureSubscription)
+        appName: $(webAppName)
+        resourceGroupName: $(resourceGroup)
+        # Aqui está a mágica: atualizamos APENAS a variável que diz qual imagem rodar.
+        # Não mexemos em mais nenhuma configuração de autenticação.
+        appSettings: |
+          [
+            {
+              "name": "DOCKER_CUSTOM_IMAGE_NAME",
+              "value": "$(containerRegistryUrl)/$(imageRepository):$(tag)"
+            }
+          ]
+    - task: AzureWebAppContainer@1
+      displayName: 'Deploy API Usuario to App Service'
+      inputs:
+        azureSubscription: $(azureSubscription) # Nome da sua Conexão de Serviço
+        appName: $(webAppName)                  # Nome exato do seu App Service
+        containers: '$(containerRegistryName)/$(imageRepository):$(tag)'
