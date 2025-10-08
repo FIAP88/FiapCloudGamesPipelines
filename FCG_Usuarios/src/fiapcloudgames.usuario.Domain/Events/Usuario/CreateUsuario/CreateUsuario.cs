@@ -1,8 +1,6 @@
-﻿using fiapcloudgames.usuario.Domain.Events;
+﻿namespace fiapcloudgames.usuario.Domain.Events.Usuario.CreateUsuario;
 
-namespace fiapcloudgames.usuario.Domain.Events.Usuario;
-
-public record UsuarioCriado : DomainEvent
+public record CreateUsuario : DomainEvent
 {	
 	public required string Nome { get; set; }
 	public string? Sobrenome { get; set; }
@@ -13,9 +11,9 @@ public record UsuarioCriado : DomainEvent
 	public DateTime DataNascimento { get; set; }
 	public long PerfilId { get; set; }
 
-	public UsuarioCriado()
+	public CreateUsuario()
 	{
-		EventType = nameof(UsuarioCriado);
+		EventType = nameof(CreateUsuario);
 	}
 	
 }

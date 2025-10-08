@@ -1,7 +1,7 @@
 ﻿using FiapCloudGamesAPI.EventStore.Domain.Eventos.Base;
 using FiapCloudGamesAPI.Models;
 
-namespace fiapcloudgames.usuario.Domain.Events.Usuario
+namespace fiapcloudgames.usuario.Domain.Events.Usuario.Outros
 {
 	public record AvaliaçãoAdicionadaPeloUsuario : DomainEvent
 	{

@@ -1,5 +1,11 @@
 ﻿using fiapcloudgames.usuario.Domain.Events;
-using fiapcloudgames.usuario.Domain.Events.Usuario;
+using fiapcloudgames.usuario.Domain.Events.Usuario.CreateUsuario;
+using fiapcloudgames.usuario.Domain.Events.Usuario.DisableUsuario;
+using fiapcloudgames.usuario.Domain.Events.Usuario.Outros;
+using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioDados;
+using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioEmail;
+using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioNome;
+using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioSobrenome;
 
 namespace fiapcloudgames.usuario.Domain.Aggregates
 {
@@ -28,7 +34,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 			DateTime dataNascimento,
 			long perfilId)
 		{
-			var @event = new UsuarioCriado
+			var @event = new CreateUsuario
 			{
 				AggregateId = aggregateId,
 				Nome = nome,
@@ -58,7 +64,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 			if (novoNome == Nome)
 				return;
 
-			var @event = new UsuarioNomeAlterado
+			var @event = new UpdateUsuarioNome
 			{
 				AggregateId = Id,
 				NovoNome = novoNome,
@@ -72,7 +78,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 		{
 			if (Email == novoEmail) return;
 
-			var @event = new UsuarioEmailAlterado
+			var @event = new UpdateUsuarioEmail
 			{
 				AggregateId = Id,
 				NovoEmail = novoEmail,
@@ -86,7 +92,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 		{
 			if (Sobrenome == novoSobrenome) return;
 
-			var @event = new UsuarioSobrenomeAlterado
+			var @event = new UpdateUsuarioSobrenome
 			{
 				AggregateId = Id,
 				NovoSobrenome = novoSobrenome,
@@ -110,7 +116,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 		}
 		public void AlterarDadosUsuario(string apelido, DateTime dataNascimento, long perfilId)
 		{
-			var @event = new UsuarioDadosAlterados
+			var @event = new UpdateUsuarioDados
 			{
 				AggregateId = Id,
 				Apelido = apelido,
@@ -128,7 +134,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 		{
 			switch (@event)
 			{
-				case UsuarioCriado criado:
+				case CreateUsuario criado:
 					Id = criado.AggregateId;
 					Nome = criado.Nome;
 					Sobrenome = criado.Sobrenome;
@@ -136,25 +142,25 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 					DataNascimento = criado.DataNascimento;
 					Version = criado.Version;
 					break;
-				case UsuarioDadosAlterados dadosAlterados:
+				case UpdateUsuarioDados dadosAlterados:
 					Version = dadosAlterados.Version;
 					break;	
-				case UsuarioNomeAlterado nomeAlterado:
+				case UpdateUsuarioNome nomeAlterado:
 					Nome = nomeAlterado.NovoNome;
 					Version = nomeAlterado.Version;
 					break;
-				case UsuarioSobrenomeAlterado sobrenomeAlterado:
+				case UpdateUsuarioSobrenome sobrenomeAlterado:
 					Sobrenome = sobrenomeAlterado.NovoSobrenome;
 					Version = sobrenomeAlterado.Version;
 					break;
-				case UsuarioEmailAlterado emailAlterado:
+				case UpdateUsuarioEmail emailAlterado:
 					Email = emailAlterado.NovoEmail;
 					Version = emailAlterado.Version;
 					break;
 				case UsuarioSenhaAlterada senhaAlterada:					
 					Version = senhaAlterada.Version;
 					break;
-				case UsuarioDesativado desativado:
+				case DisableUsuario desativado:
 					Version	= desativado.Version;
 					break;
 				case JogoAdicionadoAoUsuario jogoAdicionado:

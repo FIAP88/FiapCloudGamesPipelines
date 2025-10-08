@@ -1,20 +1,19 @@
-﻿using fiapcloudgames.usuario.Domain.Events;
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 
-namespace fiapcloudgames.usuario.Domain.Events.Usuario
+namespace fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioDados
 {
 	// Evento para alteração de dados 'genéricos' do usuário
 	// que não precisam de uma rastreabilidade completa
 	// para justificar o uso de eventos próprios
-	public record UsuarioDadosAlterados : DomainEvent
+	public record UpdateUsuarioDados : DomainEvent
 	{				
 		public string? Apelido { get; set; }
 		public DateTime DataNascimento { get; set; }
 		public long PerfilId { get; set; }
 	
-		public UsuarioDadosAlterados()
+		public UpdateUsuarioDados()
 		{
-			EventType = nameof(UsuarioDadosAlterados);
+			EventType = nameof(UpdateUsuarioDados);
 		}
 
 	}

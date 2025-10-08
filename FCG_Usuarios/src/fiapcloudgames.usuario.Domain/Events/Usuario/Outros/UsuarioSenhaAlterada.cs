@@ -1,6 +1,4 @@
-﻿using fiapcloudgames.usuario.Domain.Events;
-
-namespace fiapcloudgames.usuario.Domain.Events.Usuario
+﻿namespace fiapcloudgames.usuario.Domain.Events.Usuario.Outros
 {
 	public record UsuarioSenhaAlterada : DomainEvent
 	{
