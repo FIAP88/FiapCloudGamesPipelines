@@ -23,6 +23,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 			string sobreNome, 
 			string apelido,
 			string email,
+			string telefone,
 			string hashSenha,
 			DateTime dataNascimento,
 			long perfilId)
@@ -32,8 +33,9 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 				AggregateId = aggregateId,
 				Nome = nome,
 				Sobrenome = sobreNome,
-				Apelido = apelido,
+				Apelido = apelido,				
 				Email = email,
+				Telefone = telefone,
 				HashSenha = hashSenha,
 				DataNascimento = dataNascimento,
 				PerfilId = perfilId,
@@ -130,7 +132,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 					Id = criado.AggregateId;
 					Nome = criado.Nome;
 					Sobrenome = criado.Sobrenome;
-					Email = criado.Email;
+					Email = criado.Email;					
 					DataNascimento = criado.DataNascimento;
 					Version = criado.Version;
 					break;
