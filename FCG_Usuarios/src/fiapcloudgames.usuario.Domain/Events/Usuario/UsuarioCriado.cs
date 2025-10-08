@@ -8,6 +8,7 @@ public record UsuarioCriado : DomainEvent
 	public string? Sobrenome { get; set; }
 	public string? Apelido { get; set; }
 	public string? Email { get; set; }
+	public string? Telefone { get; set; }
 	public string? HashSenha { get; set; }
 	public DateTime DataNascimento { get; set; }
 	public long PerfilId { get; set; }
