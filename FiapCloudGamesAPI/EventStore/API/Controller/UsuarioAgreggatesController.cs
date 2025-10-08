@@ -12,7 +12,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 [Route("api/[controller]")]
 [ApiController]
-[Authorize(Policy = "GerenciarUsuarios")]
+//[Authorize(Policy = "GerenciarUsuarios")]
 [SwaggerTag("EventSourcing")]
 public class UsuarioAggregateController : ControllerBase
 {
@@ -94,7 +94,18 @@ public class UsuarioAggregateController : ControllerBase
 			return NotFound();
 
 		usuarioAggregate.AlterarNome(command.NovoNome);
+
+		// Atualiza a Projeção
+		var eventos = usuarioAggregate.GetUncommittedEvents().ToList();
+
 		await _repository.SaveAsync(usuarioAggregate);
+
+		foreach (var evt in eventos)
+		{
+			await _projector.Handle(evt);
+		}
+		//
+
 		return Ok();
 	}
 
@@ -108,16 +119,7 @@ public class UsuarioAggregateController : ControllerBase
 
 		usuarioAggregate.AlterarSobrenome(command.NovoSobrenome);
 
-		// Atualiza a Projeção
-		var eventos = usuarioAggregate.GetUncommittedEvents().ToList();
-		
 		await _repository.SaveAsync(usuarioAggregate);
-
-		foreach (var evt in eventos)
-		{
-			await _projector.Handle(evt);
-		}
-		//
 
 		return Ok();
 	}
