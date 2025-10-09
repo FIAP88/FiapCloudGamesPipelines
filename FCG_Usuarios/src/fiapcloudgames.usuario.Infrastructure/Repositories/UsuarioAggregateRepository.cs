@@ -36,8 +36,6 @@ namespace FiapCloudGamesAPI.EventStore.Infraestructure
 
 			usuarioAggregate.MarkEventsAsCommitted();
 
-			// Retorna os eventos commitados (agora persistidos)
-			// para persistência nas projeções
             return uncommitedEvents;
 		}
 

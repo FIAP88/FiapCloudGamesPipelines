@@ -26,11 +26,11 @@ public class UsuarioAggregateController : ControllerBase
 	//[SwaggerOperation("Criar novo usuário")]
 	[AllowAnonymous] // Permitir cadastro sem autenticação
 	[ProducesResponseType(typeof(object), StatusCodes.Status201Created)]
-	[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+	//[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
 	public async Task<IActionResult> CriarUsuario([FromBody]CreateUsuarioCommand command)
 	{
 		await _usuarioService.CriarUsuarioAsync(command);	
-		return Ok();
+		return Created();
 	}
 
 	[HttpPut()]
