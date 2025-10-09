@@ -22,11 +22,9 @@ namespace FiapCloudGamesAPI.EventStore.Infraestructure
 			return UsuarioAggregate.FromHistory(history);
 		}
 
-		public async Task SaveAsync(UsuarioAggregate usuarioAggregate)
+		public async Task<List<DomainEvent>> SaveAsync(UsuarioAggregate usuarioAggregate)
 		{
 			var uncommitedEvents = usuarioAggregate.GetUncommittedEvents().ToList();
-			
-			if (!uncommitedEvents.Any()) return;
 
 			var expectedVersion = usuarioAggregate.Version - uncommitedEvents.Count;
 
@@ -37,6 +35,10 @@ namespace FiapCloudGamesAPI.EventStore.Infraestructure
 			);
 
 			usuarioAggregate.MarkEventsAsCommitted();
+
+			// Retorna os eventos commitados (agora persistidos)
+			// para persistência nas projeções
+            return uncommitedEvents;
 		}
 
 		public async Task<List<DomainEvent>> GetEventsAsync(string aggregateId)
