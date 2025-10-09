@@ -1,23 +1,22 @@
-﻿using fiapcloudgames.usuario.Application.DTOs;
-using fiapcloudgames.usuario.Application.Mappers;
-using fiapcloudgames.usuario.Application.Services.Interfaces;
+﻿using fiapcloudgames.usuario.Application.Services.Interfaces;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.CreateUsuario;
+using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioEmail;
+using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioNome;
+using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioSobrenome;
 using fiapcloudgames.usuario.Domain.Aggregates;
 using fiapcloudgames.usuario.Domain.Interfaces;
-
-//using fiapcloudgames.usuario.Infrastructure.Projections.Projector
-//using fiapcloudgames.usuario.Infrastructure.Infraestructure
 
 namespace fiapcloudgames.usuario.Application.Services
 {
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioAggregateRepository _repository;
-		private readonly UsuarioAggregateReadModelProjector _projector;
-		public UsuarioService(IUsuarioAggregateRepository repository, UsuarioAggregateReadModelProjector projector)
+		private readonly IEventDispatcher _eventDispatcher;
+
+		public UsuarioService(IUsuarioAggregateRepository repository, IEventDispatcher eventDispatcher)
         {
 			_repository = repository;
-			_projector = projector;
+			_eventDispatcher = eventDispatcher;
         }
 
 		public async Task CriarUsuarioAsync(CreateUsuarioCommand command)
@@ -35,31 +34,48 @@ namespace fiapcloudgames.usuario.Application.Services
 				command.DataNascimento, 
 				command.PerfilId);
 
-			// Eventos nao comitados
-			var eventos = usuario.GetUncommittedEvents().ToList();
+			// Eventos comitados e persistidos no EventStore
+            var committedEvents = await _repository.SaveAsync(usuario);
 
-			await _repository.SaveAsync(usuario);
-
-			// Atualiza a Projeção
-			foreach (var evt in eventos)
-			{
-				await _projector.Handle(evt);
-			}
-			// 
+            await _eventDispatcher.PublishAsync(committedEvents);
 
 		}
 
-		public async Task AlterarEmailAsync(string usuarioId, string novaSenha)
-		{
-			// Recupera o aggregate do Event Store
-			var usuario = await _repository.GetByIdAsync(usuarioId);
+        public async Task AlterarNomeAsync(UpdateUsuarioNomeCommand command)
+        {
+            // Recupera o aggregate do Event Store
+            var usuario = await _repository.GetByIdAsync(command.UsuarioId.ToString());
 
-			// Executa a operação no aggregate (gera evento)
-			usuario.AlterarSenha(novaSenha);
+            usuario.AlterarNome(command.NovoNome);
 
-			// Persiste novamente
-			await _repository.SaveAsync(usuario);
-		}
+            var committedEvents = await _repository.SaveAsync(usuario);
 
-	}
+            await _eventDispatcher.PublishAsync(committedEvents);
+        }
+
+        public async Task AlterarSobrenomeAsync(UpdateUsuarioSobrenomeCommand command)
+        {
+            // Recupera o aggregate do Event Store
+            var usuario = await _repository.GetByIdAsync(command.UsuarioId.ToString());
+
+            usuario.AlterarNome(command.NovoSobrenome);
+
+            var committedEvents = await _repository.SaveAsync(usuario);
+
+            await _eventDispatcher.PublishAsync(committedEvents);
+        }
+
+        public async Task AlterarEmailAsync(UpdateUsuarioEmailCommand command)
+        {
+            // Recupera o aggregate do Event Store
+            var usuario = await _repository.GetByIdAsync(command.UsuarioId.ToString());
+
+            usuario.AlterarEmail(command.NovoEmail);
+
+            var committedEvents = await _repository.SaveAsync(usuario);
+
+            await _eventDispatcher.PublishAsync(committedEvents);
+        }
+
+    }
 }
