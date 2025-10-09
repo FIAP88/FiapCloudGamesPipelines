@@ -1,13 +1,14 @@
 ﻿using fiapcloudgames.usuario.Domain.Events.Usuario.CreateUsuario;
 using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioEmail;
 using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioNome;
+using fiapcloudgames.usuario.Domain.Interfaces;
 using fiapcloudgames.usuario.Infrastructure.Persistence;
 using fiapcloudgames.usuario.Infrastructure.Projections.ReadModel;
 
 namespace fiapcloudgames.usuario.Infrastructure.Projections.Projector
 {
-	public class UsuarioAggregateReadModelProjector
-	{
+	public class UsuarioAggregateReadModelProjector : IProjector
+    {
 		private readonly ReadModelDbContext _context;
 
 		public UsuarioAggregateReadModelProjector(ReadModelDbContext context)
