@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System.Reflection;
+﻿using System.Text.Json.Serialization;
 
 namespace fiapcloudgames.usuario.Domain.Events
 {

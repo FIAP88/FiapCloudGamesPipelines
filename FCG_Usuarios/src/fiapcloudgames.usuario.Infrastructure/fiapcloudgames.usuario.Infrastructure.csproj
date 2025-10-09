@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
+    <Folder Include="Migrations\EventStoreDb\" />
+    <Folder Include="Migrations\ReadModelDb\" />
   </ItemGroup>
 
   <PropertyGroup>

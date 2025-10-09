@@ -2,7 +2,7 @@
 {
 	public record UpdateUsuarioNome : DomainEvent
 	{
-		public string? NovoNome { get; set; }
+		public required string? NovoNome { get; set; }
 		public UpdateUsuarioNome()
 		{
 			EventType = nameof(UpdateUsuarioNome);

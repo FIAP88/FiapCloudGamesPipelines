@@ -1,7 +1,6 @@
 ﻿using fiapcloudgames.usuario.Domain.Events;
 using fiapcloudgames.usuario.Domain.Events.Usuario.CreateUsuario;
 using fiapcloudgames.usuario.Domain.Events.Usuario.DisableUsuario;
-using fiapcloudgames.usuario.Domain.Events.Usuario.Outros;
 using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioDados;
 using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioEmail;
 using fiapcloudgames.usuario.Domain.Events.Usuario.UpdateUsuarioNome;
@@ -104,15 +103,7 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 		}
 		public void AlterarSenha(string novoHashSenha)
 		{			
-			var @event = new UsuarioSenhaAlterada
-			{
-				AggregateId = Id,
-				NovoHashSenha = novoHashSenha,
-				Version = Version + 1
-			};
-
-			Apply(@event);
-			_uncommittedEvents.Add(@event);
+			throw new NotImplementedException();
 		}
 		public void AlterarDadosUsuario(string apelido, DateTime dataNascimento, long perfilId)
 		{
@@ -157,17 +148,11 @@ namespace fiapcloudgames.usuario.Domain.Aggregates
 					Email = emailAlterado.NovoEmail;
 					Version = emailAlterado.Version;
 					break;
-				case UsuarioSenhaAlterada senhaAlterada:					
-					Version = senhaAlterada.Version;
-					break;
 				case DisableUsuario desativado:
 					Version	= desativado.Version;
 					break;
-				case JogoAdicionadoAoUsuario jogoAdicionado:
-					Version = jogoAdicionado.Version;
-					break;
-				case AvaliaçãoAdicionadaPeloUsuario avaliacaoAdicionada:
-					Version = avaliacaoAdicionada.Version;
+				default:
+					//Exception?
 					break;
 			}			
 		}

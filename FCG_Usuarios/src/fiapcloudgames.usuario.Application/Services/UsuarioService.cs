@@ -1,10 +1,15 @@
-﻿using fiapcloudgames.usuario.Application.Services.Interfaces;
+﻿using fiapcloudgames.usuario.Application.DTOs;
+using fiapcloudgames.usuario.Application.Services.Interfaces;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.CreateUsuario;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioEmail;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioNome;
 using fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioSobrenome;
 using fiapcloudgames.usuario.Domain.Aggregates;
+using fiapcloudgames.usuario.Domain.Events;
 using fiapcloudgames.usuario.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Data.SqlTypes;
 
 namespace fiapcloudgames.usuario.Application.Services
 {
@@ -22,7 +27,7 @@ namespace fiapcloudgames.usuario.Application.Services
 		public async Task CriarUsuarioAsync(CreateUsuarioCommand command)
 		{
 			// Cria o aggregate
-			var aggregateId = new Guid().ToString();
+			var aggregateId = Guid.NewGuid().ToString();
 			var usuario = new UsuarioAggregate(
 				aggregateId, 
 				command.Nome, 
@@ -38,7 +43,6 @@ namespace fiapcloudgames.usuario.Application.Services
             var committedEvents = await _repository.SaveAsync(usuario);
 
             await _eventDispatcher.PublishAsync(committedEvents);
-
 		}
 
         public async Task AlterarNomeAsync(UpdateUsuarioNomeCommand command)
@@ -77,5 +81,40 @@ namespace fiapcloudgames.usuario.Application.Services
             await _eventDispatcher.PublishAsync(committedEvents);
         }
 
-    }
+        public async Task<UsuarioAggregateDto> GetByIdAsync(string aggregateId)
+        {
+			var usuarioAggregate = await _repository.GetByIdAsync(aggregateId);
+
+			return new UsuarioAggregateDto
+			{
+				Id = usuarioAggregate.Id,
+				Nome = usuarioAggregate.Nome,
+				Sobrenome = usuarioAggregate.Sobrenome,
+				Email = usuarioAggregate.Email,
+				DataNascimento = usuarioAggregate.DataNascimento,
+				Version = usuarioAggregate.Version
+			};
+		}
+
+        public async Task<List<UsuarioAggregateHistoryDto>> GetEventsAsync(string aggregateId)
+        {
+			var events = await _repository.GetEventsAsync(aggregateId);
+
+			//if (!events.Any())
+			//	return NotFound();
+
+			var eventList = events.Select(e => new UsuarioAggregateHistoryDto
+			{
+				//Id = e.Id,
+				//AggregateId = e.AggregateId,
+				EventType = e.EventType,
+				Version = e.Version,
+				Timestamp = e.Timestamp,
+				EventData = JsonConvert.SerializeObject(e, Formatting.None)
+			});
+            
+            return eventList.ToList();			
+
+		}
+	}
 }
