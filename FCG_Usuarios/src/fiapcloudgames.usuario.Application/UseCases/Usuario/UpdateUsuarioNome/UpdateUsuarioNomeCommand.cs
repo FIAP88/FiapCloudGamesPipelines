@@ -1,8 +1,8 @@
 ﻿namespace fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioNome
 {
-	public record UpdateNomeUsuarioCommand
+	public record UpdateUsuarioNomeCommand
 	{
-		// public required Guid UsuarioId { get; set; }
+		public required Guid UsuarioId { get; set; }
 		public required string NovoNome { get; set; }	
 	}
 }

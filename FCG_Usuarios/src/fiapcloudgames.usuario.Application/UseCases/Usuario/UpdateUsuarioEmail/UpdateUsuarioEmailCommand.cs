@@ -1,8 +1,8 @@
 ﻿namespace fiapcloudgames.usuario.Application.UseCases.Usuario.UpdateUsuarioEmail
 {
-	public record UpdateEmailUsuarioCommand
+	public record UpdateUsuarioEmailCommand
 	{
-		// public required Guid UsuarioId { get; set; }
+		public required Guid UsuarioId { get; set; }
 		public required string NovoEmail { get; set; }
 	}
 }
