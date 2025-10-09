@@ -43,7 +43,7 @@ public class UsuarioAggregateController : ControllerBase
 
 	[HttpPut("/nome")]
 	//[SwaggerOperation("Atualizar nome do usuário por ID")]
-	public async Task<IActionResult> AtualizarNome([FromBody] UpdateUsuarioNomeCommand command)
+	public async Task<IActionResult> AtualizarNome([FromBody] UpdateUsuarioSenhaCommand command)
 	{
 		await _usuarioService.AlterarNomeAsync(command);
 		return Ok();

@@ -16,7 +16,7 @@ builder.Services.AddEndpointsApiExplorer();
 // Configurar Swagger com suporte a JWT
 builder.Services.AddSwaggerWithJwtAuth();
 
-// Configurar autenticação JWT
+// Configurar autenticaï¿½ï¿½o JWT
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -46,21 +46,21 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 
                 if (string.IsNullOrEmpty(authHeader))
                 {
-                    detail = "Token de autenticação não fornecido. Inclua o header 'Authorization: Bearer {token}' na requisição.";
+                    detail = "Token de autenticaï¿½ï¿½o nï¿½o fornecido. Inclua o header 'Authorization: Bearer {token}' na requisiï¿½ï¿½o.";
                 }
                 else if (!authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
                 {
-                    detail = "Formato do token inválido. Use o formato 'Bearer {token}' no header Authorization.";
+                    detail = "Formato do token invï¿½lido. Use o formato 'Bearer {token}' no header Authorization.";
                 }
                 else
                 {
-                    detail = "Token JWT inválido ou expirado. Faça login novamente para obter um novo token.";
+                    detail = "Token JWT invï¿½lido ou expirado. Faï¿½a login novamente para obter um novo token.";
                 }
 
                 var response = new
                 {
                     type = "https://tools.ietf.org/html/rfc7235#section-3.1",
-                    title = "Não autorizado",
+                    title = "Nï¿½o autorizado",
                     status = 401,
                     detail = detail,
                     instance = context.Request.Path.Value
@@ -83,7 +83,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     type = "https://tools.ietf.org/html/rfc7231#section-6.5.3",
                     title = "Acesso negado",
                     status = 403,
-                    detail = "Você não tem permissão para acessar este recurso.",
+                    detail = "Vocï¿½ nï¿½o tem permissï¿½o para acessar este recurso.",
                     instance = context.Request.Path.Value
                 };
 
@@ -122,16 +122,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "FIAP Cloud Games - Usuários API v1");
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "FIAP Cloud Games - Usuï¿½rios API v1");
         options.RoutePrefix = "swagger";
-        options.DocumentTitle = "FIAP Cloud Games - API de Usuários";
-        options.DefaultModelsExpandDepth(-1); // Não expandir modelos por padrão
-        options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None); // Não expandir operações por padrão
+        options.DocumentTitle = "FIAP Cloud Games - API de Usuï¿½rios";
+        options.DefaultModelsExpandDepth(-1); // Nï¿½o expandir modelos por padrï¿½o
+        options.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None); // Nï¿½o expandir operaï¿½ï¿½es por padrï¿½o
         options.EnableDeepLinking();
         options.EnableFilter();
         options.EnableValidator();
         
-        // Configurar autenticação persistente
+        // Configurar autenticaï¿½ï¿½o persistente
         options.ConfigObject.AdditionalItems.Add("persistAuthorization", true);
     });
 }
@@ -141,7 +141,7 @@ app.UseCustomMiddlewares();
 
 app.UseHttpsRedirection();
 
-// CORS deve vir antes da autenticação
+// CORS deve vir antes da autenticaï¿½ï¿½o
 app.UseCors("FiapCloudGamesPolicy");
 
 app.UseAuthentication();

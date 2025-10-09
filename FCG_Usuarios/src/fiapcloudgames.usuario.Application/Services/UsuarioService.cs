@@ -45,7 +45,7 @@ namespace fiapcloudgames.usuario.Application.Services
             await _eventDispatcher.PublishAsync(committedEvents);
 		}
 
-        public async Task AlterarNomeAsync(UpdateUsuarioNomeCommand command)
+        public async Task AlterarNomeAsync(UpdateUsuarioSenhaCommand command)
         {
             // Recupera o aggregate do Event Store
             var usuario = await _repository.GetByIdAsync(command.UsuarioId.ToString());

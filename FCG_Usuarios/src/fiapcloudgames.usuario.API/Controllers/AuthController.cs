@@ -17,7 +17,7 @@ namespace fiapcloudgames.usuario.API.Controllers
             _configuration = configuration;
         }
 
-        /// <summary>Gera um token JWT para autenticação.</summary>
+        /// <summary>Gera um token JWT para autenticaï¿½ï¿½o.</summary>
         [HttpPost("token")]
         [ProducesResponseType(typeof(TokenResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
@@ -30,13 +30,13 @@ namespace fiapcloudgames.usuario.API.Controllers
 
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
             {
-                return Problem(title: "Credenciais inválidas", statusCode: StatusCodes.Status400BadRequest);
+                return Problem(title: "Credenciais invï¿½lidas", statusCode: StatusCodes.Status400BadRequest);
             }
 
-            // TODO: Validar usuário e senha contra o banco de dados ou outro serviço
+            // TODO: Validar usuï¿½rio e senha contra o banco de dados ou outro serviï¿½o
             if (request.Username != "admin" || request.Password != "123456")
             {
-                return Problem(title: "Credenciais inválidas", statusCode: StatusCodes.Status401Unauthorized);
+                return Problem(title: "Credenciais invï¿½lidas", statusCode: StatusCodes.Status401Unauthorized);
             }
 
             var token = GenerateJwtToken(request.Username);

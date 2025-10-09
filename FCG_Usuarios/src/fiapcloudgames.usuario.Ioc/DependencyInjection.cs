@@ -23,7 +23,7 @@ namespace fiapcloudgames.usuario.Ioc
 				options.UseLazyLoadingProxies().UseSqlServer(connectionStringEventStore, sqlOptions => sqlOptions.CommandTimeout(40))
 			);
 
-			var connectionStringReadModelDb = configuration.GetConnectionString("ReadModelDb");
+			var connectionStringReadModelDb = configuration.GetConnectionString("ReadModel");
 
 			services.AddDbContext<ReadModelDbContext>(options =>
 				options.UseLazyLoadingProxies().UseSqlServer(connectionStringReadModelDb, sqlOptions => sqlOptions.CommandTimeout(40))
@@ -31,7 +31,8 @@ namespace fiapcloudgames.usuario.Ioc
 
 			services.AddScoped<IEventDispatcher, EventDispatcher>();
 			services.AddScoped<IProjector, UsuarioAggregateReadModelProjector>();
-			services.AddScoped<IUsuarioAggregateRepository, UsuarioAggregateRepository>();
+            services.AddScoped<IProjector, UsuarioAggregateLoginReadModelProjector>();
+            services.AddScoped<IUsuarioAggregateRepository, UsuarioAggregateRepository>();
 			services.AddScoped<IEventStore, SqlEventStore>();
 			//
             //services.AddScoped(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));

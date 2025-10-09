@@ -10,7 +10,7 @@ namespace fiapcloudgames.usuario.Application.Services.Interfaces
     public interface IUsuarioService
     {
         Task CriarUsuarioAsync(CreateUsuarioCommand command);
-        Task AlterarNomeAsync(UpdateUsuarioNomeCommand command);
+        Task AlterarNomeAsync(UpdateUsuarioSenhaCommand command);
         Task AlterarSobrenomeAsync(UpdateUsuarioSobrenomeCommand command);
         Task AlterarEmailAsync(UpdateUsuarioEmailCommand command);
         Task<UsuarioAggregateDto> GetByIdAsync(string aggregateId);

@@ -12,11 +12,14 @@ namespace fiapcloudgames.usuario.Infrastructure.Persistence
 		}
 
 		public DbSet<UsuarioAggregateReadModel> Usuarios { get; set; }
+		
+        public DbSet<UsuarioAggregateLoginReadModel> UsuariosLogin { get; set; } // ReadModel/projecao dedicada/otimizada a Autenticacao
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.ApplyConfiguration(new UsuarioAggregateReadModelConfiguration());
-			base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new UsuarioAggregateLoginReadModelConfiguration());
+            base.OnModelCreating(modelBuilder);
 			
 		}
 	}
