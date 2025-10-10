@@ -36,8 +36,6 @@ Esta arquitetura descreve um sistema baseado em microsserviços, projetado para 
 
 Esta é a parte central e mais detalhada do processo, focada em resiliência e tratamento de erros utilizando os serviços da Azure.
 
-![Diagrama do fluxo de processamento de pagamentos](URL_DA_SUA_IMAGEM_AQUI)
-
 1.  **Enfileiramento (Queuing)**: O **MS Pagamentos** publica a mensagem de pagamento na **Fila de pagamentos** (utilizando o **Azure Service Bus**). Isso desacopla a criação do pagamento de seu processamento efetivo. O serviço que solicitou o pagamento recebe uma resposta imediata, sem precisar esperar a conclusão do processo.
 
 2.  **Processamento (Processing)**:
