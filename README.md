@@ -20,7 +20,7 @@ Esta arquitetura descreve um sistema baseado em microsserviços, projetado para 
 
 ## Fluxo de Funcionamento Geral
 
-# Diagrama da arquitetura geral do sistema
+### Diagrama da arquitetura geral do sistema
 <img width="1032" height="353" alt="image" src="https://github.com/user-attachments/assets/b7929894-033f-4997-afa9-b3db9a591c83" />
 
 1.  **Ponto de Entrada (Entry Point)**: O **Usuário** interage com o sistema através de um **GATEWAY** (como o **Azure API Management**). Este componente atua como um ponto de entrada único, roteando as requisições para os microsserviços apropriados.
