@@ -1,4 +1,4 @@
-<img width="1032" height="353" alt="image" src="https://github.com/user-attachments/assets/ffc77e8f-2f04-4676-be45-49ba8aadc183" /># FiapCloudGames (TechChallenge-03-06) - Arquitetura de Microsserviços
+# FiapCloudGames (TechChallenge-03-06) - Arquitetura de Microsserviços
 
 Bem-vindo à FiapCloudGames, uma plataforma de venda de jogos digitais. Esta versão do projeto foi re-arquitetada de um sistema monolítico para uma **arquitetura de microsserviços**, visando maior escalabilidade, resiliência e manutenibilidade.
 
@@ -20,7 +20,8 @@ Esta arquitetura descreve um sistema baseado em microsserviços, projetado para 
 
 ## Fluxo de Funcionamento Geral
 
-![Diagrama da arquitetura geral do sistema]<img width="1032" height="353" alt="image" src="https://github.com/user-attachments/assets/b7929894-033f-4997-afa9-b3db9a591c83" />
+# Diagrama da arquitetura geral do sistema
+<img width="1032" height="353" alt="image" src="https://github.com/user-attachments/assets/b7929894-033f-4997-afa9-b3db9a591c83" />
 
 1.  **Ponto de Entrada (Entry Point)**: O **Usuário** interage com o sistema através de um **GATEWAY** (como o **Azure API Management**). Este componente atua como um ponto de entrada único, roteando as requisições para os microsserviços apropriados.
 
