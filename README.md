@@ -19,7 +19,7 @@ A arquitetura atual é distribuída e consiste nos seguintes componentes princip
 Esta arquitetura descreve um sistema baseado em microsserviços, projetado para ser escalável e resiliente, especialmente no processamento de pagamentos. O sistema é composto por um ponto de entrada único (API Gateway), múltiplos serviços independentes e um fluxo de processamento de pagamentos assíncrono que utiliza filas de mensagens no ecossistema da Microsoft Azure.
 
 ## Fluxo de comunicação dos microsserviços
-<img width="1082" height="490" alt="image" src="https://github.com/user-attachments/assets/24b21757-54ca-48d9-a872-f7079d6f94c4" />
+<img width="1076" height="470" alt="image" src="https://github.com/user-attachments/assets/ff90e07e-93a1-43ef-a837-da62d3b599ed" />
 
 ## Desenho de arquitetura representando o fluxo de funcionamento
 1.  **Ponto de Entrada (Entry Point)**: O **Usuário** interage com o sistema através de um **GATEWAY** (como o **Azure API Management**). Este componente atua como um ponto de entrada único, roteando as requisições para os microsserviços apropriados.
