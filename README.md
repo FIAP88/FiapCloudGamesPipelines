@@ -171,8 +171,8 @@ Ao final, você terá 4 processos rodando. A solução está pronta para uso!
     * **Body**:
         ```json
         {
-          "email": "joao@email.com",
-          "senha": "Te$te123"
+          "email": "joao.silva@fiapcloudgames.com",
+          "senha": "123456"
         }
         ```
 
