@@ -20,8 +20,12 @@ A arquitetura atual é distribuída e consiste nos seguintes componentes princip
 Esta arquitetura descreve um sistema baseado em microsserviços, projetado para ser escalável e resiliente, especialmente no processamento de pagamentos. O sistema é composto por um ponto de entrada único (API Gateway), múltiplos serviços independentes e um fluxo de processamento de pagamentos assíncrono que utiliza filas de mensagens no ecossistema da Microsoft Azure.
 
 ## Fluxo de comunicação dos microsserviços
-![Fluxo Micro serviços](https://github.com/user-attachments/assets/46272efc-6e53-47ff-8415-2786397d1462)
+<img width="4081" height="1630" alt="mermaid-diagram-2026-01-09-201922" src="https://github.com/user-attachments/assets/82575d3e-071e-4a7f-bf54-79c5f95264a9" />
 
+A arquitetura utiliza Kubernetes (AKS) para orquestração de containers. O acesso externo à aplicação é realizado por meio de um Azure Load Balancer integrado ao NGINX Ingress Controller, responsável pelo roteamento das requisições HTTP para os serviços internos conforme o caminho da URL. Cada microserviço é exposto por um Service do tipo ClusterIP e executado em múltiplos Pods gerenciados por Deployments, com escalabilidade automática via Horizontal Pod Autoscaler (HPA) baseado em consumo de CPU. As informações sensíveis são armazenadas em Secrets e a observabilidade é realizada através do Application Insights.
+
+## Fluxo de funcionamento no Kubernetes
+![Fluxo Micro serviços](https://github.com/user-attachments/assets/46272efc-6e53-47ff-8415-2786397d1462)
 
 ## Desenho de arquitetura representando o fluxo de funcionamento
 1.  **Ponto de Entrada (Entry Point)**: O **Usuário** interage com o sistema através de um **GATEWAY** (como o **Azure API Management**). Este componente atua como um ponto de entrada único, roteando as requisições para os microsserviços apropriados.
