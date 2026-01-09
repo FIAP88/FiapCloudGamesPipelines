@@ -1,4 +1,4 @@
-# FiapCloudGames (TechChallenge-03-06) - Arquitetura de Microsserviços
+# FiapCloudGames (TechChallenge-09-01-26) - Arquitetura de Microsserviços
 
 Bem-vindo à FiapCloudGames, uma plataforma de venda de jogos digitais. Esta versão do projeto foi re-arquitetada de um sistema monolítico para uma **arquitetura de microsserviços**, visando maior escalabilidade, resiliência e manutenibilidade.
 
@@ -13,13 +13,15 @@ A arquitetura atual é distribuída e consiste nos seguintes componentes princip
 * **API de Pagamentos**: Inicia o processo de compra, registrando a intenção de pagamento e publicando uma mensagem em uma fila para processamento assíncrono.
 * **Function de Pagamentos (Azure Function)**: Um processo serverless que é acionado por novas mensagens na fila de pagamentos, executando a lógica de processamento final da transação.
 * **Azure Service Bus**: Atua como o message broker, garantindo a comunicação assíncrona e resiliente entre a API de Pagamentos e a Function.
+* **RabbitMQ"": Responsavel por controlar o fluxo de troca de mensagens entre os micro serviços.
 
 # Arquitetura do Sistema
 
 Esta arquitetura descreve um sistema baseado em microsserviços, projetado para ser escalável e resiliente, especialmente no processamento de pagamentos. O sistema é composto por um ponto de entrada único (API Gateway), múltiplos serviços independentes e um fluxo de processamento de pagamentos assíncrono que utiliza filas de mensagens no ecossistema da Microsoft Azure.
 
 ## Fluxo de comunicação dos microsserviços
-<img width="1076" height="470" alt="image" src="https://github.com/user-attachments/assets/ff90e07e-93a1-43ef-a837-da62d3b599ed" />
+![Fluxo Micro serviços](https://github.com/user-attachments/assets/46272efc-6e53-47ff-8415-2786397d1462)
+
 
 ## Desenho de arquitetura representando o fluxo de funcionamento
 1.  **Ponto de Entrada (Entry Point)**: O **Usuário** interage com o sistema através de um **GATEWAY** (como o **Azure API Management**). Este componente atua como um ponto de entrada único, roteando as requisições para os microsserviços apropriados.
@@ -29,7 +31,8 @@ Esta arquitetura descreve um sistema baseado em microsserviços, projetado para 
     * **MS Jogos**: Responsável pela lógica relacionada aos jogos. Quando uma ação neste serviço requer um pagamento (ex: compra de um jogo ou item), ele se comunica com o Microsserviço de Pagamentos. Ele também possui um banco de dados dedicado, o **BD Jogos**.
 
 3.  **Início do Fluxo de Pagamento**:
-    * O **MS Jogos** envia uma requisição para o **MS Pagamentos** para iniciar uma transação.
+    * O **MS Jogos** uma mensagem para o RabbitMQ, contendo as informações do pedido, que será armazenado em uma pilha de mensagens.  
+    * O **MS Pagamentos** Acessar o RabbitMQ e retira da pilha as mensagens enviadas pelo **MS Jogos**.
     * O **MS Pagamentos**, ao invés de processar o pagamento imediatamente (de forma síncrona), adota uma abordagem assíncrona. Ele cria um registro inicial do pagamento no **BD Pagamentos** e envia uma mensagem com os detalhes da transação para uma fila.
 
 ## Fluxo de Processamento Assíncrono de Pagamentos
@@ -65,7 +68,7 @@ Cada microsserviço reside em seu próprio repositório para garantir a autonomi
 - **Backend**: .NET 8 (STS) para todas as APIs e a Function
 - **Banco de Dados**: SQL Server (um banco de dados por microsserviço)
 - **ORM**: Entity Framework Core
-- **Mensageria**: Azure Service Bus
+- **Mensageria**: Azure Service Bus e RabbitMQ
 - **Computação Serverless**: Azure Functions
 - **Autenticação**: JWT (Bearer Token), gerenciado pela API de Usuários
 - **Testes**: xUnit, Moq, Bogus (no projeto de Usuários)
