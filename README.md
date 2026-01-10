@@ -124,6 +124,9 @@ Cada microsserviço (Usuários, Jogos, Pagamentos) possui seu próprio banco de 
 
 ### Passo 4: Configurar as Variáveis de Ambiente
 
+As variáveis de ambiente necessárias para a execução dos serviços podem ser configuradas localmente, para fins de desenvolvimento, ou no ambiente Kubernetes, utilizando ConfigMaps e Secrets. No ambiente Kubernetes, essas configurações são criadas por script e aplicadas diretamente no cluster.
+
+### Ambiente Local
 1.  **API de Pagamentos**: No arquivo `appsettings.Development.json`, adicione a connection string do Azure Service Bus.
 2.  **Function de Pagamentos**: No arquivo `local.settings.json`, adicione a mesma connection string. O arquivo deve se parecer com isso:
     ```json
@@ -136,7 +139,17 @@ Cada microsserviço (Usuários, Jogos, Pagamentos) possui seu próprio banco de 
       }
     }
     ```
+### Ambiente Kubernetes
+1.  **API de Pagamentos**: Essa configuração deve ser externalizada para um ConfigMap ou Secret, de acordo com a sensibilidade da informação, e injetada no container por meio do Deployment.
+2.  **Function de Pagamentos**: Assim como a API, as variáveis de ambiente da Function devem ser configuradas por meio de ConfigMaps e Secrets, definidos nos arquivos YAML da pasta k8s/.
+3.  **Criação das Variáveis no Cluster**: A criação das variáveis de ambiente no Kubernetes é realizada por meio de um script de automação, responsável por:
+   Gerar connection strings dos bancos de dados
+   Configurar chaves de fila (Storage / Service Bus)
+   Registrar chaves JWT e Application Insights
+   Criar e atualizar os Secrets no cluster
 
+O script pode ser encontrado na pasta env nos arquivos de Deploymente localizados na pasta k8s/
+    
 ### Passo 5: Rodar a Solução Completa
 
 > **IMPORTANTE**: Cada serviço deve ser executado em um terminal diferente, simultaneamente.
