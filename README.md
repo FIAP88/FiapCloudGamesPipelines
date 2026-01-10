@@ -147,9 +147,8 @@ As variáveis de ambiente necessárias para a execução dos serviços podem ser
    Configurar chaves de fila (Storage / Service Bus)
    Registrar chaves JWT e Application Insights
    Criar e atualizar os Secrets no cluster
+O passo a passo pode da configuração do Kubernetes pode ser vista no Kubernetes.md nesse repositório
 
-O script pode ser encontrado na pasta env nos arquivos de Deploymente localizados na pasta k8s/
-    
 ### Passo 5: Rodar a Solução Completa
 
 > **IMPORTANTE**: Cada serviço deve ser executado em um terminal diferente, simultaneamente.
